@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Week of May 2, 2026 -- Weekly Meal Plan</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>  :root{--bg:#F1F0EC;--head:#6C7653;--acc:#C28511;--text:#1a1a1a;--card:#ffffff}  *{box-sizing:border-box}  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}  .wrap{max-width:980px;margin:0 auto;padding:12px 12px 56px}  .sticky{position:sticky;top:0;z-index:20;background:var(--head);box-shadow:0 2px 6px rgba(0,0,0,.12)}  .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:8px 12px}  .title{margin:0;font-size:16px;color:#fff;font-weight:800}  .meta{font-size:12px;color:#fff;opacity:.9}  .btns{display:flex;gap:8px}  button{cursor:pointer}  .btn{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;min-height:44px}  .btn:focus-visible,.acc:focus-visible{outline:3px solid #fff;outline-offset:2px}  .pill{display:inline-block;background:rgba(194,133,17,.15);color:var(--acc);padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}  section.card{background:var(--card);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.05);margin:12px 0;border-left:4px solid var(--acc)}  h2{margin:0} h3{margin:0}  .acc{background:none;border:none;display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px;min-height:44px;font:inherit;color:inherit;-webkit-appearance:none;appearance:none;text-align:left}  .acc .label{color:var(--head);font-weight:900;display:flex;align-items:center}  .chev{transition:transform .2s ease;color:var(--head);font-weight:900}  .acc[aria-expanded="true"] .chev{transform:rotate(90deg)}  .panel{padding:0 14px 14px}  ul{margin:8px 0 0 18px} li{margin:4px 0}  .sub{margin:6px 0 8px;color:#333}  .group{margin-top:8px} .group h3{margin:10px 0 4px;font-size:14px;color:var(--head)}  a{color:var(--acc);text-decoration:none}  @media (max-width:420px){.wrap{max-width:100%;padding:12px}}</style></head>
+<body><div class='wrap'>
+<header class="sticky"><div class="bar">
+  <div><div class="title">Rooted Wellness Weekly Meals Plan -- Rachel Stephens Wellness</div>
+  <div class="meta">Week of May 2, 2026 &bull; Focus: Simplify &amp; Prep</div></div>
+  <div class="btns"><button id="resetBtn" class="btn">Reset</button>
+  <button id="dlBtn" class="btn">Download</button></div>
+</div></header>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-intro" aria-expanded="true" aria-controls="panel-intro">
+    <span class="label">Intro / Nutrition Focus</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-intro" class="panel">
+    <p class="sub">Week start (ISO): 2026-05-02</p>
+    <p class="sub"><strong>Focus:</strong> <span class="pill">Simplify &amp; Prep</span></p>
+    <p>This week's meals are built around Simplify &amp; Prep. Each plate is designed to be whole-food, home-cook-friendly, and easy to prepare in 40 minutes or less.</p>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-breakfasts" aria-expanded="false" aria-controls="panel-sec-breakfasts">
+    <span class="label">Breakfasts</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-breakfasts" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-1" aria-expanded="false" aria-controls="panel-1">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Overnight Oats with Berries"
+               data-ings='[&quot;1 cup rolled oats&quot;, &quot;1 cup whole milk&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;1 Tbsp honey&quot;, &quot;1/2 cup mixed berries&quot;, &quot;1 Tbsp chia seeds&quot;]'
+               aria-label="Select Overnight Oats with Berries" style="margin-right:6px">Overnight Oats with Berries
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-1" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup rolled oats</li><li>1 cup whole milk</li><li>1/2 cup plain Greek yogurt</li><li>1 Tbsp honey</li><li>1/2 cup mixed berries</li><li>1 Tbsp chia seeds</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Combine oats, milk, yogurt, and honey in a jar.</li><li>Stir in chia seeds.</li><li>Refrigerate overnight.</li><li>Top with berries before serving.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-2" aria-expanded="false" aria-controls="panel-2">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Batch-Prep Egg Muffins"
+               data-ings='[&quot;8 large eggs&quot;, &quot;1/4 cup whole milk&quot;, &quot;1 cup chopped spinach&quot;, &quot;1/2 cup diced bell pepper&quot;, &quot;1/4 tsp salt&quot;, &quot;1/4 tsp black pepper&quot;]'
+               aria-label="Select Batch-Prep Egg Muffins" style="margin-right:6px">Batch-Prep Egg Muffins
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-2" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 large eggs</li><li>1/4 cup whole milk</li><li>1 cup chopped spinach</li><li>1/2 cup diced bell pepper</li><li>1/4 tsp salt</li><li>1/4 tsp black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Preheat oven to 350°F.</li><li>Whisk eggs with milk, salt, and pepper.</li><li>Divide spinach and bell pepper into 12 greased muffin cups.</li><li>Pour egg mixture over vegetables and bake 20 minutes.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-3" aria-expanded="false" aria-controls="panel-3">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Simple Avocado Toast"
+               data-ings='[&quot;2 slices whole grain bread&quot;, &quot;1 ripe avocado&quot;, &quot;1/4 tsp salt&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;1 tsp lemon juice&quot;]'
+               aria-label="Select Simple Avocado Toast" style="margin-right:6px">Simple Avocado Toast
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-3" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 slices whole grain bread</li><li>1 ripe avocado</li><li>1/4 tsp salt</li><li>1/4 tsp red pepper flakes</li><li>1 tsp lemon juice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toast bread until golden.</li><li>Mash avocado with salt, pepper flakes, and lemon juice.</li><li>Spread avocado mixture on toast.</li><li>Serve immediately.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-4" aria-expanded="false" aria-controls="panel-4">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Banana Peanut Butter Smoothie"
+               data-ings='[&quot;2 frozen bananas&quot;, &quot;2 Tbsp natural peanut butter&quot;, &quot;1 cup whole milk&quot;, &quot;1 Tbsp honey&quot;, &quot;1/2 tsp cinnamon&quot;]'
+               aria-label="Select Banana Peanut Butter Smoothie" style="margin-right:6px">Banana Peanut Butter Smoothie
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-4" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 frozen bananas</li><li>2 Tbsp natural peanut butter</li><li>1 cup whole milk</li><li>1 Tbsp honey</li><li>1/2 tsp cinnamon</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Add all ingredients to blender.</li><li>Blend until smooth.</li><li>Pour into glass and serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-5" aria-expanded="false" aria-controls="panel-5">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Greek Yogurt Parfait"
+               data-ings='[&quot;1.5 cups plain Greek yogurt&quot;, &quot;1/2 cup granola&quot;, &quot;1/2 cup sliced strawberries&quot;, &quot;2 Tbsp honey&quot;, &quot;2 Tbsp sliced almonds&quot;]'
+               aria-label="Select Greek Yogurt Parfait" style="margin-right:6px">Greek Yogurt Parfait
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-5" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1.5 cups plain Greek yogurt</li><li>1/2 cup granola</li><li>1/2 cup sliced strawberries</li><li>2 Tbsp honey</li><li>2 Tbsp sliced almonds</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Layer yogurt in a bowl or jar.</li><li>Add granola and strawberries.</li><li>Drizzle with honey and top with almonds.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-6" aria-expanded="false" aria-controls="panel-6">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Prep-Ahead Chia Pudding"
+               data-ings='[&quot;1/4 cup chia seeds&quot;, &quot;1 cup coconut milk&quot;, &quot;1 Tbsp maple syrup&quot;, &quot;1/2 tsp vanilla extract&quot;, &quot;1/4 cup diced mango&quot;]'
+               aria-label="Select Prep-Ahead Chia Pudding" style="margin-right:6px">Prep-Ahead Chia Pudding
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-6" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/4 cup chia seeds</li><li>1 cup coconut milk</li><li>1 Tbsp maple syrup</li><li>1/2 tsp vanilla extract</li><li>1/4 cup diced mango</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk chia seeds, coconut milk, maple syrup, and vanilla.</li><li>Refrigerate for at least 4 hours or overnight.</li><li>Stir and top with mango before serving.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-7" aria-expanded="false" aria-controls="panel-7">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Scrambled Eggs with Herbs"
+               data-ings='[&quot;3 large eggs&quot;, &quot;1 Tbsp butter&quot;, &quot;2 Tbsp chopped fresh chives&quot;, &quot;1/4 tsp salt&quot;, &quot;1/8 tsp black pepper&quot;]'
+               aria-label="Select Scrambled Eggs with Herbs" style="margin-right:6px">Scrambled Eggs with Herbs
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-7" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3 large eggs</li><li>1 Tbsp butter</li><li>2 Tbsp chopped fresh chives</li><li>1/4 tsp salt</li><li>1/8 tsp black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk eggs with salt and pepper.</li><li>Melt butter in skillet over medium-low heat.</li><li>Add eggs and stir gently until soft curds form.</li><li>Remove from heat, fold in chives, and serve.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-lunches" aria-expanded="false" aria-controls="panel-sec-lunches">
+    <span class="label">Lunches</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-lunches" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-8" aria-expanded="false" aria-controls="panel-8">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Mason Jar Greek Salad"
+               data-ings='[&quot;1/4 cup olive oil&quot;, &quot;2 Tbsp red wine vinegar&quot;, &quot;1 cup diced cucumber&quot;, &quot;1 cup cherry tomatoes halved&quot;, &quot;1/4 cup sliced red onion&quot;, &quot;1/2 cup feta cheese cubed&quot;, &quot;1/2 cup kalamata olives&quot;]'
+               aria-label="Select Mason Jar Greek Salad" style="margin-right:6px">Mason Jar Greek Salad
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-8" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/4 cup olive oil</li><li>2 Tbsp red wine vinegar</li><li>1 cup diced cucumber</li><li>1 cup cherry tomatoes halved</li><li>1/4 cup sliced red onion</li><li>1/2 cup feta cheese cubed</li><li>1/2 cup kalamata olives</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Layer dressing at bottom of jar.</li><li>Add cucumber, tomatoes, onion, olives, and feta.</li><li>Seal and refrigerate up to 4 days.</li><li>Shake and pour into bowl to serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-9" aria-expanded="false" aria-controls="panel-9">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Batch Chicken Salad Lettuce Wraps"
+               data-ings='[&quot;2 cups shredded cooked chicken&quot;, &quot;1/4 cup mayonnaise&quot;, &quot;1 Tbsp Dijon mustard&quot;, &quot;1/4 cup diced celery&quot;, &quot;2 Tbsp chopped fresh dill&quot;, &quot;8 butter lettuce leaves&quot;]'
+               aria-label="Select Batch Chicken Salad Lettuce Wraps" style="margin-right:6px">Batch Chicken Salad Lettuce Wraps
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-9" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cups shredded cooked chicken</li><li>1/4 cup mayonnaise</li><li>1 Tbsp Dijon mustard</li><li>1/4 cup diced celery</li><li>2 Tbsp chopped fresh dill</li><li>8 butter lettuce leaves</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix chicken, mayonnaise, mustard, celery, and dill.</li><li>Refrigerate until ready to serve.</li><li>Spoon chicken salad into lettuce leaves.</li><li>Serve chilled.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-10" aria-expanded="false" aria-controls="panel-10">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Quinoa Vegetable Bowl"
+               data-ings='[&quot;1 cup cooked quinoa&quot;, &quot;1/2 cup roasted sweet potato cubes&quot;, &quot;1/2 cup steamed broccoli&quot;, &quot;1/4 cup chickpeas&quot;, &quot;2 Tbsp tahini&quot;, &quot;1 tsp lemon juice&quot;]'
+               aria-label="Select Quinoa Vegetable Bowl" style="margin-right:6px">Quinoa Vegetable Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-10" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup cooked quinoa</li><li>1/2 cup roasted sweet potato cubes</li><li>1/2 cup steamed broccoli</li><li>1/4 cup chickpeas</li><li>2 Tbsp tahini</li><li>1 tsp lemon juice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Arrange quinoa in bowl.</li><li>Top with sweet potato, broccoli, and chickpeas.</li><li>Whisk tahini with lemon juice and drizzle over bowl.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-11" aria-expanded="false" aria-controls="panel-11">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey and Hummus Wrap"
+               data-ings='[&quot;1 large whole wheat tortilla&quot;, &quot;3 oz sliced turkey breast&quot;, &quot;3 Tbsp hummus&quot;, &quot;1/4 cup shredded carrots&quot;, &quot;1/4 cup baby spinach&quot;]'
+               aria-label="Select Turkey and Hummus Wrap" style="margin-right:6px">Turkey and Hummus Wrap
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-11" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 large whole wheat tortilla</li><li>3 oz sliced turkey breast</li><li>3 Tbsp hummus</li><li>1/4 cup shredded carrots</li><li>1/4 cup baby spinach</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Spread hummus evenly on tortilla.</li><li>Layer turkey, carrots, and spinach.</li><li>Roll tightly and slice in half.</li><li>Wrap in foil for grab-and-go.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-12" aria-expanded="false" aria-controls="panel-12">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Simple Lentil Soup"
+               data-ings='[&quot;1 cup dried brown lentils&quot;, &quot;4 cups vegetable broth&quot;, &quot;1 cup diced carrots&quot;, &quot;1 cup diced celery&quot;, &quot;1/2 cup diced onion&quot;, &quot;2 cloves garlic minced&quot;, &quot;1 tsp cumin&quot;]'
+               aria-label="Select Simple Lentil Soup" style="margin-right:6px">Simple Lentil Soup
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-12" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup dried brown lentils</li><li>4 cups vegetable broth</li><li>1 cup diced carrots</li><li>1 cup diced celery</li><li>1/2 cup diced onion</li><li>2 cloves garlic minced</li><li>1 tsp cumin</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Sauté onion, carrots, celery, and garlic in pot with 1 Tbsp olive oil.</li><li>Add lentils, broth, and cumin.</li><li>Bring to boil then simmer 25 minutes until lentils are tender.</li><li>Season with salt and pepper to taste.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-13" aria-expanded="false" aria-controls="panel-13">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Tuna Salad Stuffed Tomatoes"
+               data-ings='[&quot;2 cans (5 oz each) tuna drained&quot;, &quot;2 Tbsp mayonnaise&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;2 Tbsp diced red onion&quot;, &quot;4 large tomatoes&quot;, &quot;1/4 tsp salt&quot;]'
+               aria-label="Select Tuna Salad Stuffed Tomatoes" style="margin-right:6px">Tuna Salad Stuffed Tomatoes
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-13" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cans (5 oz each) tuna drained</li><li>2 Tbsp mayonnaise</li><li>1 Tbsp lemon juice</li><li>2 Tbsp diced red onion</li><li>4 large tomatoes</li><li>1/4 tsp salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix tuna, mayonnaise, lemon juice, onion, and salt.</li><li>Cut tops off tomatoes and scoop out seeds.</li><li>Fill tomatoes with tuna mixture.</li><li>Refrigerate until serving.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-14" aria-expanded="false" aria-controls="panel-14">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Black Bean and Corn Salad"
+               data-ings='[&quot;1 can (15 oz) black beans drained&quot;, &quot;1 cup corn kernels&quot;, &quot;1/2 cup diced red bell pepper&quot;, &quot;1/4 cup chopped cilantro&quot;, &quot;2 Tbsp lime juice&quot;, &quot;2 Tbsp olive oil&quot;]'
+               aria-label="Select Black Bean and Corn Salad" style="margin-right:6px">Black Bean and Corn Salad
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-14" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 can (15 oz) black beans drained</li><li>1 cup corn kernels</li><li>1/2 cup diced red bell pepper</li><li>1/4 cup chopped cilantro</li><li>2 Tbsp lime juice</li><li>2 Tbsp olive oil</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Combine beans, corn, bell pepper, and cilantro.</li><li>Whisk lime juice and olive oil together.</li><li>Pour dressing over salad and toss.</li><li>Chill for 30 minutes before serving.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-dinners" aria-expanded="false" aria-controls="panel-sec-dinners">
+    <span class="label">Dinners</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-dinners" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-15" aria-expanded="false" aria-controls="panel-15">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sheet Pan Lemon Herb Chicken"
+               data-ings='[&quot;4 chicken thighs bone-in&quot;, &quot;1 lb baby potatoes halved&quot;, &quot;2 cups green beans trimmed&quot;, &quot;3 Tbsp olive oil&quot;, &quot;2 Tbsp lemon juice&quot;, &quot;1 tsp dried oregano&quot;, &quot;1/2 tsp salt&quot;]'
+               aria-label="Select Sheet Pan Lemon Herb Chicken" style="margin-right:6px">Sheet Pan Lemon Herb Chicken
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-15" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 chicken thighs bone-in</li><li>1 lb baby potatoes halved</li><li>2 cups green beans trimmed</li><li>3 Tbsp olive oil</li><li>2 Tbsp lemon juice</li><li>1 tsp dried oregano</li><li>1/2 tsp salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Preheat oven to 425°F.</li><li>Toss potatoes and green beans with 2 Tbsp olive oil on sheet pan.</li><li>Season chicken with remaining oil, lemon juice, oregano, and salt.</li><li>Nestle chicken among vegetables and roast 35 minutes.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-16" aria-expanded="false" aria-controls="panel-16">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="One-Pot Beef and Vegetable Stew"
+               data-ings='[&quot;1 lb beef stew meat cubed&quot;, &quot;3 cups beef broth&quot;, &quot;2 cups diced potatoes&quot;, &quot;1 cup sliced carrots&quot;, &quot;1 cup diced celery&quot;, &quot;1 tsp thyme&quot;, &quot;1/2 tsp salt&quot;]'
+               aria-label="Select One-Pot Beef and Vegetable Stew" style="margin-right:6px">One-Pot Beef and Vegetable Stew
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-16" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb beef stew meat cubed</li><li>3 cups beef broth</li><li>2 cups diced potatoes</li><li>1 cup sliced carrots</li><li>1 cup diced celery</li><li>1 tsp thyme</li><li>1/2 tsp salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Brown beef in Dutch oven with 1 Tbsp oil.</li><li>Add broth, potatoes, carrots, celery, thyme, and salt.</li><li>Bring to boil then reduce to simmer.</li><li>Cook covered for 30 minutes until vegetables are tender.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-17" aria-expanded="false" aria-controls="panel-17">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Baked Salmon with Roasted Asparagus"
+               data-ings='[&quot;4 salmon fillets (6 oz each)&quot;, &quot;1 lb asparagus trimmed&quot;, &quot;3 Tbsp olive oil&quot;, &quot;2 cloves garlic minced&quot;, &quot;1 lemon sliced&quot;, &quot;1/2 tsp salt&quot;, &quot;1/4 tsp black pepper&quot;]'
+               aria-label="Select Baked Salmon with Roasted Asparagus" style="margin-right:6px">Baked Salmon with Roasted Asparagus
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-17" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 salmon fillets (6 oz each)</li><li>1 lb asparagus trimmed</li><li>3 Tbsp olive oil</li><li>2 cloves garlic minced</li><li>1 lemon sliced</li><li>1/2 tsp salt</li><li>1/4 tsp black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Preheat oven to 400°F.</li><li>Arrange asparagus on sheet pan and drizzle with 1 Tbsp oil.</li><li>Place salmon on pan, top with garlic, lemon slices, remaining oil, salt, and pepper.</li><li>Bake 15 minutes until salmon flakes easily.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-18" aria-expanded="false" aria-controls="panel-18">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey Taco Skillet"
+               data-ings='[&quot;1 lb ground turkey&quot;, &quot;1 can (15 oz) diced tomatoes&quot;, &quot;1 can (15 oz) black beans drained&quot;, &quot;1 cup corn kernels&quot;, &quot;2 Tbsp taco seasoning&quot;, &quot;1/2 cup shredded cheddar cheese&quot;]'
+               aria-label="Select Turkey Taco Skillet" style="margin-right:6px">Turkey Taco Skillet
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-18" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb ground turkey</li><li>1 can (15 oz) diced tomatoes</li><li>1 can (15 oz) black beans drained</li><li>1 cup corn kernels</li><li>2 Tbsp taco seasoning</li><li>1/2 cup shredded cheddar cheese</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Brown turkey in large skillet over medium heat.</li><li>Add tomatoes, beans, corn, and taco seasoning.</li><li>Simmer 15 minutes.</li><li>Top with cheese and serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-19" aria-expanded="false" aria-controls="panel-19">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Garlic Butter Shrimp with Zucchini Noodles"
+               data-ings='[&quot;1 lb large shrimp peeled and deveined&quot;, &quot;4 medium zucchini spiralized&quot;, &quot;3 Tbsp butter&quot;, &quot;4 cloves garlic minced&quot;, &quot;1/4 cup white wine&quot;, &quot;2 Tbsp fresh parsley chopped&quot;]'
+               aria-label="Select Garlic Butter Shrimp with Zucchini Noodles" style="margin-right:6px">Garlic Butter Shrimp with Zucchini Noodles
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-19" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb large shrimp peeled and deveined</li><li>4 medium zucchini spiralized</li><li>3 Tbsp butter</li><li>4 cloves garlic minced</li><li>1/4 cup white wine</li><li>2 Tbsp fresh parsley chopped</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Melt butter in large skillet over medium heat.</li><li>Sauté garlic 30 seconds then add shrimp.</li><li>Cook shrimp 3 minutes per side, add wine and simmer 2 minutes.</li><li>Toss in zucchini noodles, cook 2 minutes, and garnish with parsley.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-20" aria-expanded="false" aria-controls="panel-20">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Slow Cooker Pulled Pork"
+               data-ings='[&quot;3 lb pork shoulder&quot;, &quot;1 cup chicken broth&quot;, &quot;2 Tbsp brown sugar&quot;, &quot;1 Tbsp smoked paprika&quot;, &quot;1 tsp garlic powder&quot;, &quot;1 tsp onion powder&quot;, &quot;1/2 tsp salt&quot;]'
+               aria-label="Select Slow Cooker Pulled Pork" style="margin-right:6px">Slow Cooker Pulled Pork
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-20" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3 lb pork shoulder</li><li>1 cup chicken broth</li><li>2 Tbsp brown sugar</li><li>1 Tbsp smoked paprika</li><li>1 tsp garlic powder</li><li>1 tsp onion powder</li><li>1/2 tsp salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix brown sugar, paprika, garlic powder, onion powder, and salt.</li><li>Rub spice mixture over pork shoulder.</li><li>Place pork in slow cooker with broth.</li><li>Cook on low 8 hours, then shred with forks.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-21" aria-expanded="false" aria-controls="panel-21">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Vegetable Stir-Fry with Tofu"
+               data-ings='[&quot;14 oz extra-firm tofu pressed and cubed&quot;, &quot;2 cups broccoli florets&quot;, &quot;1 cup sliced bell peppers&quot;, &quot;1 cup snap peas&quot;, &quot;3 Tbsp soy sauce&quot;, &quot;1 Tbsp sesame oil&quot;, &quot;2 cloves garlic minced&quot;]'
+               aria-label="Select Vegetable Stir-Fry with Tofu" style="margin-right:6px">Vegetable Stir-Fry with Tofu
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-21" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>14 oz extra-firm tofu pressed and cubed</li><li>2 cups broccoli florets</li><li>1 cup sliced bell peppers</li><li>1 cup snap peas</li><li>3 Tbsp soy sauce</li><li>1 Tbsp sesame oil</li><li>2 cloves garlic minced</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat sesame oil in wok over high heat.</li><li>Add tofu and cook until golden, about 5 minutes.</li><li>Add vegetables and garlic, stir-fry 5 minutes.</li><li>Add soy sauce, toss to coat, and serve.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-snacks" aria-expanded="false" aria-controls="panel-sec-snacks">
+    <span class="label">Snacks</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-snacks" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-22" aria-expanded="false" aria-controls="panel-22">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Apple Slices with Almond Butter"
+               data-ings='[&quot;2 medium apples&quot;, &quot;4 Tbsp almond butter&quot;]'
+               aria-label="Select Apple Slices with Almond Butter" style="margin-right:6px">Apple Slices with Almond Butter
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-22" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 medium apples</li><li>4 Tbsp almond butter</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Core and slice apples.</li><li>Serve with almond butter for dipping.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-23" aria-expanded="false" aria-controls="panel-23">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Prep-Ahead Veggie Sticks with Hummus"
+               data-ings='[&quot;2 cups carrot sticks&quot;, &quot;2 cups celery sticks&quot;, &quot;1 cup cucumber slices&quot;, &quot;1 cup hummus&quot;]'
+               aria-label="Select Prep-Ahead Veggie Sticks with Hummus" style="margin-right:6px">Prep-Ahead Veggie Sticks with Hummus
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-23" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cups carrot sticks</li><li>2 cups celery sticks</li><li>1 cup cucumber slices</li><li>1 cup hummus</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Cut vegetables into sticks and slices.</li><li>Portion into containers with hummus.</li><li>Refrigerate for up to 5 days.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-24" aria-expanded="false" aria-controls="panel-24">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Hard-Boiled Eggs"
+               data-ings='[&quot;6 large eggs&quot;, &quot;1/4 tsp salt&quot;, &quot;1/4 tsp paprika&quot;]'
+               aria-label="Select Hard-Boiled Eggs" style="margin-right:6px">Hard-Boiled Eggs
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-24" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 large eggs</li><li>1/4 tsp salt</li><li>1/4 tsp paprika</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Place eggs in pot and cover with cold water.</li><li>Bring to boil, remove from heat, cover, and let sit 12 minutes.</li><li>Transfer to ice bath, peel, and season with salt and paprika.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-25" aria-expanded="false" aria-controls="panel-25">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Trail Mix"
+               data-ings='[&quot;1 cup raw almonds&quot;, &quot;1/2 cup raw cashews&quot;, &quot;1/2 cup dried cranberries&quot;, &quot;1/4 cup dark chocolate chips&quot;, &quot;1/4 cup pumpkin seeds&quot;]'
+               aria-label="Select Trail Mix" style="margin-right:6px">Trail Mix
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-25" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup raw almonds</li><li>1/2 cup raw cashews</li><li>1/2 cup dried cranberries</li><li>1/4 cup dark chocolate chips</li><li>1/4 cup pumpkin seeds</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Combine all ingredients in bowl.</li><li>Divide into small containers or bags.</li><li>Store at room temperature up to 2 weeks.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-26" aria-expanded="false" aria-controls="panel-26">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Cottage Cheese with Pineapple"
+               data-ings='[&quot;2 cups cottage cheese&quot;, &quot;1 cup diced fresh pineapple&quot;]'
+               aria-label="Select Cottage Cheese with Pineapple" style="margin-right:6px">Cottage Cheese with Pineapple
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-26" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cups cottage cheese</li><li>1 cup diced fresh pineapple</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Divide cottage cheese into serving bowls.</li><li>Top with pineapple.</li><li>Serve immediately or refrigerate.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-27" aria-expanded="false" aria-controls="panel-27">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Energy Bites"
+               data-ings='[&quot;1 cup rolled oats&quot;, &quot;1/2 cup peanut butter&quot;, &quot;1/3 cup honey&quot;, &quot;1/4 cup mini chocolate chips&quot;, &quot;2 Tbsp ground flaxseed&quot;]'
+               aria-label="Select Energy Bites" style="margin-right:6px">Energy Bites
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-27" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup rolled oats</li><li>1/2 cup peanut butter</li><li>1/3 cup honey</li><li>1/4 cup mini chocolate chips</li><li>2 Tbsp ground flaxseed</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix all ingredients in bowl until combined.</li><li>Roll into 1-inch balls.</li><li>Refrigerate 30 minutes before serving.</li><li>Store in refrigerator up to 1 week.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-28" aria-expanded="false" aria-controls="panel-28">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Cucumber Slices with Cream Cheese"
+               data-ings='[&quot;2 large cucumbers&quot;, &quot;4 oz cream cheese softened&quot;, &quot;1 Tbsp fresh dill chopped&quot;, &quot;1/8 tsp garlic powder&quot;]'
+               aria-label="Select Cucumber Slices with Cream Cheese" style="margin-right:6px">Cucumber Slices with Cream Cheese
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-28" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 large cucumbers</li><li>4 oz cream cheese softened</li><li>1 Tbsp fresh dill chopped</li><li>1/8 tsp garlic powder</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Slice cucumbers into 1/4-inch rounds.</li><li>Mix cream cheese with dill and garlic powder.</li><li>Spread mixture on cucumber slices.</li><li>Serve chilled.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-shopping" aria-expanded="false" aria-controls="panel-shopping">
+    <span class="label">Weekly Shopping List</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-shopping" class="panel" hidden>
+    <div class="group"><h3>Selected Meals -- Shopping List</h3>
+      <div class="shopping-dynamic"><p class="sub">Select meals to build your grocery list.</p></div>
+    </div>
+    <hr style="border:none;border-top:1px solid rgba(0,0,0,.08);margin:12px 0;">
+  </div>
+</section>
+<script>
+// ---- Accordion --------------------------------------------------------------
+document.querySelectorAll('.acc').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    var panelId  = btn.getAttribute('aria-controls');
+    var panel    = document.getElementById(panelId);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (panel) { panel.hidden = expanded; }
+  });
+});
+
+// ---- Helpers ----------------------------------------------------------------
+function escText(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Build shopping list using DOM methods to avoid XSS from untrusted data
+function buildShoppingList(selectedItems) {
+  var container = document.querySelector('.shopping-dynamic');
+  if (!container) return;
+
+  // Clear existing content safely
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  if (selectedItems.length === 0) {
+    var p = document.createElement('p');
+    p.className = 'sub';
+    p.textContent = 'Select meals to build your grocery list.';
+    container.appendChild(p);
+    return;
+  }
+
+  selectedItems.forEach(function(item) {
+    var group = document.createElement('div');
+    group.className = 'group';
+
+    var heading = document.createElement('h3');
+    heading.textContent = item.name;
+    group.appendChild(heading);
+
+    var ul = document.createElement('ul');
+    item.ingredients.forEach(function(ing) {
+      var li = document.createElement('li');
+      li.textContent = ing;
+      ul.appendChild(li);
+    });
+    group.appendChild(ul);
+    container.appendChild(group);
+  });
+}
+
+// ---- Shopping list update ---------------------------------------------------
+function updateShoppingList() {
+  var checked = document.querySelectorAll('.meal-check:checked');
+  var selectedItems = [];
+  checked.forEach(function(cb) {
+    var name = cb.dataset.name || '';
+    var ings = [];
+    try {
+      var raw = cb.dataset.ings || '[]';
+      ings = JSON.parse(raw);
+    } catch(e) { ings = []; }
+    selectedItems.push({ name: name, ingredients: ings });
+  });
+  buildShoppingList(selectedItems);
+}
+
+document.querySelectorAll('.meal-check').forEach(function(cb) {
+  cb.addEventListener('change', updateShoppingList);
+});
+
+// ---- Reset ------------------------------------------------------------------
+document.getElementById('resetBtn').addEventListener('click', function() {
+  if (!confirm('Clear all selections?')) return;
+  document.querySelectorAll('.meal-check').forEach(function(cb) { cb.checked = false; });
+  updateShoppingList();
+});
+
+// ---- Download ---------------------------------------------------------------
+document.getElementById('dlBtn').addEventListener('click', function() {
+  var blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meal-plan.html';
+  a.click();
+});
+</script>
+</div></body></html>

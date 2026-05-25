@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muscle Build Time — Week 5 | RSW Workouts</title>
+  <style>
+
+  :root{ --olive:#6C7653; --cream:#F1F0EC; --gold:#C28511; --ink:#1b1b1b; --mid:#6b7280; }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--ink); background:var(--cream)}
+  .wrap{max-width:960px; margin:0 auto; padding:24px 16px}
+  header{background:linear-gradient(180deg,var(--olive),#536043); color:white; padding:24px; border-radius:16px}
+  header h1{margin:0 0 6px 0; font-size:1.5rem; letter-spacing:0.2px}
+  .meta{opacity:.95; font-size:.95rem}
+  .goal{margin-top:12px; background:white; color:var(--ink); border-left:6px solid var(--gold); padding:12px 14px; border-radius:12px}
+  .intro{margin:16px 0 0 0; font-size:1rem}
+  h2{font-size:1.1rem; margin:18px 0 8px}
+  .workout,.mini,.walk,.footer{background:white; border-radius:16px; padding:16px; margin:16px 0; box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .exercise{border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; background:#fafafa}
+  .ex-head{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start}
+  .ex-title{font-size:1rem; display:flex; align-items:center; flex-wrap:wrap; gap:4px; flex:1; min-width:0}
+  .badge{background:var(--cream); color:#333; padding:2px 8px; border-radius:999px; font-size:.8rem; margin-left:4px; white-space:nowrap}
+  .equip{flex-shrink:0}
+  .equip label{font-size:.8rem; color:#374151; display:block; margin-bottom:4px}
+  .equip select{padding:8px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .trackers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:10px 0}
+  .trackers label{display:flex; flex-direction:column; font-size:.85rem; gap:6px}
+  .trackers input{padding:10px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .sets{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 10px}
+  .setbox{display:flex; align-items:center; gap:6px; font-size:.9rem; background:#fff; border:1px dashed #e5e7eb; border-radius:999px; padding:6px 10px}
+  .notes{display:flex; flex-direction:column; gap:6px; font-size:.85rem}
+  textarea{border:1px solid #d1d5db; border-radius:10px; padding:10px; background:white; width:100%}
+  .cue,.pattern{font-size:.85rem; color:#374151; margin-top:6px}
+  .mini ul{margin:8px 0 0 18px}
+  .footer a{color:var(--olive); text-decoration:underline}
+  .liblinks a{margin-right:12px}
+  /* Week selector */
+  .week-selector{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 8px}
+  .week-pill{padding:9px 20px; border-radius:999px; border:none; cursor:pointer; font-size:.9rem; font-weight:500; background:var(--cream); color:var(--ink); transition:background .15s,color .15s; line-height:1}
+  .week-pill.active{background:var(--olive); color:#fff}
+  .week-pill:hover:not(.active){background:#dddcd7}
+  /* Superset */
+  .superset-pill{display:inline-block; background:var(--gold); color:#fff; font-size:.68rem; font-weight:700; padding:2px 7px; border-radius:999px; letter-spacing:.4px; white-space:nowrap; flex-shrink:0}
+  @media(max-width:640px){.trackers{grid-template-columns:1fr}}
+
+  /* Day selector */
+  .day-selector{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px}
+  /* Completion strip */
+  .completion-strip{background:white; border:1px solid #e5e7eb; border-radius:12px; padding:12px 16px; margin-bottom:12px; transition:background .2s}
+  .completion-strip.done{background:#f0faf0; border-left:4px solid #4caf50}
+  .completion-main{display:flex; align-items:center; flex-wrap:wrap; gap:16px}
+  .completion-label{display:flex; align-items:center; gap:10px; cursor:pointer; font-size:.9rem; font-weight:500; user-select:none}
+  .completion-cb{position:absolute; opacity:0; width:1px; height:1px; overflow:hidden}
+  .completion-box{width:24px; height:24px; border:2px solid #d1d5db; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; background:white; flex-shrink:0; transition:background .15s,border-color .15s; font-size:13px; font-weight:700; color:white}
+  .completion-cb:checked+.completion-box{background:var(--olive); border-color:var(--olive)}
+  .completion-cb:checked+.completion-box::after{content:'✓'}
+  .completion-cb:focus+.completion-box{outline:2px solid var(--olive); outline-offset:2px}
+  .completion-date-label{display:flex; align-items:center; gap:8px; font-size:.85rem; color:#374151}
+  .completion-date{padding:8px 10px; border-radius:10px; border:1px solid #d1d5db; background:white; font-size:.85rem}
+  .completion-hint{font-size:.78rem; color:#9ca3af; margin:8px 0 0; padding:0}
+  @media(max-width:640px){.completion-main{flex-direction:column; align-items:flex-start}}
+  @media(max-width:640px){.ex-head{flex-direction:column} .equip{margin-top:8px} .equip select{width:100%}}
+
+  /* Lock screen */
+  #lock-screen{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:1000;padding:24px}
+  .lock-box{background:white;border-radius:20px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .lock-box h2{color:var(--olive);margin:0 0 8px;font-size:1.4rem}
+  .lock-box>p{color:var(--mid);margin:0 0 24px;font-size:.95rem}
+  #access-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #d1d5db;font-size:1rem;text-align:center;letter-spacing:.1em;margin-bottom:12px;box-sizing:border-box}
+  #access-input:focus{outline:2px solid var(--olive);border-color:var(--olive)}
+  #unlock-btn{width:100%;padding:12px;border-radius:10px;border:none;background:var(--olive);color:white;font-size:1rem;font-weight:600;cursor:pointer}
+  #unlock-btn:hover{background:#536043}
+  #lock-error{color:#dc2626;font-size:.85rem;margin:10px 0 0;display:none}
+  </style>
+</head>
+<body>
+
+<!-- Lock screen (visible by default) -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <h2>Rachel Stephens Wellness</h2>
+    <p>Enter your access code to continue</p>
+    <input type="text" id="access-input" placeholder="Access code"
+           autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <button id="unlock-btn" onclick="tryUnlock()">Unlock</button>
+    <p id="lock-error">Incorrect code. Check your email or DM us @rachelstephenswellness on Instagram</p>
+  </div>
+</div>
+
+<!-- Main content (hidden until unlocked) -->
+<div id="main-content" style="display:none">
+  <div class="wrap">
+    <header>
+      <h1>RSW — Muscle Build Time</h1>
+      <div class="meta"><strong>Program:</strong> Muscle Build Time — 6-Week Upper/Lower Split &bull; Week 5 of 6</div>
+      <div class="goal"><strong>Week 5 — Push Intensity:</strong> Last sets should be close to failure. Controlled technique stays — but the weight and effort go up. Leave nothing on the table. You've built the strength; now it's time to use it.</div>
+      <p class="intro">The final stretch. Week 5 is about digging deep — your last set on every major lift should be a genuine grind. Load the bar, stay tight, and push close to failure with good form. You've built the foundation. Now use it.</p>
+    </header>
+
+    <div class="day-selector">
+      <button class="week-pill day-pill active" data-day-btn="1" onclick="showDay(1)">Day 1 — Lower</button>
+      <button class="week-pill day-pill" data-day-btn="2" onclick="showDay(2)">Day 2 — Upper</button>
+      <button class="week-pill day-pill" data-day-btn="3" onclick="showDay(3)">Day 3 — Rest</button>
+      <button class="week-pill day-pill" data-day-btn="4" onclick="showDay(4)">Day 4 — Lower</button>
+      <button class="week-pill day-pill" data-day-btn="5" onclick="showDay(5)">Day 5 — Upper</button>
+      <button class="week-pill day-pill" data-day-btn="6" onclick="showDay(6)">Day 6 — Rest</button>
+      <button class="week-pill day-pill" data-day-btn="7" onclick="showDay(7)">Day 7 — Rest</button>
+    </div>
+
+    <!-- DAY 1: Lower — Glutes + Hamstrings -->
+    <section class="workout" data-day="1">
+      <h2>Day 1 — Lower: Glutes + Hamstrings</h2>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="muscle_week5__day1__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="muscle_week5__day1__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Hip Thrust" data-home-name="Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)">Barbell Hip Thrust</strong> <span class="badge">4 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day1__hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__hip-thrust__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__hip-thrust__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Push close to failure with good form. Primary glute driver — load up.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Bulgarian Split Squat (barbell or dumbbells, rear foot elevated)" data-home-name="Bulgarian Split Squat (dumbbells, rear foot elevated)">Bulgarian Split Squat (barbell or dumbbells, rear foot elevated)</strong> <span class="badge">3 sets &bull; 8-10 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__bulgarian-split-squat__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__bulgarian-split-squat__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day1__bulgarian-split-squat__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__bulgarian-split-squat__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__bulgarian-split-squat__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__bulgarian-split-squat__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__bulgarian-split-squat__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__bulgarian-split-squat__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Push close to failure with good form. Single leg — go heavier than you think you can.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Sumo Dumbbell Deadlift" data-home-name="Sumo Dumbbell Deadlift (same)">Sumo Dumbbell Deadlift</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__sumo-db-deadlift__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__sumo-db-deadlift__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day1__sumo-db-deadlift__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__sumo-db-deadlift__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__sumo-db-deadlift__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__sumo-db-deadlift__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__sumo-db-deadlift__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__sumo-db-deadlift__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Push close to failure. Wide stance, push floor away. Hamstrings loaded.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Single-Leg Hip Thrust (dumbbell)" data-home-name="Single-Leg Hip Thrust (dumbbell, upper back on bench or couch)">Single-Leg Hip Thrust (dumbbell)</strong> <span class="badge">3 sets &bull; 10-12 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__single-leg-hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__single-leg-hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day1__single-leg-hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__single-leg-hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__single-leg-hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__single-leg-hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__single-leg-hip-thrust__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__single-leg-hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Keep hips level. Maximum squeeze at the top — leave nothing.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Glute Kickback" data-home-name="Banded Glute Kickback (band around ankles)">Cable Glute Kickback</strong> <span class="badge">3 sets &bull; 12-15 reps each leg &bull; Tempo: 2-2-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__glute-kickbacks__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__glute-kickbacks__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day1__glute-kickbacks__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__glute-kickbacks__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__glute-kickbacks__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__glute-kickbacks__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__glute-kickbacks__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__glute-kickbacks__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. 2-second squeeze at peak. Push close to failure on every set.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Frog Pumps (plate on hips)" data-home-name="Frog Pumps (bodyweight or dumbbell on hips)">Frog Pumps (plate on hips)</strong> <span class="badge">2 sets &bull; 20 reps &bull; Tempo: 1-1-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day1__frog-pumps__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day1__frog-pumps__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 20" data-key="muscle_week5__day1__frog-pumps__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day1__frog-pumps__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__frog-pumps__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day1__frog-pumps__set_2"><span>Set 2</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day1__frog-pumps__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Add a plate — your glutes should be fully fatigued. Leave nothing on the table.</div>
+      </div>
+    </section>
+
+    <!-- DAY 2: Upper — Back + Biceps + Core -->
+    <section class="workout" data-day="2">
+      <h2>Day 2 — Upper: Back + Biceps + Core</h2>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="muscle_week5__day2__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="muscle_week5__day2__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Lat Pulldown (wide grip)" data-home-name="Resistance Band Lat Pulldown (band over door, kneel and pull down)">Lat Pulldown (wide grip)</strong> <span class="badge">4 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__lat-pulldown__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day2__lat-pulldown__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day2__lat-pulldown__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__lat-pulldown__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__lat-pulldown__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__lat-pulldown__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__lat-pulldown__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__lat-pulldown__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__lat-pulldown__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Push close to failure. Full stretch at top, squeeze lats at bottom.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Bent-Over Row" data-home-name="Dumbbell Bent-Over Row (same pattern, both arms)">Barbell Bent-Over Row</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__barbell-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day2__barbell-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day2__barbell-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__barbell-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__barbell-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__barbell-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__barbell-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__barbell-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Hinge at hips, pull to belly button. Push hard — stay tight.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Seated Cable Row (close grip)" data-home-name="Resistance Band Row (band anchored to door at waist height)">Seated Cable Row (close grip)</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__seated-cable-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day2__seated-cable-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day2__seated-cable-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__seated-cable-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__seated-cable-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__seated-cable-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__seated-cable-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__seated-cable-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Squeeze shoulder blades together at peak. Push close to failure.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell Bicep Curl" data-home-name="Dumbbell Bicep Curl (same)">Dumbbell Bicep Curl</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__db-bicep-curl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day2__db-bicep-curl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day2__db-bicep-curl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__db-bicep-curl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__db-bicep-curl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__db-bicep-curl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__db-bicep-curl__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__db-bicep-curl__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Control the negative — 2-3 sec down. No swinging. Push hard.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Bicep Curl" data-home-name="Resistance Band Bicep Curl (band under feet)">Cable Bicep Curl</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 2-1-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__cable-bicep-curl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day2__cable-bicep-curl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day2__cable-bicep-curl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__cable-bicep-curl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__cable-bicep-curl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__cable-bicep-curl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__cable-bicep-curl__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__cable-bicep-curl__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Constant tension. Squeeze hard at the top. Leave nothing on the table.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="GHD Sit-Up" data-home-name="Decline Sit-Up (feet anchored under couch) or Weighted Crunch">GHD Sit-Up</strong> <span class="badge">3 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day2__ghd-situps__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., BW" data-key="muscle_week5__day2__ghd-situps__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day2__ghd-situps__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day2__ghd-situps__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__ghd-situps__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__ghd-situps__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day2__ghd-situps__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day2__ghd-situps__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Full range of motion. Lower slowly, push hard on the way up.</div>
+      </div>
+    </section>
+
+    <!-- DAY 3: Rest / Walk -->
+    <section class="workout" data-day="3">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>20–30 min walk outside — low intensity, fresh air</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+      <p style="margin-top:12px">Aim for a longer walk today if energy allows — 30–45 min at a comfortable pace.</p>
+    </section>
+
+    <!-- DAY 4: Lower — Glutes + Quads -->
+    <section class="workout" data-day="4">
+      <h2>Day 4 — Lower: Glutes + Quads</h2>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="muscle_week5__day4__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="muscle_week5__day4__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Back Squat" data-home-name="Goblet Squat (heavy dumbbell, heels elevated on book or wedge)">Barbell Back Squat</strong> <span class="badge">4 sets &bull; 6-8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__barbell-back-squat__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day4__barbell-back-squat__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="muscle_week5__day4__barbell-back-squat__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__barbell-back-squat__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__barbell-back-squat__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__barbell-back-squat__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__barbell-back-squat__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__barbell-back-squat__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__barbell-back-squat__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Push close to failure. Brace hard, sit deep. This is where it gets earned.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Elevated Reverse Lunge (front foot on plate or step)" data-home-name="Reverse Lunge (dumbbells, elevate front foot on book or step if available)">Elevated Reverse Lunge (front foot on plate or step)</strong> <span class="badge">3 sets &bull; 10 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__reverse-lunges__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day4__reverse-lunges__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day4__reverse-lunges__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__reverse-lunges__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__reverse-lunges__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__reverse-lunges__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__reverse-lunges__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__reverse-lunges__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Elevation increases glute recruitment — go slow down, drive hard up.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Smith Machine Hack Squat (narrow stance, feet forward)" data-home-name="Dumbbell Sumo Squat (narrow stance, slow and controlled)">Smith Machine Hack Squat (narrow stance, feet forward)</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__smith-hack-squat__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day4__smith-hack-squat__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day4__smith-hack-squat__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__smith-hack-squat__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__smith-hack-squat__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__smith-hack-squat__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__smith-hack-squat__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__smith-hack-squat__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Quad isolation — drive hard through the top. Push close to failure.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Adductor Machine" data-home-name="Banded Adduction (lying on side, band around ankles)">Adductor Machine</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 2-1-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__adductor-machine__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day4__adductor-machine__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day4__adductor-machine__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__adductor-machine__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__adductor-machine__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__adductor-machine__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__adductor-machine__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__adductor-machine__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Slow and controlled — inner thigh squeeze at peak. Leave nothing.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Glute Kickback (higher angle)" data-home-name="Banded Glute Kickback (band around ankles, hinge forward slightly)">Cable Glute Kickback (higher angle)</strong> <span class="badge">3 sets &bull; 12-15 reps each leg &bull; Tempo: 2-2-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__glute-kickbacks-alt__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day4__glute-kickbacks-alt__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day4__glute-kickbacks-alt__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__glute-kickbacks-alt__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__glute-kickbacks-alt__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__glute-kickbacks-alt__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__glute-kickbacks-alt__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__glute-kickbacks-alt__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Slight forward lean — push close to failure on every set.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Froggers (bodyweight)" data-home-name="Froggers (bodyweight, same)">Froggers (bodyweight)</strong> <span class="badge">2 sets &bull; 20 reps &bull; Tempo: controlled</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day4__froggers__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., BW" data-key="muscle_week5__day4__froggers__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 20" data-key="muscle_week5__day4__froggers__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day4__froggers__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__froggers__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day4__froggers__set_2"><span>Set 2</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day4__froggers__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Move with control. Push for max reps — leave nothing on the table.</div>
+      </div>
+    </section>
+
+    <!-- DAY 5: Upper — Shoulders + Triceps + Core -->
+    <section class="workout" data-day="5">
+      <h2>Day 5 — Upper: Shoulders + Triceps + Core</h2>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="muscle_week5__day5__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="muscle_week5__day5__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Overhead Shoulder Press (dumbbell or barbell)" data-home-name="Dumbbell Overhead Press (seated or standing)">Overhead Shoulder Press (dumbbell or barbell)</strong> <span class="badge">4 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__overhead-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__overhead-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day5__overhead-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__overhead-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-press__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-press__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__overhead-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Core tight, don't flare ribs. Push close to failure with good form.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell or Cable Lateral Raise" data-home-name="Dumbbell Lateral Raise">Dumbbell or Cable Lateral Raise</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 2-1-2</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__lateral-raises__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__lateral-raises__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day5__lateral-raises__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__lateral-raises__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__lateral-raises__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__lateral-raises__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__lateral-raises__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__lateral-raises__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Elbows soft, shoulders down. Push close to failure.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Single Arm Cable Lateral Raise (holding cable stack for support)" data-home-name="Single Arm Dumbbell Lateral Raise (hold wall for support)">Single Arm Cable Lateral Raise (holding cable stack for support)</strong> <span class="badge">3 sets &bull; 12 reps each arm &bull; Tempo: 2-1-2</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__single-arm-lateral-raise__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__single-arm-lateral-raise__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day5__single-arm-lateral-raise__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__single-arm-lateral-raise__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__single-arm-lateral-raise__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__single-arm-lateral-raise__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__single-arm-lateral-raise__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__single-arm-lateral-raise__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Unilateral focus. Push close to failure — don't let the shoulder shrug.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Machine Chest Press or Dumbbell Chest Press" data-home-name="Dumbbell Floor Press">Machine Chest Press or Dumbbell Chest Press</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__chest-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__chest-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day5__chest-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__chest-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__chest-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__chest-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__chest-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__chest-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set should be a grind. Full range. Lower slow, press close to failure.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Tricep Pushdown (rope or bar)" data-home-name="Resistance Band Tricep Pushdown (band over door)">Cable Tricep Pushdown (rope or bar)</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__tricep-pushdowns__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__tricep-pushdowns__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="muscle_week5__day5__tricep-pushdowns__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__tricep-pushdowns__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__tricep-pushdowns__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__tricep-pushdowns__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__tricep-pushdowns__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__tricep-pushdowns__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Elbows stay pinned. Full extension — push close to failure.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable or Dumbbell Overhead Tricep Extension" data-home-name="Dumbbell Overhead Tricep Extension">Cable or Dumbbell Overhead Tricep Extension</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__overhead-tricep-ext__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="muscle_week5__day5__overhead-tricep-ext__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="muscle_week5__day5__overhead-tricep-ext__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__overhead-tricep-ext__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-tricep-ext__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-tricep-ext__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__overhead-tricep-ext__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__overhead-tricep-ext__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Stretch at the bottom — push close to failure with good form.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="GHD Sit-Up" data-home-name="Decline Sit-Up (feet anchored under couch) or Weighted Crunch">GHD Sit-Up</strong> <span class="badge">3 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="muscle_week5__day5__ghd-situps-d5__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., BW" data-key="muscle_week5__day5__ghd-situps-d5__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="muscle_week5__day5__ghd-situps-d5__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="muscle_week5__day5__ghd-situps-d5__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__ghd-situps-d5__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__ghd-situps-d5__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="muscle_week5__day5__ghd-situps-d5__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="muscle_week5__day5__ghd-situps-d5__notes"></textarea></label>
+        <div class="cue">Progression cue: Last set to near failure. Full range of motion. Lower slowly, rise with everything you have.</div>
+      </div>
+    </section>
+
+    <!-- DAY 6: Rest -->
+    <section class="workout" data-day="6">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>20–30 min walk outside — low intensity, fresh air</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+      <p style="margin-top:12px">Full rest. Let your body absorb everything you've put in this week.</p>
+    </section>
+
+    <!-- DAY 7: Rest -->
+    <section class="workout" data-day="7">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>20–30 min walk outside — low intensity, fresh air</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+      <p style="margin-top:12px">Full rest. Let your body absorb everything you've put in this week.</p>
+    </section>
+
+    <section class="mini">
+      <h2>Mini Session — Mobility &amp; Recovery</h2>
+      <p>10–15 min &bull; Any day, any time</p>
+      <ul>
+        <li>90/90 Hip Stretch — 60 sec each side</li>
+        <li>World's Greatest Stretch — 5 reps each side</li>
+        <li>Band Pull-Aparts — 2 x 15</li>
+        <li>Thoracic Rotation — 5 reps each side</li>
+      </ul>
+    </section>
+
+    <section class="walk">
+      <h2>Daily Walks</h2>
+      <p>Aim for 20–30 minutes of walking daily. On rest days, extend to 30–45 min. Walking supports recovery, regulates hormones, and keeps your metabolism active between sessions.</p>
+    </section>
+
+    <section class="footer">
+      <p style="color:#4b5563;font-size:.85rem">Tip: your entries are stored on your device (localStorage). Clearing site data will reset your logs.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  var CONFIG = {
+    accessCode: 'GRIND',
+    weekLocked: true,
+    weekNumber: 5
+  };
+
+  function tryUnlock() {
+    var val = document.getElementById('access-input').value.trim().toUpperCase();
+    if (val === CONFIG.accessCode) {
+      localStorage.setItem('rsw_muscle_week' + CONFIG.weekNumber + '_unlocked', 'true');
+      showApp();
+    } else {
+      document.getElementById('lock-error').style.display = '';
+    }
+  }
+
+  function showApp() {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = '';
+    showDay(1);
+    restore();
+    document.querySelectorAll('.equip select').forEach(applyEquipName);
+    document.querySelectorAll('.completion-cb').forEach(applyCompletionStyle);
+  }
+
+  var currentDay = 1;
+
+  function showDay(dayNum) {
+    currentDay = dayNum;
+    document.querySelectorAll('[data-day-btn]').forEach(function(p) { p.classList.remove('active'); });
+    var pill = document.querySelector('[data-day-btn="' + dayNum + '"]');
+    if (pill) pill.classList.add('active');
+    document.querySelectorAll('.workout').forEach(function(s) {
+      s.style.display = (s.getAttribute('data-day') == dayNum) ? '' : 'none';
+    });
+  }
+
+  var restore = function() {
+    document.querySelectorAll('[data-key]').forEach(function(el) {
+      var key = el.getAttribute('data-key');
+      if (el.type === 'checkbox') {
+        el.checked = localStorage.getItem(key) === '1';
+      } else {
+        var v = localStorage.getItem(key);
+        if (v !== null) el.value = v;
+      }
+    });
+  };
+
+  var persist = function(e) {
+    var el = e.target;
+    if (!el || !el.hasAttribute('data-key')) return;
+    var key = el.getAttribute('data-key');
+    var val = (el.type === 'checkbox') ? (el.checked ? '1' : '0') : el.value;
+    localStorage.setItem(key, val);
+  };
+
+  function applyEquipName(select) {
+    var card = select.closest('.exercise');
+    if (!card) return;
+    var strong = card.querySelector('.ex-title strong');
+    if (!strong || !strong.hasAttribute('data-gym-name')) return;
+    strong.textContent = select.value === 'home'
+      ? strong.getAttribute('data-home-name')
+      : strong.getAttribute('data-gym-name');
+  }
+
+  function applyCompletionStyle(cb) {
+    var strip = cb.closest('.completion-strip');
+    if (!strip) return;
+    var text = strip.querySelector('.completion-text');
+    if (cb.checked) {
+      strip.classList.add('done');
+      if (text) text.textContent = 'Completed ✓';
+    } else {
+      strip.classList.remove('done');
+      if (text) text.textContent = 'Mark as Complete';
+    }
+  }
+
+  window.addEventListener('change', function(e) {
+    persist(e);
+    if (e.target && e.target.closest && e.target.closest('.equip')) {
+      applyEquipName(e.target);
+    }
+    if (e.target && e.target.classList.contains('completion-cb')) {
+      applyCompletionStyle(e.target);
+    }
+  }, true);
+
+  window.addEventListener('DOMContentLoaded', function() {
+    if (CONFIG.weekLocked &&
+        localStorage.getItem('rsw_muscle_week' + CONFIG.weekNumber + '_unlocked') !== 'true') {
+      var inp = document.getElementById('access-input');
+      if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
+      return;
+    }
+    showApp();
+  });
+</script>
+</body>
+</html>
