@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Week of Jun 6, 2026 -- Weekly Meal Plan</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>  :root{--bg:#F1F0EC;--head:#6C7653;--acc:#C28511;--text:#1a1a1a;--card:#ffffff}  *{box-sizing:border-box}  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}  .wrap{max-width:980px;margin:0 auto;padding:12px 12px 56px}  .sticky{position:sticky;top:0;z-index:20;background:var(--head);box-shadow:0 2px 6px rgba(0,0,0,.12)}  .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:8px 12px}  .title{margin:0;font-size:16px;color:#fff;font-weight:800}  .meta{font-size:12px;color:#fff;opacity:.9}  .btns{display:flex;gap:8px}  button{cursor:pointer}  .btn{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;min-height:44px}  .btn:focus-visible,.acc:focus-visible{outline:3px solid #fff;outline-offset:2px}  .pill{display:inline-block;background:rgba(194,133,17,.15);color:var(--acc);padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}  section.card{background:var(--card);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.05);margin:12px 0;border-left:4px solid var(--acc)}  h2{margin:0} h3{margin:0}  .acc{background:none;border:none;display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px;min-height:44px;font:inherit;color:inherit;-webkit-appearance:none;appearance:none;text-align:left}  .acc .label{color:var(--head);font-weight:900;display:flex;align-items:center}  .chev{transition:transform .2s ease;color:var(--head);font-weight:900}  .acc[aria-expanded="true"] .chev{transform:rotate(90deg)}  .panel{padding:0 14px 14px}  ul{margin:8px 0 0 18px} li{margin:4px 0}  .sub{margin:6px 0 8px;color:#333}  .group{margin-top:8px} .group h3{margin:10px 0 4px;font-size:14px;color:var(--head)}  a{color:var(--acc);text-decoration:none}  @media (max-width:420px){.wrap{max-width:100%;padding:12px}}</style></head>
+<body><div class='wrap'>
+<header class="sticky"><div class="bar">
+  <div><div class="title">Rooted Wellness Weekly Meals Plan -- Rachel Stephens Wellness</div>
+  <div class="meta">Week of Jun 6, 2026 &bull; Focus: Hormone Harmony</div></div>
+  <div class="btns"><button id="resetBtn" class="btn">Reset</button>
+  <button id="dlBtn" class="btn">Download</button></div>
+</div></header>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-intro" aria-expanded="true" aria-controls="panel-intro">
+    <span class="label">Intro / Nutrition Focus</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-intro" class="panel">
+    <p class="sub">Week start (ISO): 2026-06-06</p>
+    <p class="sub"><strong>Focus:</strong> <span class="pill">Hormone Harmony</span></p>
+    <p>This week's meals are built around Hormone Harmony. Each plate is designed to be whole-food, home-cook-friendly, and easy to prepare in 40 minutes or less.</p>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-breakfasts" aria-expanded="false" aria-controls="panel-sec-breakfasts">
+    <span class="label">Breakfasts</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-breakfasts" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-1" aria-expanded="false" aria-controls="panel-1">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Flax &amp; Berry Overnight Oats"
+               data-ings='[&quot;1/2 cup rolled oats&quot;, &quot;2 Tbsp ground flaxseed&quot;, &quot;3/4 cup almond milk&quot;, &quot;1/2 cup mixed berries&quot;, &quot;1 Tbsp almond butter&quot;, &quot;1 tsp raw honey&quot;, &quot;1/4 tsp cinnamon&quot;]'
+               aria-label="Select Flax &amp; Berry Overnight Oats" style="margin-right:6px">Flax &amp; Berry Overnight Oats
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-1" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/2 cup rolled oats</li><li>2 Tbsp ground flaxseed</li><li>3/4 cup almond milk</li><li>1/2 cup mixed berries</li><li>1 Tbsp almond butter</li><li>1 tsp raw honey</li><li>1/4 tsp cinnamon</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Stir oats, flax, almond milk, cinnamon, and honey in a jar.</li><li>Top with berries and a swirl of almond butter.</li><li>Cover and refrigerate overnight.</li><li>Stir and enjoy cold or warmed.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-2" aria-expanded="false" aria-controls="panel-2">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Avocado &amp; Soft Egg Bowl"
+               data-ings='[&quot;2 pasture-raised eggs&quot;, &quot;1/2 avocado, sliced&quot;, &quot;1 cup baby spinach&quot;, &quot;1 tsp olive oil&quot;, &quot;1 Tbsp pumpkin seeds&quot;, &quot;Sea salt and pepper to taste&quot;, &quot;Pinch red pepper flakes&quot;]'
+               aria-label="Select Avocado &amp; Soft Egg Bowl" style="margin-right:6px">Avocado &amp; Soft Egg Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-2" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 pasture-raised eggs</li><li>1/2 avocado, sliced</li><li>1 cup baby spinach</li><li>1 tsp olive oil</li><li>1 Tbsp pumpkin seeds</li><li>Sea salt and pepper to taste</li><li>Pinch red pepper flakes</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Soft-boil eggs for 6-7 minutes, then peel and halve.</li><li>Saute spinach in olive oil until just wilted.</li><li>Plate spinach, avocado, and eggs.</li><li>Top with pumpkin seeds, salt, pepper, and red pepper flakes.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-3" aria-expanded="false" aria-controls="panel-3">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Smoked Salmon Scramble"
+               data-ings='[&quot;3 pasture-raised eggs&quot;, &quot;2 oz smoked wild salmon&quot;, &quot;1 Tbsp chopped chives&quot;, &quot;1 tsp grass-fed butter&quot;, &quot;1 Tbsp goat cheese&quot;, &quot;Black pepper to taste&quot;]'
+               aria-label="Select Smoked Salmon Scramble" style="margin-right:6px">Smoked Salmon Scramble
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-3" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3 pasture-raised eggs</li><li>2 oz smoked wild salmon</li><li>1 Tbsp chopped chives</li><li>1 tsp grass-fed butter</li><li>1 Tbsp goat cheese</li><li>Black pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk eggs with a pinch of pepper.</li><li>Melt butter in a nonstick pan over low heat.</li><li>Add eggs and gently fold until soft-set.</li><li>Fold in flaked salmon and goat cheese off heat.</li><li>Garnish with chives.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-4" aria-expanded="false" aria-controls="panel-4">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Vanilla Chia Pudding with Pumpkin Seeds"
+               data-ings='[&quot;3 Tbsp chia seeds&quot;, &quot;3/4 cup coconut milk&quot;, &quot;1/2 tsp vanilla extract&quot;, &quot;1 tsp maple syrup&quot;, &quot;2 Tbsp pumpkin seeds&quot;, &quot;1/4 cup raspberries&quot;]'
+               aria-label="Select Vanilla Chia Pudding with Pumpkin Seeds" style="margin-right:6px">Vanilla Chia Pudding with Pumpkin Seeds
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-4" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3 Tbsp chia seeds</li><li>3/4 cup coconut milk</li><li>1/2 tsp vanilla extract</li><li>1 tsp maple syrup</li><li>2 Tbsp pumpkin seeds</li><li>1/4 cup raspberries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk chia, coconut milk, vanilla, and maple syrup.</li><li>Let sit 5 minutes, then whisk again to prevent clumps.</li><li>Refrigerate at least 2 hours or overnight.</li><li>Top with pumpkin seeds and raspberries before serving.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-5" aria-expanded="false" aria-controls="panel-5">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sweet Potato &amp; Turkey Sausage Hash"
+               data-ings='[&quot;1 cup diced sweet potato&quot;, &quot;4 oz ground turkey&quot;, &quot;1/2 cup diced bell pepper&quot;, &quot;1/4 cup diced onion&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1/2 tsp smoked paprika&quot;, &quot;Sea salt to taste&quot;]'
+               aria-label="Select Sweet Potato &amp; Turkey Sausage Hash" style="margin-right:6px">Sweet Potato &amp; Turkey Sausage Hash
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-5" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup diced sweet potato</li><li>4 oz ground turkey</li><li>1/2 cup diced bell pepper</li><li>1/4 cup diced onion</li><li>1 Tbsp olive oil</li><li>1/2 tsp smoked paprika</li><li>Sea salt to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Saute sweet potato in olive oil over medium heat 8 minutes.</li><li>Add onion and bell pepper; cook 4 minutes.</li><li>Push veg aside and brown the turkey with paprika and salt.</li><li>Combine everything and cook until potato is tender.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-6" aria-expanded="false" aria-controls="panel-6">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Seed-Cycling Yogurt Parfait"
+               data-ings='[&quot;3/4 cup plain whole-milk Greek yogurt&quot;, &quot;1 Tbsp ground flaxseed&quot;, &quot;1 Tbsp ground pumpkin seeds&quot;, &quot;1/4 cup blueberries&quot;, &quot;1 Tbsp chopped walnuts&quot;, &quot;1 tsp raw honey&quot;]'
+               aria-label="Select Seed-Cycling Yogurt Parfait" style="margin-right:6px">Seed-Cycling Yogurt Parfait
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-6" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3/4 cup plain whole-milk Greek yogurt</li><li>1 Tbsp ground flaxseed</li><li>1 Tbsp ground pumpkin seeds</li><li>1/4 cup blueberries</li><li>1 Tbsp chopped walnuts</li><li>1 tsp raw honey</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Spoon yogurt into a bowl or glass.</li><li>Stir in ground flax and pumpkin seeds.</li><li>Layer with blueberries and walnuts.</li><li>Drizzle with honey and serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-7" aria-expanded="false" aria-controls="panel-7">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Spinach &amp; Goat Cheese Frittata"
+               data-ings='[&quot;4 pasture-raised eggs&quot;, &quot;2 cups baby spinach&quot;, &quot;2 Tbsp crumbled goat cheese&quot;, &quot;1/4 cup diced tomato&quot;, &quot;1 Tbsp olive oil&quot;, &quot;Sea salt and pepper to taste&quot;]'
+               aria-label="Select Spinach &amp; Goat Cheese Frittata" style="margin-right:6px">Spinach &amp; Goat Cheese Frittata
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-7" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 pasture-raised eggs</li><li>2 cups baby spinach</li><li>2 Tbsp crumbled goat cheese</li><li>1/4 cup diced tomato</li><li>1 Tbsp olive oil</li><li>Sea salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 375F.</li><li>Saute spinach and tomato in an oven-safe skillet with olive oil.</li><li>Whisk eggs with salt and pepper and pour over veg.</li><li>Dot with goat cheese and cook 2 minutes on stovetop.</li><li>Transfer to oven and bake 10-12 minutes until set.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-lunches" aria-expanded="false" aria-controls="panel-sec-lunches">
+    <span class="label">Lunches</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-lunches" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-8" aria-expanded="false" aria-controls="panel-8">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Salmon &amp; Quinoa Power Bowl"
+               data-ings='[&quot;4 oz cooked wild salmon&quot;, &quot;3/4 cup cooked quinoa&quot;, &quot;1 cup chopped kale&quot;, &quot;1/4 avocado&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1 tsp lemon juice&quot;, &quot;1 Tbsp pumpkin seeds&quot;]'
+               aria-label="Select Salmon &amp; Quinoa Power Bowl" style="margin-right:6px">Salmon &amp; Quinoa Power Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-8" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 oz cooked wild salmon</li><li>3/4 cup cooked quinoa</li><li>1 cup chopped kale</li><li>1/4 avocado</li><li>1 Tbsp olive oil</li><li>1 tsp lemon juice</li><li>1 Tbsp pumpkin seeds</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Massage kale with olive oil and lemon juice.</li><li>Build a bowl with quinoa and kale.</li><li>Top with flaked salmon and avocado.</li><li>Sprinkle with pumpkin seeds.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-9" aria-expanded="false" aria-controls="panel-9">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Chickpea &amp; Roasted Veggie Salad"
+               data-ings='[&quot;1 cup canned chickpeas, rinsed&quot;, &quot;1 cup chopped broccoli&quot;, &quot;1/2 cup chopped red onion&quot;, &quot;2 Tbsp olive oil&quot;, &quot;2 cups mixed greens&quot;, &quot;1 Tbsp tahini&quot;, &quot;1 tsp lemon juice&quot;]'
+               aria-label="Select Chickpea &amp; Roasted Veggie Salad" style="margin-right:6px">Chickpea &amp; Roasted Veggie Salad
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-9" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup canned chickpeas, rinsed</li><li>1 cup chopped broccoli</li><li>1/2 cup chopped red onion</li><li>2 Tbsp olive oil</li><li>2 cups mixed greens</li><li>1 Tbsp tahini</li><li>1 tsp lemon juice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 425F.</li><li>Toss broccoli, onion, and chickpeas with 1 Tbsp olive oil; roast 20 minutes.</li><li>Whisk tahini, lemon juice, and remaining oil with a splash of water.</li><li>Serve roasted veg over greens with dressing.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-10" aria-expanded="false" aria-controls="panel-10">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Lentil &amp; Kale Soup"
+               data-ings='[&quot;3/4 cup dried green lentils&quot;, &quot;3 cups vegetable broth&quot;, &quot;2 cups chopped kale&quot;, &quot;1/2 cup diced carrot&quot;, &quot;1/2 cup diced onion&quot;, &quot;2 cloves garlic, minced&quot;, &quot;1 Tbsp olive oil&quot;]'
+               aria-label="Select Lentil &amp; Kale Soup" style="margin-right:6px">Lentil &amp; Kale Soup
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-10" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3/4 cup dried green lentils</li><li>3 cups vegetable broth</li><li>2 cups chopped kale</li><li>1/2 cup diced carrot</li><li>1/2 cup diced onion</li><li>2 cloves garlic, minced</li><li>1 Tbsp olive oil</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Saute onion, carrot, and garlic in olive oil 5 minutes.</li><li>Add lentils and broth; bring to a boil.</li><li>Simmer 25 minutes until lentils are tender.</li><li>Stir in kale and cook 3 more minutes.</li><li>Season with salt and pepper.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-11" aria-expanded="false" aria-controls="panel-11">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Grilled Chicken &amp; Avocado Wrap"
+               data-ings='[&quot;4 oz grilled chicken, sliced&quot;, &quot;1 whole-grain tortilla&quot;, &quot;1/4 avocado, mashed&quot;, &quot;1/2 cup shredded cabbage&quot;, &quot;1/4 cup shredded carrot&quot;, &quot;1 Tbsp plain Greek yogurt&quot;, &quot;1 tsp lime juice&quot;]'
+               aria-label="Select Grilled Chicken &amp; Avocado Wrap" style="margin-right:6px">Grilled Chicken &amp; Avocado Wrap
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-11" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 oz grilled chicken, sliced</li><li>1 whole-grain tortilla</li><li>1/4 avocado, mashed</li><li>1/2 cup shredded cabbage</li><li>1/4 cup shredded carrot</li><li>1 Tbsp plain Greek yogurt</li><li>1 tsp lime juice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix yogurt with lime juice for a quick sauce.</li><li>Spread avocado and sauce on the tortilla.</li><li>Layer chicken, cabbage, and carrot.</li><li>Roll tightly and slice in half.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-12" aria-expanded="false" aria-controls="panel-12">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Broccoli &amp; Tofu Sesame Stir-Fry"
+               data-ings='[&quot;6 oz firm tofu, cubed&quot;, &quot;2 cups broccoli florets&quot;, &quot;1 Tbsp sesame oil&quot;, &quot;1 Tbsp tamari&quot;, &quot;1 tsp grated ginger&quot;, &quot;1 tsp sesame seeds&quot;, &quot;3/4 cup cooked brown rice&quot;]'
+               aria-label="Select Broccoli &amp; Tofu Sesame Stir-Fry" style="margin-right:6px">Broccoli &amp; Tofu Sesame Stir-Fry
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-12" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 oz firm tofu, cubed</li><li>2 cups broccoli florets</li><li>1 Tbsp sesame oil</li><li>1 Tbsp tamari</li><li>1 tsp grated ginger</li><li>1 tsp sesame seeds</li><li>3/4 cup cooked brown rice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Press and pat tofu dry, then sear in sesame oil until golden.</li><li>Add broccoli and ginger; stir-fry 4 minutes.</li><li>Add tamari and toss to coat.</li><li>Serve over brown rice and top with sesame seeds.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-13" aria-expanded="false" aria-controls="panel-13">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sardine &amp; White Bean Salad"
+               data-ings='[&quot;1 can wild sardines in olive oil&quot;, &quot;1 cup canned white beans, rinsed&quot;, &quot;2 cups arugula&quot;, &quot;1/4 cup diced red onion&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1 tsp red wine vinegar&quot;, &quot;Black pepper to taste&quot;]'
+               aria-label="Select Sardine &amp; White Bean Salad" style="margin-right:6px">Sardine &amp; White Bean Salad
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-13" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 can wild sardines in olive oil</li><li>1 cup canned white beans, rinsed</li><li>2 cups arugula</li><li>1/4 cup diced red onion</li><li>1 Tbsp olive oil</li><li>1 tsp red wine vinegar</li><li>Black pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss arugula, beans, and onion with olive oil and vinegar.</li><li>Flake sardines over the top.</li><li>Season with black pepper and serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-14" aria-expanded="false" aria-controls="panel-14">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey &amp; Sweet Potato Bowl"
+               data-ings='[&quot;4 oz cooked ground turkey&quot;, &quot;1 cup roasted sweet potato cubes&quot;, &quot;1 cup steamed green beans&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1 tsp Dijon mustard&quot;, &quot;1 tsp apple cider vinegar&quot;]'
+               aria-label="Select Turkey &amp; Sweet Potato Bowl" style="margin-right:6px">Turkey &amp; Sweet Potato Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-14" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 oz cooked ground turkey</li><li>1 cup roasted sweet potato cubes</li><li>1 cup steamed green beans</li><li>1 Tbsp olive oil</li><li>1 tsp Dijon mustard</li><li>1 tsp apple cider vinegar</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk olive oil, Dijon, and vinegar for dressing.</li><li>Combine turkey, sweet potato, and green beans in a bowl.</li><li>Drizzle with dressing and toss.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-dinners" aria-expanded="false" aria-controls="panel-sec-dinners">
+    <span class="label">Dinners</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-dinners" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-15" aria-expanded="false" aria-controls="panel-15">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Baked Wild Salmon with Brussels Sprouts"
+               data-ings='[&quot;5 oz wild salmon fillet&quot;, &quot;2 cups halved Brussels sprouts&quot;, &quot;2 Tbsp olive oil&quot;, &quot;1 lemon&quot;, &quot;2 cloves garlic, minced&quot;, &quot;Sea salt and pepper to taste&quot;]'
+               aria-label="Select Baked Wild Salmon with Brussels Sprouts" style="margin-right:6px">Baked Wild Salmon with Brussels Sprouts
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-15" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>5 oz wild salmon fillet</li><li>2 cups halved Brussels sprouts</li><li>2 Tbsp olive oil</li><li>1 lemon</li><li>2 cloves garlic, minced</li><li>Sea salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F.</li><li>Toss Brussels sprouts with 1 Tbsp oil, salt, and pepper; roast 15 minutes.</li><li>Rub salmon with remaining oil, garlic, salt, and pepper.</li><li>Add salmon to the pan and roast 12-14 minutes.</li><li>Finish with a squeeze of lemon.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-16" aria-expanded="false" aria-controls="panel-16">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Grass-Fed Beef &amp; Broccoli"
+               data-ings='[&quot;5 oz grass-fed flank steak, sliced thin&quot;, &quot;2 cups broccoli florets&quot;, &quot;1 Tbsp sesame oil&quot;, &quot;1 Tbsp tamari&quot;, &quot;1 tsp grated ginger&quot;, &quot;1 clove garlic, minced&quot;, &quot;3/4 cup cooked brown rice&quot;]'
+               aria-label="Select Grass-Fed Beef &amp; Broccoli" style="margin-right:6px">Grass-Fed Beef &amp; Broccoli
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-16" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>5 oz grass-fed flank steak, sliced thin</li><li>2 cups broccoli florets</li><li>1 Tbsp sesame oil</li><li>1 Tbsp tamari</li><li>1 tsp grated ginger</li><li>1 clove garlic, minced</li><li>3/4 cup cooked brown rice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Sear beef in sesame oil over high heat 2 minutes; set aside.</li><li>Stir-fry broccoli, ginger, and garlic 4 minutes.</li><li>Return beef, add tamari, and toss 1 minute.</li><li>Serve over brown rice.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-17" aria-expanded="false" aria-controls="panel-17">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Herb-Roasted Chicken Thighs with Asparagus"
+               data-ings='[&quot;2 bone-in chicken thighs&quot;, &quot;1 bunch asparagus, trimmed&quot;, &quot;2 Tbsp olive oil&quot;, &quot;1 tsp dried thyme&quot;, &quot;1 tsp dried rosemary&quot;, &quot;Sea salt and pepper to taste&quot;]'
+               aria-label="Select Herb-Roasted Chicken Thighs with Asparagus" style="margin-right:6px">Herb-Roasted Chicken Thighs with Asparagus
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-17" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 bone-in chicken thighs</li><li>1 bunch asparagus, trimmed</li><li>2 Tbsp olive oil</li><li>1 tsp dried thyme</li><li>1 tsp dried rosemary</li><li>Sea salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 425F.</li><li>Rub chicken with 1 Tbsp oil, thyme, rosemary, salt, and pepper.</li><li>Roast chicken 20 minutes.</li><li>Toss asparagus with remaining oil and add to pan.</li><li>Roast 12 more minutes until chicken is cooked through.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-18" aria-expanded="false" aria-controls="panel-18">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Coconut Curry Lentils"
+               data-ings='[&quot;3/4 cup red lentils&quot;, &quot;1 cup coconut milk&quot;, &quot;1 cup vegetable broth&quot;, &quot;1 Tbsp curry powder&quot;, &quot;1 cup chopped cauliflower&quot;, &quot;1/2 cup diced onion&quot;, &quot;1 Tbsp coconut oil&quot;]'
+               aria-label="Select Coconut Curry Lentils" style="margin-right:6px">Coconut Curry Lentils
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-18" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3/4 cup red lentils</li><li>1 cup coconut milk</li><li>1 cup vegetable broth</li><li>1 Tbsp curry powder</li><li>1 cup chopped cauliflower</li><li>1/2 cup diced onion</li><li>1 Tbsp coconut oil</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Saute onion in coconut oil until soft.</li><li>Stir in curry powder and cook 30 seconds.</li><li>Add lentils, cauliflower, coconut milk, and broth.</li><li>Simmer 20 minutes until lentils are tender.</li><li>Season with salt and serve.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-19" aria-expanded="false" aria-controls="panel-19">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Cod with Olive Tapenade &amp; Zucchini"
+               data-ings='[&quot;5 oz cod fillet&quot;, &quot;2 Tbsp chopped olives&quot;, &quot;1 Tbsp capers&quot;, &quot;2 cups sliced zucchini&quot;, &quot;2 Tbsp olive oil&quot;, &quot;1 clove garlic, minced&quot;, &quot;1 tsp lemon zest&quot;]'
+               aria-label="Select Cod with Olive Tapenade &amp; Zucchini" style="margin-right:6px">Cod with Olive Tapenade &amp; Zucchini
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-19" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>5 oz cod fillet</li><li>2 Tbsp chopped olives</li><li>1 Tbsp capers</li><li>2 cups sliced zucchini</li><li>2 Tbsp olive oil</li><li>1 clove garlic, minced</li><li>1 tsp lemon zest</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F.</li><li>Mix olives, capers, lemon zest, and 1 Tbsp oil for tapenade.</li><li>Place cod on a lined sheet and top with tapenade.</li><li>Toss zucchini with remaining oil and garlic; add to pan.</li><li>Roast 15 minutes until fish flakes easily.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-20" aria-expanded="false" aria-controls="panel-20">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey Meatballs with Spaghetti Squash"
+               data-ings='[&quot;6 oz ground turkey&quot;, &quot;1 small spaghetti squash&quot;, &quot;1 egg&quot;, &quot;1/4 cup almond flour&quot;, &quot;1 cup marinara sauce&quot;, &quot;1 tsp Italian seasoning&quot;, &quot;2 Tbsp olive oil&quot;]'
+               aria-label="Select Turkey Meatballs with Spaghetti Squash" style="margin-right:6px">Turkey Meatballs with Spaghetti Squash
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-20" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 oz ground turkey</li><li>1 small spaghetti squash</li><li>1 egg</li><li>1/4 cup almond flour</li><li>1 cup marinara sauce</li><li>1 tsp Italian seasoning</li><li>2 Tbsp olive oil</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F. Halve squash, brush with 1 Tbsp oil, roast cut-side down 35 minutes.</li><li>Mix turkey, egg, almond flour, and seasoning; form meatballs.</li><li>Brown meatballs in remaining oil, then simmer in marinara 10 minutes.</li><li>Scrape squash into strands and top with meatballs and sauce.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-21" aria-expanded="false" aria-controls="panel-21">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sheet-Pan Shrimp &amp; Cauliflower"
+               data-ings='[&quot;6 oz wild shrimp, peeled&quot;, &quot;2 cups cauliflower florets&quot;, &quot;2 Tbsp olive oil&quot;, &quot;1 tsp smoked paprika&quot;, &quot;1/2 tsp garlic powder&quot;, &quot;1 lemon&quot;, &quot;Fresh parsley to garnish&quot;]'
+               aria-label="Select Sheet-Pan Shrimp &amp; Cauliflower" style="margin-right:6px">Sheet-Pan Shrimp &amp; Cauliflower
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-21" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 oz wild shrimp, peeled</li><li>2 cups cauliflower florets</li><li>2 Tbsp olive oil</li><li>1 tsp smoked paprika</li><li>1/2 tsp garlic powder</li><li>1 lemon</li><li>Fresh parsley to garnish</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 425F.</li><li>Toss cauliflower with 1 Tbsp oil and paprika; roast 18 minutes.</li><li>Toss shrimp with remaining oil and garlic powder.</li><li>Add shrimp to the pan and roast 6-8 minutes.</li><li>Finish with lemon and parsley.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-snacks" aria-expanded="false" aria-controls="panel-sec-snacks">
+    <span class="label">Snacks</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-snacks" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-22" aria-expanded="false" aria-controls="panel-22">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Pumpkin Seed &amp; Dark Chocolate Bark"
+               data-ings='[&quot;3 oz 85% dark chocolate&quot;, &quot;1/4 cup pumpkin seeds&quot;, &quot;2 Tbsp dried cranberries&quot;, &quot;Flaky sea salt&quot;]'
+               aria-label="Select Pumpkin Seed &amp; Dark Chocolate Bark" style="margin-right:6px">Pumpkin Seed &amp; Dark Chocolate Bark
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-22" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3 oz 85% dark chocolate</li><li>1/4 cup pumpkin seeds</li><li>2 Tbsp dried cranberries</li><li>Flaky sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Melt chocolate gently over a double boiler.</li><li>Spread thin on a parchment-lined tray.</li><li>Scatter pumpkin seeds, cranberries, and sea salt.</li><li>Chill until set, then break into pieces.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-23" aria-expanded="false" aria-controls="panel-23">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Apple with Almond Butter"
+               data-ings='[&quot;1 apple, sliced&quot;, &quot;2 Tbsp almond butter&quot;, &quot;1/2 tsp cinnamon&quot;, &quot;1 tsp ground flaxseed&quot;]'
+               aria-label="Select Apple with Almond Butter" style="margin-right:6px">Apple with Almond Butter
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-23" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 apple, sliced</li><li>2 Tbsp almond butter</li><li>1/2 tsp cinnamon</li><li>1 tsp ground flaxseed</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Slice the apple into wedges.</li><li>Stir flax into the almond butter.</li><li>Sprinkle apple with cinnamon and serve with almond butter for dipping.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-24" aria-expanded="false" aria-controls="panel-24">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Hummus &amp; Veggie Sticks"
+               data-ings='[&quot;1/3 cup hummus&quot;, &quot;1 cup cucumber spears&quot;, &quot;1 cup carrot sticks&quot;, &quot;1/2 cup bell pepper strips&quot;, &quot;1 tsp olive oil&quot;, &quot;Pinch of paprika&quot;]'
+               aria-label="Select Hummus &amp; Veggie Sticks" style="margin-right:6px">Hummus &amp; Veggie Sticks
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-24" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/3 cup hummus</li><li>1 cup cucumber spears</li><li>1 cup carrot sticks</li><li>1/2 cup bell pepper strips</li><li>1 tsp olive oil</li><li>Pinch of paprika</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Spoon hummus into a bowl and drizzle with olive oil and paprika.</li><li>Arrange cut vegetables alongside.</li><li>Dip and enjoy.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-25" aria-expanded="false" aria-controls="panel-25">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sea-Salt Soft-Boiled Eggs"
+               data-ings='[&quot;2 pasture-raised eggs&quot;, &quot;Flaky sea salt&quot;, &quot;Black pepper&quot;, &quot;Pinch of everything bagel seasoning&quot;]'
+               aria-label="Select Sea-Salt Soft-Boiled Eggs" style="margin-right:6px">Sea-Salt Soft-Boiled Eggs
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-25" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 pasture-raised eggs</li><li>Flaky sea salt</li><li>Black pepper</li><li>Pinch of everything bagel seasoning</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Boil eggs 7 minutes for jammy yolks.</li><li>Transfer to an ice bath for 2 minutes.</li><li>Peel, halve, and season with salt, pepper, and seasoning.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-26" aria-expanded="false" aria-controls="panel-26">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Greek Yogurt with Flax &amp; Walnuts"
+               data-ings='[&quot;3/4 cup plain whole-milk Greek yogurt&quot;, &quot;1 Tbsp ground flaxseed&quot;, &quot;2 Tbsp chopped walnuts&quot;, &quot;1 tsp raw honey&quot;, &quot;1/4 tsp cinnamon&quot;]'
+               aria-label="Select Greek Yogurt with Flax &amp; Walnuts" style="margin-right:6px">Greek Yogurt with Flax &amp; Walnuts
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-26" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>3/4 cup plain whole-milk Greek yogurt</li><li>1 Tbsp ground flaxseed</li><li>2 Tbsp chopped walnuts</li><li>1 tsp raw honey</li><li>1/4 tsp cinnamon</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Spoon yogurt into a bowl.</li><li>Top with flax, walnuts, and cinnamon.</li><li>Drizzle with honey.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-27" aria-expanded="false" aria-controls="panel-27">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Guacamole with Flax Crackers"
+               data-ings='[&quot;1/2 avocado&quot;, &quot;1 Tbsp diced red onion&quot;, &quot;1 tsp lime juice&quot;, &quot;1 Tbsp chopped cilantro&quot;, &quot;Sea salt to taste&quot;, &quot;8 flax crackers&quot;]'
+               aria-label="Select Guacamole with Flax Crackers" style="margin-right:6px">Guacamole with Flax Crackers
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-27" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/2 avocado</li><li>1 Tbsp diced red onion</li><li>1 tsp lime juice</li><li>1 Tbsp chopped cilantro</li><li>Sea salt to taste</li><li>8 flax crackers</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mash avocado with lime juice and salt.</li><li>Fold in onion and cilantro.</li><li>Serve with flax crackers.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-28" aria-expanded="false" aria-controls="panel-28">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Hormone-Support Trail Mix"
+               data-ings='[&quot;2 Brazil nuts&quot;, &quot;2 Tbsp almonds&quot;, &quot;1 Tbsp pumpkin seeds&quot;, &quot;1 Tbsp sunflower seeds&quot;, &quot;1 Tbsp dark chocolate chips&quot;, &quot;1 Tbsp goji berries&quot;]'
+               aria-label="Select Hormone-Support Trail Mix" style="margin-right:6px">Hormone-Support Trail Mix
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-28" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 Brazil nuts</li><li>2 Tbsp almonds</li><li>1 Tbsp pumpkin seeds</li><li>1 Tbsp sunflower seeds</li><li>1 Tbsp dark chocolate chips</li><li>1 Tbsp goji berries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Combine all ingredients in a small jar.</li><li>Shake to mix.</li><li>Portion into a 1/4-cup serving.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-shopping" aria-expanded="false" aria-controls="panel-shopping">
+    <span class="label">Weekly Shopping List</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-shopping" class="panel" hidden>
+    <div class="group"><h3>Selected Meals -- Shopping List</h3>
+      <div class="shopping-dynamic"><p class="sub">Select meals to build your grocery list.</p></div>
+    </div>
+    <hr style="border:none;border-top:1px solid rgba(0,0,0,.08);margin:12px 0;">
+  </div>
+</section>
+<script>
+// ---- Accordion --------------------------------------------------------------
+document.querySelectorAll('.acc').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    var panelId  = btn.getAttribute('aria-controls');
+    var panel    = document.getElementById(panelId);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (panel) { panel.hidden = expanded; }
+  });
+});
+
+// ---- Helpers ----------------------------------------------------------------
+function escText(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Build shopping list using DOM methods to avoid XSS from untrusted data
+function buildShoppingList(selectedItems) {
+  var container = document.querySelector('.shopping-dynamic');
+  if (!container) return;
+
+  // Clear existing content safely
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  if (selectedItems.length === 0) {
+    var p = document.createElement('p');
+    p.className = 'sub';
+    p.textContent = 'Select meals to build your grocery list.';
+    container.appendChild(p);
+    return;
+  }
+
+  selectedItems.forEach(function(item) {
+    var group = document.createElement('div');
+    group.className = 'group';
+
+    var heading = document.createElement('h3');
+    heading.textContent = item.name;
+    group.appendChild(heading);
+
+    var ul = document.createElement('ul');
+    item.ingredients.forEach(function(ing) {
+      var li = document.createElement('li');
+      li.textContent = ing;
+      ul.appendChild(li);
+    });
+    group.appendChild(ul);
+    container.appendChild(group);
+  });
+}
+
+// ---- Shopping list update ---------------------------------------------------
+function updateShoppingList() {
+  var checked = document.querySelectorAll('.meal-check:checked');
+  var selectedItems = [];
+  checked.forEach(function(cb) {
+    var name = cb.dataset.name || '';
+    var ings = [];
+    try {
+      var raw = cb.dataset.ings || '[]';
+      ings = JSON.parse(raw);
+    } catch(e) { ings = []; }
+    selectedItems.push({ name: name, ingredients: ings });
+  });
+  buildShoppingList(selectedItems);
+}
+
+document.querySelectorAll('.meal-check').forEach(function(cb) {
+  cb.addEventListener('change', updateShoppingList);
+});
+
+// ---- Reset ------------------------------------------------------------------
+document.getElementById('resetBtn').addEventListener('click', function() {
+  if (!confirm('Clear all selections?')) return;
+  document.querySelectorAll('.meal-check').forEach(function(cb) { cb.checked = false; });
+  updateShoppingList();
+});
+
+// ---- Download ---------------------------------------------------------------
+document.getElementById('dlBtn').addEventListener('click', function() {
+  var blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meal-plan.html';
+  a.click();
+});
+</script>
+</div></body></html>
