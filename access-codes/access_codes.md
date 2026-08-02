@@ -64,3 +64,33 @@ URL base: https://rswweeklyplans.github.io/circle/4xweek/
 | Week 4 | sculpt_split_week4.html | DRIVE | https://rswweeklyplans.github.io/circle/4xweek/sculpt_split_week4.html |
 | Week 5 | sculpt_split_week5.html | CHARGE | https://rswweeklyplans.github.io/circle/4xweek/sculpt_split_week5.html |
 | Week 6 | sculpt_split_week6.html | ELEVATE | https://rswweeklyplans.github.io/circle/4xweek/sculpt_split_week6.html |
+
+## Strength Sculpt (3x/week, 8 weeks) — root folder (circle repo)
+Files: strength_sculpt_week1.html through strength_sculpt_week8.html
+URL base: https://rswweeklyplans.github.io/circle/
+
+| Week | File | Code | URL |
+|------|------|------|-----|
+| Week 1 | strength_sculpt_week1.html | BRACE | https://rswweeklyplans.github.io/circle/strength_sculpt_week1.html |
+| Week 2 | strength_sculpt_week2.html | ANCHOR | https://rswweeklyplans.github.io/circle/strength_sculpt_week2.html |
+| Week 3 | strength_sculpt_week3.html | LOAD | https://rswweeklyplans.github.io/circle/strength_sculpt_week3.html |
+| Week 4 | strength_sculpt_week4.html | SOLID | https://rswweeklyplans.github.io/circle/strength_sculpt_week4.html |
+| Week 5 | strength_sculpt_week5.html | GRIT | https://rswweeklyplans.github.io/circle/strength_sculpt_week5.html |
+| Week 6 | strength_sculpt_week6.html | VIGOR | https://rswweeklyplans.github.io/circle/strength_sculpt_week6.html |
+| Week 7 | strength_sculpt_week7.html | PRIME | https://rswweeklyplans.github.io/circle/strength_sculpt_week7.html |
+| Week 8 | strength_sculpt_week8.html | SUMMIT | https://rswweeklyplans.github.io/circle/strength_sculpt_week8.html |
+
+## Power Split (4x/week, 8 weeks) — 4xweek/ folder (circle repo)
+Files: power_split_week1.html through power_split_week8.html
+URL base: https://rswweeklyplans.github.io/circle/4xweek/
+
+| Week | File | Code | URL |
+|------|------|------|-----|
+| Week 1 | power_split_week1.html | FORCE | https://rswweeklyplans.github.io/circle/4xweek/power_split_week1.html |
+| Week 2 | power_split_week2.html | STEEL | https://rswweeklyplans.github.io/circle/4xweek/power_split_week2.html |
+| Week 3 | power_split_week3.html | BLAZE | https://rswweeklyplans.github.io/circle/4xweek/power_split_week3.html |
+| Week 4 | power_split_week4.html | MIGHT | https://rswweeklyplans.github.io/circle/4xweek/power_split_week4.html |
+| Week 5 | power_split_week5.html | FIERCE | https://rswweeklyplans.github.io/circle/4xweek/power_split_week5.html |
+| Week 6 | power_split_week6.html | TITAN | https://rswweeklyplans.github.io/circle/4xweek/power_split_week6.html |
+| Week 7 | power_split_week7.html | LIMIT | https://rswweeklyplans.github.io/circle/4xweek/power_split_week7.html |
+| Week 8 | power_split_week8.html | LEGEND | https://rswweeklyplans.github.io/circle/4xweek/power_split_week8.html |

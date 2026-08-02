@@ -2,69 +2,100 @@
 """
 Generate RSW self-contained workout HTML files.
 
-Two programs, 6 weeks each:
-  - Glute Sculpt  (3x/week full body, glute focus)   -> glute_sculpt_week{N}.html (root / weeks/)
-  - Sculpt Split  (4x/week upper-lower split)         -> 4xweek/sculpt_split_week{N}.html
+Current block — 8-week strength-hypertrophy phase, two programs:
+  - Strength Sculpt (3x/week full body, glute & core focus) -> strength_sculpt_week{N}.html (root)
+  - Power Split     (4x/week upper/lower split)             -> 4xweek/power_split_week{N}.html
 
-Matches the existing muscle_build template exactly (lock screen, day pills,
-exercise cards w/ gym/home toggle, Weight/Reps/RPE trackers, set checkboxes,
-notes, progression cue, pattern label, mini session, daily walk).
+Rep scheme: compounds 6-8, accessories 8-10, isolation/burnouts 12-15.
+Rest: 90-120 sec compounds, 45-60 sec accessories. Overload rule: once all
+sets hit the top of the rep range with good form, add 2.5-10 lb.
 
-3-day program shows superset pills (A1/A2...) since it is built around supersets.
-4-day program uses straight sets (no pills), matching how the user wrote it.
+Matches the existing template exactly (lock screen, day pills, exercise cards
+w/ gym/home toggle, Weight/Reps/RPE trackers, set checkboxes, notes,
+progression cue, pattern label, mini session, daily walk). New this block:
+"Rachel Challenge Set" callout on one signature lift per workout day.
+
+Previous cycles (Glute Sculpt / Sculpt Split, 6 weeks) are preserved in git
+history of this file; their generated HTML stays untouched in the repo.
 """
 
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+WEEKS = 8
+
 # ---------------------------------------------------------------------------
-# Progression tiers (6-week build)
+# Progression tiers (8-week strength-hypertrophy build)
+#   Weeks 1-2: learn patterns, 2-3 reps in reserve
+#   Weeks 3-6: progressive overload within the rep ranges
+#   Weeks 7-8: final sets near failure (0-1 RIR accessories, 1-2 compounds)
 # ---------------------------------------------------------------------------
 GOALS = {
-    1: ("Goal of Week 1: Find Your Working Weights",
-        "Focus on form over load. Use this week to find a challenging weight you can control for every rep, leaving 2–3 reps in the tank."),
-    2: ("Goal of Week 2: Groove the Movements",
-        "Refine your technique and lock in your working weights. Same loads or slightly heavier than Week 1 — keep 2–3 reps in reserve."),
-    3: ("Goal of Week 3: Add Load",
-        "Time to progress. Add load or reps versus the first two weeks while keeping clean form. Leave about 2 reps in reserve."),
-    4: ("Goal of Week 4: Build Momentum",
-        "Keep climbing. Add weight or reps again and tighten your rest if you can — around 2 reps in reserve on your working sets."),
-    5: ("Goal of Week 5: Push Intensity",
-        "Bring the intensity. Your last set of each main lift should be a grind — about 1 rep in reserve."),
-    6: ("Goal of Week 6: Finish Strong",
-        "Final week. Take your last set of every compound close to technical failure with good form. Leave nothing on the table."),
+    1: ("Goal of Week 1: Learn the Patterns",
+        "New phase, heavier rep ranges. Find a weight you can control for every rep and leave 2–3 reps in reserve on all working sets."),
+    2: ("Goal of Week 2: Lock In Your Weights",
+        "Repeat the movements and confirm your working weights. Still 2–3 reps in reserve — technique first, load second."),
+    3: ("Goal of Week 3: Start Progressing",
+        "Add weight or reps within the prescribed ranges. Once all sets hit the top of the range with good form, add 2.5–10 lb."),
+    4: ("Goal of Week 4: Keep Climbing",
+        "Progressive overload continues. Make small jumps in load while staying inside the rep ranges with clean form."),
+    5: ("Goal of Week 5: Push the Ranges",
+        "Keep adding load whenever you own the top of the rep range. Your working sets should feel genuinely heavy now."),
+    6: ("Goal of Week 6: Peak Your Loads",
+        "Last week of the steady build. Push your working weights to the best numbers of the block while keeping every rep clean."),
+    7: ("Goal of Week 7: Get Close to Failure",
+        "On the final set of each exercise, leave just 0–1 reps in reserve on accessories and 1–2 on the big compound lifts."),
+    8: ("Goal of Week 8: Finish Strong",
+        "Final week. Take your last sets close to failure with good form, log your numbers, and bank your strength PRs for the next phase."),
 }
 
 INTROS = {
-    1: "Welcome to Week 1. Your only job this week is to move well and find the right weights. Don't chase numbers yet — build clean technique and a foundation you can grow from.",
-    2: "Week 2 is about consistency. Repeat the movements, dial in your form, and confirm your working weights. You should feel more confident under load than last week.",
-    3: "Week 3 — progression begins. Add a little load or a few reps to the lifts that felt strong. Keep your form tight and your sets honest.",
-    4: "Week 4 keeps the momentum going. Push your working weights up again where you can, and tighten your rest periods to keep the intensity high.",
-    5: "Week 5 turns up the intensity. Your last sets should feel hard now — earn every rep and push close to your limit while staying in control.",
-    6: "Final week. Six weeks of work comes together here. Bring everything you've got to your last sets, track your numbers, and finish the program proud.",
+    1: "Welcome to your new strength phase. The weights get heavier and the reps come down — your only job this week is to move well and find your working weights. Leave 2–3 reps in the tank on every set.",
+    2: "Week 2 is about consistency. Repeat the movements, dial in your form, and confirm your working weights. You should feel more confident under the heavier loads than last week.",
+    3: "Week 3 — progression begins. Add a little load or a few reps to the lifts that felt strong. When every set hits the top of the rep range with good form, add 2.5–10 lb.",
+    4: "Week 4 keeps the momentum going. Keep nudging your working weights up inside the rep ranges. Strength is built in these quiet, consistent weeks.",
+    5: "Week 5 — the middle of the climb. Your loads should be noticeably heavier than Week 1. Keep the jumps small and the form sharp.",
+    6: "Week 6 caps the steady build. Aim for your best working weights of the block on the big lifts, and hold your standards on every rep.",
+    7: "Week 7 turns up the intensity. Push the final set of each exercise close to failure — 0–1 reps in reserve on accessories, 1–2 on compounds. Earn every rep.",
+    8: "Final week. Eight weeks of work comes together here. Push your last sets close to failure, track your numbers, and finish the block proud — these PRs set up your next phase.",
 }
 
 CUE_SUFFIX = {
-    1: "Week 1 — focus on form over load. Find a working weight that leaves 2–3 reps in reserve.",
-    2: "Week 2 — refine technique and lock in your working weights. Still leave 2–3 reps in reserve.",
-    3: "Week 3 — add load or reps vs. previous weeks. Leave about 2 reps in reserve.",
-    4: "Week 4 — keep adding load or reps and push the pace. About 2 reps in reserve.",
-    5: "Week 5 — push intensity. Last set should be a grind, about 1 rep in reserve.",
-    6: "Week 6 — final week. Take your last set close to technical failure with good form.",
+    1: "Week 1 — learn the pattern and find your weights. Leave 2–3 reps in reserve.",
+    2: "Week 2 — same weights or a touch heavier. Keep 2–3 reps in reserve.",
+    3: "Week 3 — add load or reps within the range. All sets at the top with good form? Add 2.5–10 lb.",
+    4: "Week 4 — keep the overload coming. Small jumps, stay inside the rep range.",
+    5: "Week 5 — working sets should feel heavy. Add load whenever you own the top of the range.",
+    6: "Week 6 — push to your best loads of the block with clean form.",
+    7: "Week 7 — final set close to failure: 0–1 reps in reserve on accessories, 1–2 on compounds.",
+    8: "Week 8 — last week. Take your final sets close to failure and log everything.",
 }
 
 ACCESS_CODES = {
-    "glute_sculpt": ["BLOOM", "GLOW", "CURVE", "SHINE", "RADIANT", "BLOSSOM"],
-    "sculpt_split": ["POWER", "APEX", "SURGE", "DRIVE", "CHARGE", "ELEVATE"],
+    "strength_sculpt": ["BRACE", "ANCHOR", "LOAD", "SOLID", "GRIT", "VIGOR", "PRIME", "SUMMIT"],
+    "power_split": ["FORCE", "STEEL", "BLAZE", "MIGHT", "FIERCE", "TITAN", "LIMIT", "LEGEND"],
 }
+
+DAY_NOTE = ("Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, "
+            "and bird dogs x10/side. Rest 90–120 sec on the big lifts, 45–60 sec on accessories and core.")
+
+PHASE_NOTE = ("This phase: compounds 6–8 reps &bull; accessories 8–10 &bull; isolation 12–15. "
+              "When all sets hit the top of the rep range with good form, add 2.5–10 lb. "
+              "<strong>Training at home?</strong> Bump the reps up (compounds 8–12, accessories 10–15) "
+              "and lower for 3 slow seconds to make lighter weights feel heavy.")
+
+CHALLENGE_HIP_THRUST = ("On your final set of hip thrusts: 10 full reps + 10 half reps + a "
+                        "20-second hold at the top. Squeeze like you mean it.")
+CHALLENGE_RAISE = ("On your final set: 10 full reps + 10 partial reps + a 10-second hold "
+                   "at the top. Shoulders on fire, form intact.")
 
 REST_SECTION = """    <section class="workout" data-day="{day}">
       <h2>Rest &amp; Recover 🌿</h2>
       <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
       <p><strong>Suggested activities:</strong></p>
       <ul style="margin:8px 0 0 18px">
-        <li>20–30 min walk outside — low intensity, fresh air</li>
+        <li>30–45 min Zone 2 walk — a pace where you can still hold a conversation</li>
         <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
         <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
         <li>Breathwork or light yoga (10–15 min)</li>
@@ -77,121 +108,128 @@ REST_SECTION = """    <section class="workout" data-day="{day}">
 # Exercise data
 # Each exercise: (slug, gym, home, sets, reps_badge, reps_eg, weight_eg, cue, pattern, superset)
 # home == gym  -> no separate home alt (toggle still works, name unchanged)
-# superset == "" -> no superset pill
+# superset == "" -> no superset pill (this block is all straight sets)
 # ---------------------------------------------------------------------------
 
-GLUTE_SCULPT = {
-    "name": "Glute Sculpt",
-    "h1": "RSW — Glute Sculpt",
-    "meta": "Glute Sculpt — 6-Week Full Body (Glute Focus)",
-    "prefix": "glute_sculpt",
-    "unlock": "glute_sculpt",
+STRENGTH_SCULPT = {
+    "name": "Strength Sculpt",
+    "h1": "RSW — Strength Sculpt",
+    "meta": "Strength Sculpt — 8-Week Full Body (Strength &amp; Glute Focus)",
+    "prefix": "strength_sculpt",
+    "unlock": "strength_sculpt",
     "folder": ".",
-    "filebase": "glute_sculpt",
-    "supersets": True,
-    "superset_note": "Pair exercises by letter (A1 + A2). Alternate between the two, then rest about 90 sec before the next pair. Run the core finisher as straight sets.",
+    "filebase": "strength_sculpt",
+    "supersets": False,
+    "superset_note": "",
     "pills": [
-        (1, "Day 1 — Glute+Quad"),
+        (1, "Day 1 — Glutes+Push"),
         (2, "Day 2 — Rest"),
-        (3, "Day 3 — Glute+Shoulder"),
+        (3, "Day 3 — Posterior"),
         (4, "Day 4 — Rest"),
-        (5, "Day 5 — Glute Strength"),
+        (5, "Day 5 — Pump+Delts"),
     ],
+    "challenges": {
+        1: ("hip-thrust", CHALLENGE_HIP_THRUST),
+        3: ("front-raise", CHALLENGE_RAISE),
+        5: ("hip-thrust", CHALLENGE_HIP_THRUST),
+    },
     "days": {
-        1: ("Day 1 — Workout A: Glute &amp; Quad Focus", [
-            ("hip-thrust", "Barbell Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 4, "8-10 reps", "10", "e.g., 125 lb", "Primary glute driver. Drive through heels, full lockout, squeeze hard at the top.", "glute", "A1"),
-            ("pull-ups", "Pull-Ups (or Assisted Pull-Ups)", "Resistance Band Lat Pulldown (band over door, kneel and pull down)", 4, "6-10 reps", "8", "e.g., bodyweight", "Full hang to chin over the bar. Use the machine assist or a band to hit your reps.", "pull", "A2"),
-            ("hack-squat", "Hack Squat", "Goblet Squat (heavy dumbbell, heels elevated on a plate or wedge)", 3, "10-12 reps", "12", "e.g., 90 lb", "Deep, controlled descent. Drive through the midfoot, don't lock out hard.", "squat", "B1"),
-            ("lateral-raise", "Cable Lateral Raise", "Dumbbell Lateral Raise", 3, "12-15 reps", "12", "e.g., 10 lb", "Elbows soft, lead with the elbow, shoulders down away from ears.", "push", "B2"),
-            ("walking-lunges", "Walking Lunges", "Dumbbell Walking Lunges (or reverse lunges in place)", 3, "12 reps each leg", "12", "e.g., 25 lb", "Long stride to load the glute. Tall torso, control every step.", "squat|glute", "C1"),
-            ("cable-row", "Cable Row", "Dumbbell Bent-Over Row (both arms)", 3, "10-12 reps", "12", "e.g., 70 lb", "Pull to the belly, squeeze the shoulder blades, control the return.", "pull", "C2"),
-            ("adductor", "Adductor Machine", "Banded Adduction (band around knees, squeeze inward) or Cossack Squat", 2, "15-20 reps", "18", "e.g., 70 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", "D1"),
-            ("tricep-pushdown", "Rope Tricep Pushdown", "Resistance Band Tricep Pushdown (band over door)", 2, "12-15 reps", "14", "e.g., 35 lb", "Elbows pinned to your sides, full extension, spread the rope at the bottom.", "push", "D2"),
-            ("deep-core-pull-ins", "Deep Core Pull-Ins", "Deep Core Pull-Ins", 2, "15 reps", "15", "e.g., bodyweight", "Draw knees and ribs together, brace and exhale at the top.", "core", ""),
-            ("ghd-situps", "GHD Sit-Ups", "Decline Sit-Up (feet anchored under couch) or Weighted Crunch", 2, "15 reps", "15", "e.g., bodyweight", "Full range of motion. Lower slowly, rise with control.", "core", ""),
+        1: ("Day 1 — Strength Glutes + Push", [
+            ("hip-thrust", "Barbell Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 4, "6-8 reps", "8", "e.g., 135 lb", "Your heaviest glute lift of the week. Drive through the heels, full lockout, squeeze hard at the top.", "glute", ""),
+            ("hack-squat", "Hack Squat", "Goblet Box Squat (sit back to a bench or chair)", 3, "6-8 reps", "8", "e.g., 115 lb", "Heavy but controlled. Deep descent, drive through the midfoot, no bouncing out of the bottom.", "squat", ""),
+            ("seated-cable-row", "Seated Cable Row", "One-Arm Dumbbell Row", 3, "8-10 reps", "10", "e.g., 80 lb", "Tall chest, pull to the belly, squeeze the shoulder blades, control the return.", "pull", ""),
+            ("overhead-press", "Dumbbell Overhead Press", "Standing Dumbbell Overhead Press", 3, "8-10 reps", "10", "e.g., 25 lb", "Brace your core, keep ribs down, press strong overhead.", "push", ""),
+            ("lateral-raise", "Cable Lateral Raise", "Leaning Dumbbell Lateral Raise (hold a pole or doorframe)", 3, "12-15 reps", "12", "e.g., 10 lb", "Elbows soft, lead with the elbow, shoulders down away from ears.", "push", ""),
+            ("glute-kickbacks", "Cable Glute Kickback", "Banded Glute Kickback", 3, "12-15 reps each leg", "12", "e.g., 20 lb", "Slow, 2-second squeeze at peak contraction. Keep the hips square.", "glute", ""),
+            ("hanging-knee-raises", "Hanging Knee Raises", "Reverse Crunch (lying on mat)", 3, "12 reps", "12", "e.g., bodyweight", "No swinging. Curl the hips up toward the ribs, lower with control.", "core", ""),
+            ("pallof-press", "Pallof Press", "Banded Pallof Press (band anchored at chest height)", 3, "10 reps each side", "10", "e.g., 25 lb", "Anti-rotation. Press out slow, pause, resist the twist on the way back.", "core", ""),
         ]),
-        3: ("Day 3 — Workout B: Glute &amp; Shoulder Focus", [
-            ("bulgarian-split-squat", "Bulgarian Split Squat", "Bulgarian Split Squat (dumbbells, rear foot elevated)", 4, "8-10 reps each leg", "8", "e.g., 30 lb", "Rear foot elevated, weight on the front heel, sink into a deep stretch.", "squat|glute", "A1"),
-            ("overhead-press", "Standing Dumbbell or Machine Overhead Press", "Dumbbell Shoulder Press (standing)", 4, "8-10 reps", "8", "e.g., 25 lb", "Brace your core, keep ribs down, press strong overhead.", "push", "A2"),
-            ("leg-press-glute", "Leg Press (Glute Bias)", "Goblet Squat (feet high and wide stance)", 3, "12 reps", "12", "e.g., 180 lb", "Feet high and wide. Drive through the heels to bias the glutes.", "squat|glute", "B1"),
-            ("lat-pulldown", "Lat Pulldown", "Resistance Band Lat Pulldown (band over door)", 3, "10-12 reps", "12", "e.g., 70 lb", "Full stretch at the top, pull to the collarbone, squeeze the lats.", "pull", "B2"),
-            ("glute-kickbacks", "Cable Glute Kickbacks", "Banded Glute Kickback", 3, "15 reps each leg", "15", "e.g., 20 lb", "Slow, 2-second squeeze at peak contraction. Keep the hips square.", "glute", "C1"),
-            ("face-pulls", "Face Pulls", "Resistance Band Face Pull (band anchored at eye level)", 3, "15 reps", "15", "e.g., 30 lb", "Pull to your forehead, elbows high, squeeze the rear delts.", "pull", "C2"),
-            ("bicep-curl", "Cable Bicep Curl", "Dumbbell Bicep Curl", 2, "12-15 reps", "12", "e.g., 25 lb", "Control the negative, no swinging, full squeeze at the top.", "pull", "D1"),
-            ("front-raise", "Cable Front Raise", "Dumbbell Front Raise", 2, "12-15 reps", "12", "e.g., 10 lb", "Raise to eye level, control the way down, no momentum.", "push", "D2"),
-            ("deep-core-pull-ins", "Deep Core Pull-Ins", "Deep Core Pull-Ins", 2, "15 reps", "15", "e.g., bodyweight", "Draw knees and ribs together, brace and exhale at the top.", "core", ""),
-            ("decline-situps", "Decline Sit-Ups", "Decline Sit-Up (feet anchored under couch)", 2, "15 reps", "15", "e.g., bodyweight", "Anchor your feet, control the descent, full crunch at the top.", "core", ""),
+        3: ("Day 3 — Posterior Chain", [
+            ("rdl", "Romanian Deadlift", "Dumbbell Romanian Deadlift", 4, "6-8 reps", "8", "e.g., 115 lb", "Push the hips back, soft knees, deep hamstring stretch — keep the back flat the whole way.", "hinge", ""),
+            ("deficit-reverse-lunge", "Deficit Reverse Lunge", "Deficit Reverse Lunge (front foot on a plate or low step)", 3, "8 reps each leg", "8", "e.g., 25 lb", "Front foot elevated for extra range. Step back long, drive through the front heel.", "squat|glute", ""),
+            ("lat-pulldown", "Assisted Pull-Up or Lat Pulldown", "Bent-Over Dumbbell Row (both arms)", 3, "8-10 reps", "10", "e.g., 85 lb", "Full stretch at the top, pull to the collarbone, squeeze the lats.", "pull", ""),
+            ("incline-db-bench", "Incline Dumbbell Bench Press", "Push-Ups (elevate hands to adjust difficulty)", 3, "8-10 reps", "10", "e.g., 30 lb", "Slight incline, elbows about 45 degrees, press strong and control the descent.", "push", ""),
+            ("front-raise", "Cable Front Raise", "Dumbbell Front Raise", 3, "12 reps", "12", "e.g., 10 lb", "Raise to eye level, control the way down, no momentum.", "push", ""),
+            ("adductor", "Adductor Machine", "Banded Adduction (band around knees, squeeze inward)", 3, "12-15 reps", "14", "e.g., 80 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", ""),
+            ("woodchops", "Cable Woodchop", "Russian Twist (dumbbell or bodyweight)", 3, "10 reps each side", "10", "e.g., 25 lb", "Rotate from the trunk, arms long, control both directions.", "core", ""),
+            ("dead-bugs", "Dead Bugs", "Dead Bugs", 3, "10 reps each side", "10", "e.g., bodyweight", "Low back pressed into the floor. Slow opposite arm and leg, exhale as you extend.", "core", ""),
         ]),
-        5: ("Day 5 — Workout C: Glute Growth &amp; Lower Body Strength", [
-            ("leg-press", "Leg Press (Heavy)", "Goblet Squat (heavy dumbbell, controlled tempo)", 4, "10 reps", "10", "e.g., 200 lb", "Go heavy. Controlled depth, powerful drive, don't slam the lockout.", "squat|glute", "A1"),
-            ("pull-ups", "Pull-Ups or Lat Pulldown", "Resistance Band Lat Pulldown (band over door)", 4, "8-10 reps", "8", "e.g., bodyweight", "Full range, lead with the elbows, control the return.", "pull", "A2"),
-            ("hip-thrust", "Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 3, "12 reps", "12", "e.g., 115 lb", "Drive through the heels, full lockout, squeeze 1 sec at the top.", "glute", "B1"),
-            ("lateral-raise", "Cable Lateral Raise", "Dumbbell Lateral Raise", 3, "15 reps", "15", "e.g., 10 lb", "Light and strict. Lead with the elbow, shoulders down.", "push", "B2"),
-            ("leg-extension", "Leg Extension", "Banded Leg Extension (seated, band around ankle)", 3, "12-15 reps", "12", "e.g., 70 lb", "Quad isolation. Squeeze hard at the top, control the way down.", "squat", "C1"),
-            ("seated-cable-row", "Seated Cable Row", "Dumbbell Bent-Over Row (both arms)", 3, "10-12 reps", "12", "e.g., 80 lb", "Tall chest, pull to the belly, squeeze and control.", "pull", "C2"),
-            ("adductor", "Adductor Machine", "Banded Adduction (band around knees) or Cossack Squat", 2, "15-20 reps", "18", "e.g., 70 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", "D1"),
-            ("overhead-tricep-ext", "Rope Overhead Tricep Extension", "Resistance Band Overhead Tricep Extension", 2, "12-15 reps", "14", "e.g., 30 lb", "Elbows high and tucked, full stretch behind the head, extend fully.", "push", "D2"),
-            ("deep-core-pull-ins", "Deep Core Pull-Ins", "Deep Core Pull-Ins", 2, "15 reps", "15", "e.g., bodyweight", "Draw knees and ribs together, brace and exhale at the top.", "core", ""),
-            ("ghd-situps", "GHD Sit-Ups", "Decline Sit-Up (feet anchored under couch) or Weighted Crunch", 2, "15 reps", "15", "e.g., bodyweight", "Full range of motion. Lower slowly, rise with control.", "core", ""),
+        5: ("Day 5 — Glute Pump + Shoulders", [
+            ("leg-press", "Leg Press (High and Wide Stance)", "Bulgarian Split Squat (rear foot elevated on bench or couch)", 4, "8 reps", "8", "e.g., 200 lb", "Feet high and wide to bias the glutes. Drive through the heels, controlled depth.", "squat|glute", ""),
+            ("hip-thrust", "Barbell Hip Thrust", "Single-Leg Hip Thrust (shoulders on bench or couch)", 3, "8 reps", "8", "e.g., 125 lb", "Slightly lighter than Day 1. Full lockout, 1-second squeeze at the top.", "glute", ""),
+            ("chest-supported-row", "Chest Supported Row", "Renegade Row (push-up position, row each dumbbell)", 3, "8-10 reps", "10", "e.g., 40 lb", "Chest stays glued to the pad. Pull with the back, not the arms.", "pull", ""),
+            ("push-ups", "Push-Ups", "Push-Ups (modify on knees or incline as needed)", 3, "to technical failure", "12", "e.g., bodyweight", "Stop when your form breaks — not when you collapse. Full range every rep.", "push", ""),
+            ("lean-away-lateral-raise", "Lean-Away Cable Lateral Raise", "Leaning Dumbbell Lateral Raise (hold a pole or doorframe)", 3, "12-15 reps", "12", "e.g., 10 lb", "The lean keeps tension on the side delt through the whole range. Strict and slow.", "push", ""),
+            ("glute-kickbacks", "Cable Glute Kickbacks", "Banded Glute Kickbacks", 3, "15 reps each leg", "15", "e.g., 20 lb", "Finish the glutes. Slow squeeze at the top of every rep.", "glute", ""),
+            ("ab-wheel", "Ab Wheel Rollout", "Plank Shoulder Taps (slow, hips still)", 3, "10 reps", "10", "e.g., bodyweight", "Roll out only as far as you can keep the low back flat. Brace hard.", "core", ""),
+            ("side-plank", "Side Plank", "Side Plank", 3, "30-45 sec each side", "40", "e.g., bodyweight", "Straight line from head to heels. Stack the hips, don't let them sag.", "core", ""),
         ]),
     },
 }
 
-SCULPT_SPLIT = {
-    "name": "Sculpt Split",
-    "h1": "RSW — Sculpt Split",
-    "meta": "Sculpt Split — 6-Week Upper/Lower Split",
-    "prefix": "sculpt_split",
-    "unlock": "sculpt_split",
+POWER_SPLIT = {
+    "name": "Power Split",
+    "h1": "RSW — Power Split",
+    "meta": "Power Split — 8-Week Upper/Lower Strength Split",
+    "prefix": "power_split",
+    "unlock": "power_split",
     "folder": "4xweek",
-    "filebase": "sculpt_split",
+    "filebase": "power_split",
     "supersets": False,
     "superset_note": "",
     "pills": [
-        (1, "Day 1 — Lower"),
-        (2, "Day 2 — Upper"),
+        (1, "Day 1 — Lower A"),
+        (2, "Day 2 — Upper A"),
         (3, "Day 3 — Rest"),
-        (4, "Day 4 — Lower"),
-        (5, "Day 5 — Upper"),
+        (4, "Day 4 — Lower B"),
+        (5, "Day 5 — Upper B"),
         (6, "Day 6 — Rest"),
         (7, "Day 7 — Rest"),
     ],
+    "challenges": {
+        1: ("hip-thrust", CHALLENGE_HIP_THRUST),
+        2: ("lean-away-lateral-raise", CHALLENGE_RAISE),
+        4: ("hip-thrust", CHALLENGE_HIP_THRUST),
+        5: ("lateral-raise", CHALLENGE_RAISE),
+    },
     "days": {
-        1: ("Day 1 — Lower A: Glute &amp; Quad Focus", [
-            ("hip-thrust", "Barbell Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 4, "8-10 reps", "10", "e.g., 125 lb", "Primary glute lift. Drive through the heels, full lockout, squeeze at the top.", "glute", ""),
-            ("hack-squat", "Hack Squat", "Goblet Squat (heavy dumbbell, heels elevated)", 4, "8-10 reps", "8", "e.g., 90 lb", "Deep, controlled descent. Drive through the midfoot.", "squat", ""),
-            ("walking-lunges", "Walking Lunges", "Dumbbell Walking Lunges (or reverse lunges in place)", 3, "10 reps each leg", "10", "e.g., 25 lb", "Long stride for the glutes. Tall torso, controlled steps.", "squat|glute", ""),
-            ("leg-extension", "Leg Extension", "Banded Leg Extension (seated, band around ankle)", 3, "12-15 reps", "12", "e.g., 70 lb", "Quad isolation. Squeeze at the top, control the way down.", "squat", ""),
-            ("adductor", "Adductor Machine", "Banded Adduction (band around knees) or Cossack Squat", 3, "15-20 reps", "18", "e.g., 70 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", ""),
-            ("deep-core-pull-ins", "Deep Core Pull-Ins", "Deep Core Pull-Ins", 3, "12-15 reps", "15", "e.g., bodyweight", "Draw knees and ribs together, brace and exhale at the top.", "core", ""),
-            ("ghd-situps", "GHD Sit-Ups", "Decline Sit-Up (feet anchored under couch) or Weighted Crunch", 3, "10-15 reps", "12", "e.g., bodyweight", "Full range of motion. Lower slowly, rise with control.", "core", ""),
+        1: ("Day 1 — Lower A: Strength Glutes", [
+            ("hip-thrust", "Barbell Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 4, "6-8 reps", "8", "e.g., 135 lb", "Your heaviest glute lift of the week. Drive through the heels, full lockout, squeeze hard at the top.", "glute", ""),
+            ("hack-squat", "Hack Squat", "Goblet Squat (heavy dumbbell, controlled tempo)", 4, "6-8 reps", "8", "e.g., 115 lb", "Heavy but controlled. Deep descent, drive through the midfoot, no bouncing.", "squat", ""),
+            ("rdl", "Romanian Deadlift", "Dumbbell Romanian Deadlift", 3, "8 reps", "8", "e.g., 115 lb", "Push the hips back, soft knees, deep hamstring stretch — keep the back flat.", "hinge", ""),
+            ("glute-kickbacks", "Cable Glute Kickback", "Banded Glute Kickback", 3, "12 reps each leg", "12", "e.g., 20 lb", "Slow, 2-second squeeze at peak contraction. Keep the hips square.", "glute", ""),
+            ("adductor", "Adductor Machine", "Banded Adduction (band around knees, squeeze inward)", 3, "12-15 reps", "14", "e.g., 80 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", ""),
+            ("decline-crunch", "Weighted Decline Crunch", "Weighted Sit-Up (plate or dumbbell on chest)", 3, "12 reps", "12", "e.g., 10 lb", "Hold the weight on your chest, control the descent, full crunch at the top.", "core", ""),
+            ("pallof-press", "Pallof Press", "Banded Pallof Press (band anchored at chest height)", 3, "10 reps each side", "10", "e.g., 25 lb", "Anti-rotation. Press out slow, pause, resist the twist on the way back.", "core", ""),
         ]),
-        2: ("Day 2 — Upper A: Shoulders &amp; Back", [
-            ("overhead-press", "Standing Overhead Press", "Dumbbell Shoulder Press (standing)", 4, "8-10 reps", "8", "e.g., 25 lb", "Brace your core, keep ribs down, press strong overhead.", "push", ""),
-            ("pull-ups", "Pull-Ups (or Assisted Pull-Ups)", "Resistance Band Lat Pulldown (band over door, kneel and pull down)", 4, "6-10 reps", "8", "e.g., bodyweight", "Full hang to chin over the bar. Use the assist or a band to hit your reps.", "pull", ""),
-            ("cable-row", "Cable Row", "Dumbbell Bent-Over Row (both arms)", 3, "10-12 reps", "12", "e.g., 70 lb", "Pull to the belly, squeeze the shoulder blades, control the return.", "pull", ""),
-            ("lateral-raise", "Cable Lateral Raise", "Dumbbell Lateral Raise", 3, "12-15 reps", "12", "e.g., 10 lb", "Elbows soft, lead with the elbow, shoulders down.", "push", ""),
-            ("face-pulls", "Face Pulls", "Resistance Band Face Pull (band anchored at eye level)", 3, "12-15 reps", "12", "e.g., 30 lb", "Pull to the forehead, elbows high, squeeze the rear delts.", "pull", ""),
-            ("tricep-pushdown", "Rope Tricep Pushdown", "Resistance Band Tricep Pushdown (band over door)", 3, "12-15 reps", "12", "e.g., 35 lb", "Elbows pinned, full extension, spread the rope at the bottom.", "push", ""),
-            ("bicep-curl", "Cable Bicep Curl", "Dumbbell Bicep Curl", 3, "12-15 reps", "12", "e.g., 25 lb", "Control the negative, no swinging, full squeeze at the top.", "pull", ""),
+        2: ("Day 2 — Upper A: Shoulder Focus", [
+            ("overhead-press", "Dumbbell Overhead Press", "Standing Dumbbell Overhead Press", 4, "6-8 reps", "8", "e.g., 30 lb", "Your heaviest press of the week. Brace your core, ribs down, press strong overhead.", "push", ""),
+            ("seated-cable-row", "Seated Cable Row", "One-Arm Dumbbell Row", 3, "8-10 reps", "10", "e.g., 80 lb", "Tall chest, pull to the belly, squeeze the shoulder blades, control the return.", "pull", ""),
+            ("assisted-pull-ups", "Assisted Pull-Ups", "Bent-Over Dumbbell Row (both arms)", 3, "8 reps", "8", "e.g., bodyweight", "Full hang to chin over the bar. Use the machine assist or a band to hit your reps.", "pull", ""),
+            ("incline-db-press", "Incline Dumbbell Press", "Push-Ups (incline or floor)", 3, "8-10 reps", "10", "e.g., 30 lb", "Slight incline, elbows about 45 degrees, press strong and control the descent.", "push", ""),
+            ("lean-away-lateral-raise", "Lean-Away Cable Lateral Raise", "Leaning Dumbbell Lateral Raise (hold a pole or doorframe)", 3, "12-15 reps", "12", "e.g., 10 lb", "The lean keeps tension on the side delt through the whole range. Strict and slow.", "push", ""),
+            ("face-pulls", "Face Pull", "Banded Face Pull (band anchored at eye level)", 3, "12-15 reps", "14", "e.g., 30 lb", "Pull to the forehead, elbows high, squeeze the rear delts.", "pull", ""),
+            ("hanging-knee-raises", "Hanging Knee Raises", "Reverse Crunch (lying on mat)", 3, "12 reps", "12", "e.g., bodyweight", "No swinging. Curl the hips up toward the ribs, lower with control.", "core", ""),
         ]),
-        4: ("Day 4 — Lower B: Glute Growth Focus", [
-            ("leg-press", "Leg Press (Feet High and Wide)", "Goblet Squat (feet high and wide stance)", 4, "10-12 reps", "10", "e.g., 180 lb", "Feet high and wide to bias the glutes. Drive through the heels.", "squat|glute", ""),
-            ("bulgarian-split-squat", "Bulgarian Split Squat", "Bulgarian Split Squat (dumbbells, rear foot elevated)", 3, "8-10 reps each leg", "8", "e.g., 30 lb", "Rear foot elevated, weight on the front heel, deep stretch.", "squat|glute", ""),
-            ("hip-thrust", "Hip Thrust (slightly lighter than Day 1)", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 3, "12 reps", "12", "e.g., 100 lb", "Slightly lighter than Day 1. Full lockout, squeeze 1 sec at the top.", "glute", ""),
-            ("glute-kickbacks", "Cable Glute Kickbacks", "Banded Glute Kickback", 3, "15 reps each leg", "15", "e.g., 20 lb", "Slow, 2-second squeeze at peak. Keep the hips square.", "glute", ""),
-            ("adductor", "Adductor Machine", "Banded Adduction (band around knees) or Cossack Squat", 3, "15-20 reps", "18", "e.g., 70 lb", "Slow and controlled. Full inner-thigh stretch on every rep.", "glute", ""),
-            ("deep-core-pull-ins", "Deep Core Pull-Ins", "Deep Core Pull-Ins", 3, "12-15 reps", "15", "e.g., bodyweight", "Draw knees and ribs together, brace and exhale at the top.", "core", ""),
-            ("decline-situps", "Decline Sit-Ups", "Decline Sit-Up (feet anchored under couch)", 3, "10-15 reps", "12", "e.g., bodyweight", "Anchor your feet, control the descent, full crunch at the top.", "core", ""),
+        4: ("Day 4 — Lower B: Glute Hypertrophy", [
+            ("leg-press", "Leg Press", "Bulgarian Split Squat (rear foot elevated on bench or couch)", 4, "8 reps", "8", "e.g., 200 lb", "Feet high and wide to bias the glutes. Drive through the heels, controlled depth.", "squat|glute", ""),
+            ("deficit-reverse-lunge", "Deficit Reverse Lunges", "Deficit Reverse Lunges (front foot on a plate or low step)", 3, "8 reps each leg", "8", "e.g., 25 lb", "Front foot elevated for extra range. Step back long, drive through the front heel.", "squat|glute", ""),
+            ("rdl", "Romanian Deadlift", "Dumbbell Romanian Deadlift", 3, "8 reps", "8", "e.g., 105 lb", "Slightly lighter than Lower A. Hips back, flat back, deep hamstring stretch.", "hinge", ""),
+            ("hip-thrust", "Barbell Hip Thrust", "Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)", 3, "8-10 reps", "10", "e.g., 115 lb", "Slightly lighter than Day 1. Full lockout, 1-second squeeze at the top.", "glute", ""),
+            ("glute-kickbacks", "Cable Glute Kickbacks", "Banded Glute Kickbacks", 3, "15 reps each leg", "15", "e.g., 20 lb", "Finish the glutes. Slow squeeze at the top of every rep.", "glute", ""),
+            ("adductor", "Adductor Machine", "Banded Abduction (band around knees, press outward)", 3, "15 reps", "15", "e.g., 70 lb", "Slow and controlled. Full stretch and a hard squeeze on every rep.", "glute", ""),
+            ("woodchops", "Cable Woodchop", "Russian Twist (dumbbell or bodyweight)", 3, "10 reps each side", "10", "e.g., 25 lb", "Rotate from the trunk, arms long, control both directions.", "core", ""),
+            ("dead-bugs", "Dead Bugs", "Dead Bugs", 3, "10 reps each side", "10", "e.g., bodyweight", "Low back pressed into the floor. Slow opposite arm and leg, exhale as you extend.", "core", ""),
         ]),
-        5: ("Day 5 — Upper B: Shoulder Specialization", [
-            ("lat-pulldown", "Lat Pulldown", "Resistance Band Lat Pulldown (band over door)", 4, "8-12 reps", "10", "e.g., 70 lb", "Full stretch at the top, pull to the collarbone, squeeze the lats.", "pull", ""),
-            ("seated-cable-row", "Seated Cable Row", "Dumbbell Bent-Over Row (both arms)", 3, "10-12 reps", "12", "e.g., 80 lb", "Tall chest, pull to the belly, control the return.", "pull", ""),
-            ("lateral-raise", "Cable Lateral Raise", "Dumbbell Lateral Raise", 3, "12-15 reps", "12", "e.g., 10 lb", "Strict form. Lead with the elbow, shoulders down.", "push", ""),
-            ("front-raise", "Cable Front Raise", "Dumbbell Front Raise", 3, "12-15 reps", "12", "e.g., 10 lb", "Raise to eye level, control down, no momentum.", "push", ""),
-            ("face-pulls", "Face Pulls", "Resistance Band Face Pull (band anchored at eye level)", 3, "15 reps", "15", "e.g., 30 lb", "Pull to the forehead, elbows high, squeeze the rear delts.", "pull", ""),
-            ("overhead-tricep-ext", "Overhead Rope Tricep Extension", "Resistance Band Overhead Tricep Extension", 3, "12-15 reps", "12", "e.g., 30 lb", "Elbows high and tucked, full stretch behind the head, extend fully.", "push", ""),
-            ("bicep-curl", "Cable Bicep Curl", "Dumbbell Bicep Curl", 3, "12-15 reps", "12", "e.g., 25 lb", "Control the negative, no swinging, full squeeze at the top.", "pull", ""),
+        5: ("Day 5 — Upper B: Back + Shoulders", [
+            ("pull-ups", "Pull-Ups or Assisted Pull-Ups", "Bent-Over Dumbbell Row (both arms)", 4, "6-8 reps", "8", "e.g., bodyweight", "Your heaviest pull of the week. Full hang, chin over the bar, control the descent.", "pull", ""),
+            ("chest-supported-row", "Chest Supported Row", "Renegade Row (push-up position, row each dumbbell)", 3, "8 reps", "8", "e.g., 40 lb", "Chest stays glued to the pad. Pull with the back, not the arms.", "pull", ""),
+            ("push-ups", "Push-Ups", "Incline Push-Up (hands elevated) or Floor Push-Up", 3, "to technical failure", "12", "e.g., bodyweight", "Stop when your form breaks — not when you collapse. Full range every rep.", "push", ""),
+            ("arnold-press", "Dumbbell Arnold Press", "Dumbbell Arnold Press", 3, "8-10 reps", "10", "e.g., 20 lb", "Rotate the palms as you press. Full range, no arching the low back.", "push", ""),
+            ("lateral-raise", "Cable Lateral Raise", "Leaning Dumbbell Lateral Raise (hold a pole or doorframe)", 3, "12-15 reps", "12", "e.g., 10 lb", "Elbows soft, lead with the elbow, shoulders down away from ears.", "push", ""),
+            ("rear-delt-fly", "Rear Delt Fly", "Banded Pull-Apart", 3, "12-15 reps", "14", "e.g., 10 lb", "Hinge forward, soft elbows, squeeze the rear delts — no swinging.", "pull", ""),
+            ("ab-wheel", "Ab Wheel Rollout", "Plank Shoulder Taps (slow, hips still)", 3, "10 reps", "10", "e.g., bodyweight", "Roll out only as far as you can keep the low back flat. Brace hard.", "core", ""),
+            ("farmer-carry", "Farmer Carry", "Suitcase Carry (one heavy dumbbell, switch sides)", 3, "40 yards", "40", "e.g., 40 lb", "Heavy dumbbells, tall posture, ribs down, brace and walk with control.", "core", ""),
         ]),
     },
 }
@@ -201,13 +239,17 @@ def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;")
 
 
-def build_exercise(prefix, week, day, ex, show_superset):
+def build_exercise(prefix, week, day, ex, show_superset, challenge_text=""):
     slug, gym, home, sets, reps_badge, reps_eg, weight_eg, cue, pattern, superset = ex
     key = f"{prefix}__week{week}__day{day}__{slug}"
     # gym/home names: data-gym-name / data-home-name on the <strong>
     strong = (f'<strong data-gym-name="{esc(gym)}" data-home-name="{esc(home)}">{gym}</strong>')
     pill = f'<span class="superset-pill">{superset}</span> ' if (show_superset and superset) else ""
     badge = f'<span class="badge">{sets} sets &bull; {reps_badge} &bull; Tempo: 3-0-1</span>'
+    challenge = ""
+    if challenge_text:
+        challenge = (f'\n        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> '
+                     f'{challenge_text}</div>')
     sets_html = "".join(
         f'<label class="setbox"><input type="checkbox" data-key="{key}__set_{i}"><span>Set {i}</span></label>'
         for i in range(1, sets + 1)
@@ -223,7 +265,7 @@ def build_exercise(prefix, week, day, ex, show_superset):
               <option value="gym">At gym: Barbell/Machines</option>
             </select>
           </div>
-        </div>
+        </div>{challenge}
         <div class="trackers">
           <label>Weight <input type="text" inputmode="decimal" placeholder="{weight_eg}" data-key="{key}__weight"></label>
           <label>Reps <input type="number" min="1" step="1" placeholder="e.g., {reps_eg}" data-key="{key}__reps"></label>
@@ -239,11 +281,12 @@ def build_exercise(prefix, week, day, ex, show_superset):
 def build_workout_day(program, week, day):
     prefix = program["prefix"]
     heading, exercises = program["days"][day]
-    note = ""
-    if program["supersets"] and program["superset_note"]:
-        note = f'\n      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">{program["superset_note"]}</p>'
+    note = f'\n      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">{DAY_NOTE}</p>'
+    challenge_slug, challenge_text = program.get("challenges", {}).get(day, ("", ""))
     cards = "\n\n".join(
-        build_exercise(prefix, week, day, ex, program["supersets"]) for ex in exercises
+        build_exercise(prefix, week, day, ex, program["supersets"],
+                       challenge_text if ex[0] == challenge_slug else "")
+        for ex in exercises
     )
     return f"""    <section class="workout" data-day="{day}">
       <h2>{heading}</h2>{note}
@@ -292,6 +335,8 @@ STYLE = """
   .notes{display:flex; flex-direction:column; gap:6px; font-size:.85rem}
   textarea{border:1px solid #d1d5db; border-radius:10px; padding:10px; background:white; width:100%}
   .cue,.pattern{font-size:.85rem; color:#374151; margin-top:6px}
+  .challenge{background:#fdf6e9; border-left:4px solid var(--gold); border-radius:8px; padding:10px 12px; margin:10px 0 4px; font-size:.88rem; color:#4b3a12}
+  .challenge strong{color:var(--gold)}
   .mini ul{margin:8px 0 0 18px}
   .footer a{color:var(--olive); text-decoration:underline}
   .liblinks a{margin-right:12px}
@@ -384,9 +429,10 @@ def build_page(program, week):
   <div class="wrap">
     <header>
       <h1>{program["h1"]}</h1>
-      <div class="meta"><strong>Program:</strong> {program["meta"]} &bull; Week {week} of 6</div>
+      <div class="meta"><strong>Program:</strong> {program["meta"]} &bull; Week {week} of {WEEKS}</div>
       <div class="goal"><strong>{goal_title}:</strong> {goal_body}</div>
       <p class="intro">{intro}</p>
+      <p class="intro" style="font-size:.9rem;opacity:.95">{PHASE_NOTE}</p>
     </header>
 
     <div class="day-selector">
@@ -407,8 +453,8 @@ def build_page(program, week):
     </section>
 
     <section class="walk">
-      <h2>Daily Walks</h2>
-      <p>Aim for 20–30 minutes of walking daily. On rest days, extend to 30–45 min. Walking supports recovery, regulates hormones, and keeps your metabolism active between sessions.</p>
+      <h2>Weekly Cardio &amp; Steps</h2>
+      <p>Get in 2–4 Zone 2 walks this week (30–45 minutes at a pace where you can still hold a conversation), plus one optional 10–15 minute interval session. Aim for 8,000–10,000 daily steps — walking supports recovery, regulates hormones, and keeps your metabolism active between sessions.</p>
     </section>
 
     <section class="footer">
@@ -524,10 +570,10 @@ def build_page(program, week):
 
 
 def main():
-    for program in (GLUTE_SCULPT, SCULPT_SPLIT):
+    for program in (STRENGTH_SCULPT, POWER_SPLIT):
         folder = os.path.join(ROOT, program["folder"])
         os.makedirs(folder, exist_ok=True)
-        for week in range(1, 7):
+        for week in range(1, WEEKS + 1):
             html = build_page(program, week)
             path = os.path.join(folder, f"{program['filebase']}_week{week}.html")
             with open(path, "w") as f:
