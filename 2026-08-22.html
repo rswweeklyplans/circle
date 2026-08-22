@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Week of Aug 22, 2026 -- Weekly Meal Plan</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>  :root{--bg:#F1F0EC;--head:#6C7653;--acc:#C28511;--text:#1a1a1a;--card:#ffffff}  *{box-sizing:border-box}  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}  .wrap{max-width:980px;margin:0 auto;padding:12px 12px 56px}  .sticky{position:sticky;top:0;z-index:20;background:var(--head);box-shadow:0 2px 6px rgba(0,0,0,.12)}  .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:8px 12px}  .title{margin:0;font-size:16px;color:#fff;font-weight:800}  .meta{font-size:12px;color:#fff;opacity:.9}  .btns{display:flex;gap:8px}  button{cursor:pointer}  .btn{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;min-height:44px}  .btn:focus-visible,.acc:focus-visible{outline:3px solid #fff;outline-offset:2px}  .pill{display:inline-block;background:rgba(194,133,17,.15);color:var(--acc);padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}  section.card{background:var(--card);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.05);margin:12px 0;border-left:4px solid var(--acc)}  h2{margin:0} h3{margin:0}  .acc{background:none;border:none;display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px;min-height:44px;font:inherit;color:inherit;-webkit-appearance:none;appearance:none;text-align:left}  .acc .label{color:var(--head);font-weight:900;display:flex;align-items:center}  .chev{transition:transform .2s ease;color:var(--head);font-weight:900}  .acc[aria-expanded="true"] .chev{transform:rotate(90deg)}  .panel{padding:0 14px 14px}  ul{margin:8px 0 0 18px} li{margin:4px 0}  .sub{margin:6px 0 8px;color:#333}  .group{margin-top:8px} .group h3{margin:10px 0 4px;font-size:14px;color:var(--head)}  a{color:var(--acc);text-decoration:none}  @media (max-width:420px){.wrap{max-width:100%;padding:12px}}</style></head>
+<body><div class='wrap'>
+<header class="sticky"><div class="bar">
+  <div><div class="title">Rooted Wellness Weekly Meals Plan -- Rachel Stephens Wellness</div>
+  <div class="meta">Week of Aug 22, 2026 &bull; Focus: Protein Prioritization</div></div>
+  <div class="btns"><button id="resetBtn" class="btn">Reset</button>
+  <button id="dlBtn" class="btn">Download</button></div>
+</div></header>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-intro" aria-expanded="true" aria-controls="panel-intro">
+    <span class="label">Intro / Nutrition Focus</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-intro" class="panel">
+    <p class="sub">Week start (ISO): 2026-08-22</p>
+    <p class="sub"><strong>Focus:</strong> <span class="pill">Protein Prioritization</span></p>
+    <p>This week's meals are built around Protein Prioritization. Each plate is designed to be whole-food, home-cook-friendly, and easy to prepare in 40 minutes or less.</p>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-breakfasts" aria-expanded="false" aria-controls="panel-sec-breakfasts">
+    <span class="label">Breakfasts</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-breakfasts" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-1" aria-expanded="false" aria-controls="panel-1">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Savory Cottage Cheese Bowl with Soft Eggs"
+               data-ings='[&quot;1 cup whole-milk cottage cheese&quot;, &quot;2 pasture-raised eggs&quot;, &quot;1/2 cup cherry tomatoes, halved&quot;, &quot;1/4 cucumber, diced&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1 tsp everything seasoning&quot;, &quot;Sea salt and black pepper to taste&quot;]'
+               aria-label="Select Savory Cottage Cheese Bowl with Soft Eggs" style="margin-right:6px">Savory Cottage Cheese Bowl with Soft Eggs
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-1" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup whole-milk cottage cheese</li><li>2 pasture-raised eggs</li><li>1/2 cup cherry tomatoes, halved</li><li>1/4 cucumber, diced</li><li>1 Tbsp olive oil</li><li>1 tsp everything seasoning</li><li>Sea salt and black pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Bring a small pot of water to a gentle boil and cook eggs 7 minutes for jammy yolks.</li><li>Transfer eggs to cold water, peel, and halve.</li><li>Spoon cottage cheese into a wide bowl and top with tomatoes and cucumber.</li><li>Add the eggs, drizzle with olive oil, and finish with seasoning, salt, and pepper.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-2" aria-expanded="false" aria-controls="panel-2">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey Sausage and Spinach Scramble"
+               data-ings='[&quot;6 oz ground turkey&quot;, &quot;3 eggs&quot;, &quot;2 cups baby spinach&quot;, &quot;1/2 small onion, diced&quot;, &quot;1 Tbsp avocado oil&quot;, &quot;1/2 tsp fennel seed, crushed&quot;, &quot;1/2 tsp paprika&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Turkey Sausage and Spinach Scramble" style="margin-right:6px">Turkey Sausage and Spinach Scramble
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-2" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 oz ground turkey</li><li>3 eggs</li><li>2 cups baby spinach</li><li>1/2 small onion, diced</li><li>1 Tbsp avocado oil</li><li>1/2 tsp fennel seed, crushed</li><li>1/2 tsp paprika</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat avocado oil in a skillet over medium and cook onion 3 minutes.</li><li>Add turkey with fennel and paprika, breaking it up until browned, about 6 minutes.</li><li>Stir in spinach and cook until just wilted.</li><li>Whisk eggs with salt and pepper, pour into the pan, and fold gently until set.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-3" aria-expanded="false" aria-controls="panel-3">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Greek Yogurt Protein Pancakes"
+               data-ings='[&quot;1 cup plain Greek yogurt&quot;, &quot;3 eggs&quot;, &quot;1/2 cup rolled oats&quot;, &quot;1 scoop vanilla protein powder&quot;, &quot;1 tsp baking powder&quot;, &quot;1 tsp vanilla extract&quot;, &quot;1 Tbsp butter for the pan&quot;, &quot;1/2 cup fresh berries&quot;]'
+               aria-label="Select Greek Yogurt Protein Pancakes" style="margin-right:6px">Greek Yogurt Protein Pancakes
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-3" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup plain Greek yogurt</li><li>3 eggs</li><li>1/2 cup rolled oats</li><li>1 scoop vanilla protein powder</li><li>1 tsp baking powder</li><li>1 tsp vanilla extract</li><li>1 Tbsp butter for the pan</li><li>1/2 cup fresh berries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Blend oats, yogurt, eggs, protein powder, baking powder, and vanilla until smooth.</li><li>Let the batter rest 5 minutes to thicken.</li><li>Melt butter in a nonstick skillet over medium-low heat.</li><li>Cook 1/4-cup pancakes about 2 minutes per side until golden.</li><li>Serve topped with fresh berries.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-4" aria-expanded="false" aria-controls="panel-4">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Smoked Salmon and Whipped Ricotta Toast"
+               data-ings='[&quot;2 slices sprouted-grain bread&quot;, &quot;4 oz smoked salmon&quot;, &quot;1/2 cup whole-milk ricotta&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;1 Tbsp fresh dill, chopped&quot;, &quot;1 Tbsp capers, drained&quot;, &quot;Black pepper to taste&quot;]'
+               aria-label="Select Smoked Salmon and Whipped Ricotta Toast" style="margin-right:6px">Smoked Salmon and Whipped Ricotta Toast
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-4" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 slices sprouted-grain bread</li><li>4 oz smoked salmon</li><li>1/2 cup whole-milk ricotta</li><li>1 Tbsp lemon juice</li><li>1 Tbsp fresh dill, chopped</li><li>1 Tbsp capers, drained</li><li>Black pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whip ricotta with lemon juice and a pinch of pepper until light.</li><li>Toast the bread until crisp.</li><li>Spread ricotta thickly over each slice.</li><li>Drape smoked salmon on top and finish with dill and capers.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-5" aria-expanded="false" aria-controls="panel-5">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Steak and Egg Breakfast Bowl"
+               data-ings='[&quot;8 oz sirloin steak&quot;, &quot;2 eggs&quot;, &quot;1 cup cooked quinoa&quot;, &quot;1 avocado, sliced&quot;, &quot;1 Tbsp ghee&quot;, &quot;1 tsp garlic powder&quot;, &quot;Salt and pepper to taste&quot;, &quot;Hot sauce to serve&quot;]'
+               aria-label="Select Steak and Egg Breakfast Bowl" style="margin-right:6px">Steak and Egg Breakfast Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-5" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 oz sirloin steak</li><li>2 eggs</li><li>1 cup cooked quinoa</li><li>1 avocado, sliced</li><li>1 Tbsp ghee</li><li>1 tsp garlic powder</li><li>Salt and pepper to taste</li><li>Hot sauce to serve</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Season the steak generously with salt, pepper, and garlic powder and rest 10 minutes.</li><li>Sear in a hot skillet with ghee, 3 to 4 minutes per side, then rest and slice.</li><li>Fry the eggs in the same pan to your liking.</li><li>Build bowls with quinoa, sliced steak, eggs, and avocado.</li><li>Finish with hot sauce.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-6" aria-expanded="false" aria-controls="panel-6">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="High-Protein Chocolate Chia Smoothie"
+               data-ings='[&quot;1 cup unsweetened almond milk&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;1 scoop chocolate protein powder&quot;, &quot;1 Tbsp chia seeds&quot;, &quot;1 Tbsp almond butter&quot;, &quot;1/2 frozen banana&quot;, &quot;1 handful baby spinach&quot;, &quot;1/2 cup ice&quot;]'
+               aria-label="Select High-Protein Chocolate Chia Smoothie" style="margin-right:6px">High-Protein Chocolate Chia Smoothie
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-6" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup unsweetened almond milk</li><li>1/2 cup plain Greek yogurt</li><li>1 scoop chocolate protein powder</li><li>1 Tbsp chia seeds</li><li>1 Tbsp almond butter</li><li>1/2 frozen banana</li><li>1 handful baby spinach</li><li>1/2 cup ice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Add almond milk and yogurt to the blender first.</li><li>Add protein powder, chia, almond butter, banana, and spinach.</li><li>Blend on high 45 seconds, adding ice until thick.</li><li>Pour into a tall glass and drink within 10 minutes.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-7" aria-expanded="false" aria-controls="panel-7">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Baked Ham and Gruyere Egg Cups"
+               data-ings='[&quot;8 eggs&quot;, &quot;4 oz nitrate-free ham, diced&quot;, &quot;1/2 cup shredded Gruyere&quot;, &quot;1/4 cup heavy cream&quot;, &quot;1/2 cup diced red bell pepper&quot;, &quot;1 Tbsp chives, minced&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Baked Ham and Gruyere Egg Cups" style="margin-right:6px">Baked Ham and Gruyere Egg Cups
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-7" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 eggs</li><li>4 oz nitrate-free ham, diced</li><li>1/2 cup shredded Gruyere</li><li>1/4 cup heavy cream</li><li>1/2 cup diced red bell pepper</li><li>1 Tbsp chives, minced</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 375F and grease a 12-cup muffin tin.</li><li>Whisk eggs with cream, salt, and pepper.</li><li>Divide ham, pepper, and Gruyere among the cups.</li><li>Pour egg mixture over, filling each cup three-quarters full.</li><li>Bake 18 to 20 minutes until puffed and set, then top with chives.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-lunches" aria-expanded="false" aria-controls="panel-sec-lunches">
+    <span class="label">Lunches</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-lunches" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-8" aria-expanded="false" aria-controls="panel-8">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Grilled Chicken and Farro Power Bowl"
+               data-ings='[&quot;1 lb boneless chicken thighs&quot;, &quot;1 cup cooked farro&quot;, &quot;2 cups arugula&quot;, &quot;1/2 cup roasted red peppers, sliced&quot;, &quot;1/4 cup crumbled feta&quot;, &quot;3 Tbsp olive oil&quot;, &quot;2 Tbsp red wine vinegar&quot;, &quot;1 tsp dried oregano&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Grilled Chicken and Farro Power Bowl" style="margin-right:6px">Grilled Chicken and Farro Power Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-8" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb boneless chicken thighs</li><li>1 cup cooked farro</li><li>2 cups arugula</li><li>1/2 cup roasted red peppers, sliced</li><li>1/4 cup crumbled feta</li><li>3 Tbsp olive oil</li><li>2 Tbsp red wine vinegar</li><li>1 tsp dried oregano</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss chicken with 1 Tbsp olive oil, oregano, salt, and pepper.</li><li>Grill or pan-sear over medium-high 5 to 6 minutes per side, then slice.</li><li>Whisk remaining oil with vinegar for a quick dressing.</li><li>Layer farro, arugula, peppers, and chicken in bowls.</li><li>Drizzle with dressing and scatter feta on top.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-9" aria-expanded="false" aria-controls="panel-9">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Seared Tuna and White Bean Salad"
+               data-ings='[&quot;2 ahi tuna steaks (6 oz each)&quot;, &quot;1 can cannellini beans, rinsed&quot;, &quot;1/2 red onion, thinly sliced&quot;, &quot;1 cup cherry tomatoes, halved&quot;, &quot;3 Tbsp olive oil&quot;, &quot;2 Tbsp lemon juice&quot;, &quot;2 Tbsp parsley, chopped&quot;, &quot;Salt and cracked pepper to taste&quot;]'
+               aria-label="Select Seared Tuna and White Bean Salad" style="margin-right:6px">Seared Tuna and White Bean Salad
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-9" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 ahi tuna steaks (6 oz each)</li><li>1 can cannellini beans, rinsed</li><li>1/2 red onion, thinly sliced</li><li>1 cup cherry tomatoes, halved</li><li>3 Tbsp olive oil</li><li>2 Tbsp lemon juice</li><li>2 Tbsp parsley, chopped</li><li>Salt and cracked pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Pat tuna dry and season heavily with salt and cracked pepper.</li><li>Sear in a very hot oiled skillet 90 seconds per side, then slice thin.</li><li>Toss beans, onion, tomatoes, parsley, olive oil, and lemon juice.</li><li>Divide the bean salad between plates and fan the tuna over the top.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-10" aria-expanded="false" aria-controls="panel-10">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey Meatball and Zucchini Soup"
+               data-ings='[&quot;1 lb ground turkey&quot;, &quot;1 egg&quot;, &quot;1/3 cup almond flour&quot;, &quot;6 cups chicken bone broth&quot;, &quot;2 zucchini, sliced into half moons&quot;, &quot;2 carrots, diced&quot;, &quot;3 cloves garlic, minced&quot;, &quot;1 tsp Italian seasoning&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Turkey Meatball and Zucchini Soup" style="margin-right:6px">Turkey Meatball and Zucchini Soup
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-10" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb ground turkey</li><li>1 egg</li><li>1/3 cup almond flour</li><li>6 cups chicken bone broth</li><li>2 zucchini, sliced into half moons</li><li>2 carrots, diced</li><li>3 cloves garlic, minced</li><li>1 tsp Italian seasoning</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mix turkey with egg, almond flour, Italian seasoning, salt, and pepper.</li><li>Roll into 1-inch meatballs.</li><li>Simmer broth with garlic and carrots for 5 minutes.</li><li>Drop in meatballs and simmer 10 minutes until cooked through.</li><li>Add zucchini and cook 3 more minutes, then season to taste.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-11" aria-expanded="false" aria-controls="panel-11">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Crispy Tofu and Edamame Grain Bowl"
+               data-ings='[&quot;14 oz extra-firm tofu, pressed and cubed&quot;, &quot;1 cup shelled edamame&quot;, &quot;1 cup cooked brown rice&quot;, &quot;2 Tbsp arrowroot starch&quot;, &quot;2 Tbsp avocado oil&quot;, &quot;3 Tbsp tamari&quot;, &quot;1 Tbsp rice vinegar&quot;, &quot;1 tsp toasted sesame oil&quot;, &quot;2 scallions, sliced&quot;]'
+               aria-label="Select Crispy Tofu and Edamame Grain Bowl" style="margin-right:6px">Crispy Tofu and Edamame Grain Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-11" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>14 oz extra-firm tofu, pressed and cubed</li><li>1 cup shelled edamame</li><li>1 cup cooked brown rice</li><li>2 Tbsp arrowroot starch</li><li>2 Tbsp avocado oil</li><li>3 Tbsp tamari</li><li>1 Tbsp rice vinegar</li><li>1 tsp toasted sesame oil</li><li>2 scallions, sliced</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss tofu cubes with arrowroot until lightly coated.</li><li>Pan-fry in avocado oil over medium-high until crisp on all sides, about 10 minutes.</li><li>Warm the edamame and stir together tamari, vinegar, and sesame oil.</li><li>Build bowls with rice, tofu, and edamame.</li><li>Spoon the sauce over and finish with scallions.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-12" aria-expanded="false" aria-controls="panel-12">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Roast Beef and Horseradish Lettuce Cups"
+               data-ings='[&quot;10 oz sliced roast beef&quot;, &quot;1 head butter lettuce, leaves separated&quot;, &quot;1/4 cup Greek yogurt&quot;, &quot;1 Tbsp prepared horseradish&quot;, &quot;1 tsp Dijon mustard&quot;, &quot;1 cup shredded carrot&quot;, &quot;1/2 cup sliced radish&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Roast Beef and Horseradish Lettuce Cups" style="margin-right:6px">Roast Beef and Horseradish Lettuce Cups
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-12" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>10 oz sliced roast beef</li><li>1 head butter lettuce, leaves separated</li><li>1/4 cup Greek yogurt</li><li>1 Tbsp prepared horseradish</li><li>1 tsp Dijon mustard</li><li>1 cup shredded carrot</li><li>1/2 cup sliced radish</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Stir yogurt with horseradish, Dijon, salt, and pepper.</li><li>Lay lettuce leaves out on a platter.</li><li>Fold roast beef slices loosely into each cup.</li><li>Top with carrot and radish and spoon the horseradish cream over.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-13" aria-expanded="false" aria-controls="panel-13">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Shrimp and Cottage Cheese Stuffed Peppers"
+               data-ings='[&quot;1 lb shrimp, peeled and chopped&quot;, &quot;3 bell peppers, halved and seeded&quot;, &quot;1 cup cottage cheese&quot;, &quot;1/2 cup cooked wild rice&quot;, &quot;2 cloves garlic, minced&quot;, &quot;1 Tbsp olive oil&quot;, &quot;1/2 tsp smoked paprika&quot;, &quot;2 Tbsp grated Parmesan&quot;]'
+               aria-label="Select Shrimp and Cottage Cheese Stuffed Peppers" style="margin-right:6px">Shrimp and Cottage Cheese Stuffed Peppers
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-13" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb shrimp, peeled and chopped</li><li>3 bell peppers, halved and seeded</li><li>1 cup cottage cheese</li><li>1/2 cup cooked wild rice</li><li>2 cloves garlic, minced</li><li>1 Tbsp olive oil</li><li>1/2 tsp smoked paprika</li><li>2 Tbsp grated Parmesan</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F.</li><li>Saute garlic in olive oil, add shrimp and paprika, and cook 3 minutes.</li><li>Stir the shrimp into the cottage cheese and wild rice.</li><li>Fill the pepper halves and top with Parmesan.</li><li>Bake 20 minutes until the peppers soften and the tops brown.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-14" aria-expanded="false" aria-controls="panel-14">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Lemon Chicken and Lentil Salad Jars"
+               data-ings='[&quot;1 lb cooked shredded chicken&quot;, &quot;1 1/2 cups cooked green lentils&quot;, &quot;1 cup diced cucumber&quot;, &quot;1/2 cup chopped mint&quot;, &quot;3 Tbsp olive oil&quot;, &quot;3 Tbsp lemon juice&quot;, &quot;1 tsp cumin&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Lemon Chicken and Lentil Salad Jars" style="margin-right:6px">Lemon Chicken and Lentil Salad Jars
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-14" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb cooked shredded chicken</li><li>1 1/2 cups cooked green lentils</li><li>1 cup diced cucumber</li><li>1/2 cup chopped mint</li><li>3 Tbsp olive oil</li><li>3 Tbsp lemon juice</li><li>1 tsp cumin</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk olive oil, lemon juice, cumin, salt, and pepper in the bottom of four jars.</li><li>Layer lentils over the dressing so they marinate.</li><li>Add cucumber, then the shredded chicken.</li><li>Top with mint, seal, and refrigerate up to four days.</li><li>Shake well before eating.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-dinners" aria-expanded="false" aria-controls="panel-sec-dinners">
+    <span class="label">Dinners</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-dinners" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-15" aria-expanded="false" aria-controls="panel-15">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Garlic Butter Pork Tenderloin with Green Beans"
+               data-ings='[&quot;1 1/2 lb pork tenderloin&quot;, &quot;1 lb green beans, trimmed&quot;, &quot;3 Tbsp butter&quot;, &quot;4 cloves garlic, smashed&quot;, &quot;2 sprigs fresh thyme&quot;, &quot;1 Tbsp avocado oil&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Garlic Butter Pork Tenderloin with Green Beans" style="margin-right:6px">Garlic Butter Pork Tenderloin with Green Beans
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-15" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/2 lb pork tenderloin</li><li>1 lb green beans, trimmed</li><li>3 Tbsp butter</li><li>4 cloves garlic, smashed</li><li>2 sprigs fresh thyme</li><li>1 Tbsp avocado oil</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F and season the pork all over with salt and pepper.</li><li>Sear in an oven-safe skillet with avocado oil until browned on all sides, about 6 minutes.</li><li>Add butter, garlic, and thyme and baste the pork for 1 minute.</li><li>Scatter green beans around the pork and roast 15 to 18 minutes to 145F.</li><li>Rest 5 minutes before slicing.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-16" aria-expanded="false" aria-controls="panel-16">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Miso-Glazed Cod with Bok Choy"
+               data-ings='[&quot;4 cod fillets (6 oz each)&quot;, &quot;3 Tbsp white miso paste&quot;, &quot;1 Tbsp honey&quot;, &quot;1 Tbsp rice vinegar&quot;, &quot;1 lb baby bok choy, halved&quot;, &quot;1 Tbsp sesame oil&quot;, &quot;1 Tbsp grated ginger&quot;, &quot;1 tsp sesame seeds&quot;]'
+               aria-label="Select Miso-Glazed Cod with Bok Choy" style="margin-right:6px">Miso-Glazed Cod with Bok Choy
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-16" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 cod fillets (6 oz each)</li><li>3 Tbsp white miso paste</li><li>1 Tbsp honey</li><li>1 Tbsp rice vinegar</li><li>1 lb baby bok choy, halved</li><li>1 Tbsp sesame oil</li><li>1 Tbsp grated ginger</li><li>1 tsp sesame seeds</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk miso, honey, and vinegar into a glaze.</li><li>Heat oven to 425F and line a sheet pan with parchment.</li><li>Brush cod generously with the glaze and arrange on the pan.</li><li>Toss bok choy with sesame oil and ginger and add to the pan.</li><li>Roast 12 to 14 minutes until the fish flakes, then top with sesame seeds.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-17" aria-expanded="false" aria-controls="panel-17">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Braised Chicken Thighs with Chickpeas and Olives"
+               data-ings='[&quot;8 bone-in chicken thighs&quot;, &quot;1 can chickpeas, rinsed&quot;, &quot;1/2 cup Castelvetrano olives&quot;, &quot;1 onion, sliced&quot;, &quot;1 1/2 cups chicken broth&quot;, &quot;1 lemon, sliced&quot;, &quot;1 tsp smoked paprika&quot;, &quot;2 Tbsp olive oil&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Braised Chicken Thighs with Chickpeas and Olives" style="margin-right:6px">Braised Chicken Thighs with Chickpeas and Olives
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-17" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 bone-in chicken thighs</li><li>1 can chickpeas, rinsed</li><li>1/2 cup Castelvetrano olives</li><li>1 onion, sliced</li><li>1 1/2 cups chicken broth</li><li>1 lemon, sliced</li><li>1 tsp smoked paprika</li><li>2 Tbsp olive oil</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Season the thighs with salt, pepper, and paprika.</li><li>Brown skin-side down in olive oil over medium-high, about 7 minutes, then flip and remove.</li><li>Soften the onion in the drippings for 4 minutes.</li><li>Return the chicken and add broth, chickpeas, olives, and lemon.</li><li>Simmer covered 25 minutes, then uncover 5 minutes to crisp the skin.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-18" aria-expanded="false" aria-controls="panel-18">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Bison and Sweet Potato Skillet"
+               data-ings='[&quot;1 1/4 lb ground bison&quot;, &quot;2 sweet potatoes, diced small&quot;, &quot;1 red onion, diced&quot;, &quot;2 cups chopped kale&quot;, &quot;2 Tbsp avocado oil&quot;, &quot;1 tsp cumin&quot;, &quot;1 tsp chili powder&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Bison and Sweet Potato Skillet" style="margin-right:6px">Bison and Sweet Potato Skillet
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-18" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/4 lb ground bison</li><li>2 sweet potatoes, diced small</li><li>1 red onion, diced</li><li>2 cups chopped kale</li><li>2 Tbsp avocado oil</li><li>1 tsp cumin</li><li>1 tsp chili powder</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat avocado oil in a large skillet and cook sweet potatoes covered for 10 minutes, stirring twice.</li><li>Add onion and cook 3 minutes more.</li><li>Push vegetables aside, add bison, and brown well, about 7 minutes.</li><li>Stir in cumin, chili powder, salt, and pepper.</li><li>Fold in kale and cook 2 minutes until just wilted.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-19" aria-expanded="false" aria-controls="panel-19">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Shrimp Scampi over Spaghetti Squash"
+               data-ings='[&quot;1 1/2 lb large shrimp, peeled&quot;, &quot;1 large spaghetti squash, halved&quot;, &quot;4 Tbsp butter&quot;, &quot;5 cloves garlic, minced&quot;, &quot;1/4 cup dry white wine&quot;, &quot;2 Tbsp lemon juice&quot;, &quot;1/4 cup parsley, chopped&quot;, &quot;Red pepper flakes to taste&quot;]'
+               aria-label="Select Shrimp Scampi over Spaghetti Squash" style="margin-right:6px">Shrimp Scampi over Spaghetti Squash
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-19" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/2 lb large shrimp, peeled</li><li>1 large spaghetti squash, halved</li><li>4 Tbsp butter</li><li>5 cloves garlic, minced</li><li>1/4 cup dry white wine</li><li>2 Tbsp lemon juice</li><li>1/4 cup parsley, chopped</li><li>Red pepper flakes to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Roast the squash cut-side down at 400F for 35 minutes, then shred with a fork.</li><li>Melt butter in a skillet and cook garlic 1 minute until fragrant.</li><li>Add shrimp and cook 2 minutes per side until pink.</li><li>Pour in wine and lemon juice and simmer 2 minutes.</li><li>Toss with squash strands, parsley, and red pepper flakes.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-20" aria-expanded="false" aria-controls="panel-20">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Herb-Crusted Salmon with Lentils"
+               data-ings='[&quot;4 salmon fillets (6 oz each)&quot;, &quot;1 1/2 cups cooked French lentils&quot;, &quot;1/4 cup Dijon mustard&quot;, &quot;1/2 cup almond flour&quot;, &quot;2 Tbsp fresh dill, chopped&quot;, &quot;2 Tbsp parsley, chopped&quot;, &quot;2 Tbsp olive oil&quot;, &quot;1 lemon, cut into wedges&quot;]'
+               aria-label="Select Herb-Crusted Salmon with Lentils" style="margin-right:6px">Herb-Crusted Salmon with Lentils
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-20" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 salmon fillets (6 oz each)</li><li>1 1/2 cups cooked French lentils</li><li>1/4 cup Dijon mustard</li><li>1/2 cup almond flour</li><li>2 Tbsp fresh dill, chopped</li><li>2 Tbsp parsley, chopped</li><li>2 Tbsp olive oil</li><li>1 lemon, cut into wedges</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat oven to 400F and line a baking sheet.</li><li>Combine almond flour, dill, parsley, and olive oil into a crumb.</li><li>Brush salmon with Dijon and press the herb crumb on top.</li><li>Bake 12 to 14 minutes until the crust is golden and the fish flakes.</li><li>Serve over warm lentils with lemon wedges.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-21" aria-expanded="false" aria-controls="panel-21">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Slow-Cooker Beef Ragu with Ricotta"
+               data-ings='[&quot;2 1/2 lb beef chuck roast&quot;, &quot;1 can (28 oz) crushed tomatoes&quot;, &quot;1 onion, diced&quot;, &quot;4 cloves garlic, minced&quot;, &quot;1 cup beef broth&quot;, &quot;2 tsp Italian seasoning&quot;, &quot;1 cup whole-milk ricotta&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Slow-Cooker Beef Ragu with Ricotta" style="margin-right:6px">Slow-Cooker Beef Ragu with Ricotta
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-21" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 1/2 lb beef chuck roast</li><li>1 can (28 oz) crushed tomatoes</li><li>1 onion, diced</li><li>4 cloves garlic, minced</li><li>1 cup beef broth</li><li>2 tsp Italian seasoning</li><li>1 cup whole-milk ricotta</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Season the chuck roast well and sear all sides in a hot skillet.</li><li>Transfer to the slow cooker with tomatoes, onion, garlic, broth, and Italian seasoning.</li><li>Cook on low 8 hours until the beef shreds easily.</li><li>Shred with two forks and stir back into the sauce.</li><li>Serve in bowls with a generous spoonful of ricotta.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-snacks" aria-expanded="false" aria-controls="panel-sec-snacks">
+    <span class="label">Snacks</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-snacks" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-22" aria-expanded="false" aria-controls="panel-22">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Whipped Cottage Cheese with Hot Honey"
+               data-ings='[&quot;1 cup whole-milk cottage cheese&quot;, &quot;1 Tbsp honey&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;1 tsp olive oil&quot;, &quot;Flaky salt to taste&quot;, &quot;Sliced pear for dipping&quot;]'
+               aria-label="Select Whipped Cottage Cheese with Hot Honey" style="margin-right:6px">Whipped Cottage Cheese with Hot Honey
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-22" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup whole-milk cottage cheese</li><li>1 Tbsp honey</li><li>1/4 tsp red pepper flakes</li><li>1 tsp olive oil</li><li>Flaky salt to taste</li><li>Sliced pear for dipping</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Blend cottage cheese until completely smooth, about 45 seconds.</li><li>Warm honey with red pepper flakes for 20 seconds.</li><li>Spoon the cottage cheese into a shallow bowl and swirl the top.</li><li>Drizzle with hot honey and olive oil, then finish with flaky salt.</li><li>Serve with sliced pear.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-23" aria-expanded="false" aria-controls="panel-23">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turkey and Havarti Roll-Ups"
+               data-ings='[&quot;8 oz sliced roasted turkey breast&quot;, &quot;4 oz havarti, cut into batons&quot;, &quot;1 avocado, sliced&quot;, &quot;2 Tbsp whole-grain mustard&quot;, &quot;1 cup baby spinach&quot;]'
+               aria-label="Select Turkey and Havarti Roll-Ups" style="margin-right:6px">Turkey and Havarti Roll-Ups
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-23" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 oz sliced roasted turkey breast</li><li>4 oz havarti, cut into batons</li><li>1 avocado, sliced</li><li>2 Tbsp whole-grain mustard</li><li>1 cup baby spinach</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Lay turkey slices flat and spread each with mustard.</li><li>Add a cheese baton, avocado slice, and a few spinach leaves.</li><li>Roll tightly from the short end.</li><li>Chill 15 minutes to set before eating.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-24" aria-expanded="false" aria-controls="panel-24">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Peanut Butter Protein Fudge Squares"
+               data-ings='[&quot;1 cup natural peanut butter&quot;, &quot;2 scoops vanilla protein powder&quot;, &quot;1/4 cup coconut oil, melted&quot;, &quot;2 Tbsp maple syrup&quot;, &quot;1/2 tsp sea salt&quot;, &quot;1/4 cup dark chocolate chips&quot;]'
+               aria-label="Select Peanut Butter Protein Fudge Squares" style="margin-right:6px">Peanut Butter Protein Fudge Squares
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-24" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup natural peanut butter</li><li>2 scoops vanilla protein powder</li><li>1/4 cup coconut oil, melted</li><li>2 Tbsp maple syrup</li><li>1/2 tsp sea salt</li><li>1/4 cup dark chocolate chips</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Stir peanut butter, coconut oil, and maple syrup until smooth.</li><li>Mix in protein powder and salt until a thick dough forms.</li><li>Press into a parchment-lined 8x8 pan.</li><li>Scatter chocolate chips and press them in gently.</li><li>Freeze 30 minutes, then cut into 16 squares.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-25" aria-expanded="false" aria-controls="panel-25">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Tuna Salad Cucumber Boats"
+               data-ings='[&quot;2 cans wild tuna, drained&quot;, &quot;1/3 cup Greek yogurt&quot;, &quot;1 Tbsp Dijon mustard&quot;, &quot;2 stalks celery, minced&quot;, &quot;2 large cucumbers, halved and seeded&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Tuna Salad Cucumber Boats" style="margin-right:6px">Tuna Salad Cucumber Boats
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-25" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cans wild tuna, drained</li><li>1/3 cup Greek yogurt</li><li>1 Tbsp Dijon mustard</li><li>2 stalks celery, minced</li><li>2 large cucumbers, halved and seeded</li><li>1 Tbsp lemon juice</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Flake tuna into a bowl and mix with yogurt, Dijon, and lemon juice.</li><li>Fold in celery and season with salt and pepper.</li><li>Scoop the seeds from the cucumber halves to make troughs.</li><li>Fill each boat generously and slice into shareable pieces.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-26" aria-expanded="false" aria-controls="panel-26">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Greek Yogurt Ranch with Crudite"
+               data-ings='[&quot;1 cup plain Greek yogurt&quot;, &quot;1 Tbsp dried dill&quot;, &quot;1 tsp onion powder&quot;, &quot;1 tsp garlic powder&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;2 cups mixed raw vegetables&quot;, &quot;Salt and pepper to taste&quot;]'
+               aria-label="Select Greek Yogurt Ranch with Crudite" style="margin-right:6px">Greek Yogurt Ranch with Crudite
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-26" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup plain Greek yogurt</li><li>1 Tbsp dried dill</li><li>1 tsp onion powder</li><li>1 tsp garlic powder</li><li>1 Tbsp lemon juice</li><li>2 cups mixed raw vegetables</li><li>Salt and pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk yogurt with dill, onion powder, garlic powder, and lemon juice.</li><li>Season with salt and pepper and thin with water if needed.</li><li>Chill 20 minutes so the herbs bloom.</li><li>Serve with cut vegetables for dipping.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-27" aria-expanded="false" aria-controls="panel-27">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Grass-Fed Beef Jerky and Almond Mix"
+               data-ings='[&quot;4 oz grass-fed beef jerky, torn&quot;, &quot;1/2 cup roasted almonds&quot;, &quot;1/4 cup pumpkin seeds&quot;, &quot;1/4 cup unsweetened dried cherries&quot;]'
+               aria-label="Select Grass-Fed Beef Jerky and Almond Mix" style="margin-right:6px">Grass-Fed Beef Jerky and Almond Mix
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-27" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 oz grass-fed beef jerky, torn</li><li>1/2 cup roasted almonds</li><li>1/4 cup pumpkin seeds</li><li>1/4 cup unsweetened dried cherries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Tear the jerky into bite-size pieces.</li><li>Toss with almonds, pumpkin seeds, and dried cherries.</li><li>Portion into four small containers or bags.</li><li>Store at room temperature for up to two weeks.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-28" aria-expanded="false" aria-controls="panel-28">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Cinnamon Ricotta and Walnut Cups"
+               data-ings='[&quot;1 1/2 cups whole-milk ricotta&quot;, &quot;1/2 tsp cinnamon&quot;, &quot;1 Tbsp honey&quot;, &quot;1/2 cup toasted walnuts, chopped&quot;, &quot;1/2 tsp vanilla extract&quot;, &quot;1 cup fresh raspberries&quot;]'
+               aria-label="Select Cinnamon Ricotta and Walnut Cups" style="margin-right:6px">Cinnamon Ricotta and Walnut Cups
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-28" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/2 cups whole-milk ricotta</li><li>1/2 tsp cinnamon</li><li>1 Tbsp honey</li><li>1/2 cup toasted walnuts, chopped</li><li>1/2 tsp vanilla extract</li><li>1 cup fresh raspberries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Stir ricotta with cinnamon, honey, and vanilla until creamy.</li><li>Divide among four small jars.</li><li>Top each with walnuts and raspberries.</li><li>Cover and refrigerate up to three days.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-shopping" aria-expanded="false" aria-controls="panel-shopping">
+    <span class="label">Weekly Shopping List</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-shopping" class="panel" hidden>
+    <div class="group"><h3>Selected Meals -- Shopping List</h3>
+      <div class="shopping-dynamic"><p class="sub">Select meals to build your grocery list.</p></div>
+    </div>
+    <hr style="border:none;border-top:1px solid rgba(0,0,0,.08);margin:12px 0;">
+  </div>
+</section>
+<script>
+// ---- Accordion --------------------------------------------------------------
+document.querySelectorAll('.acc').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    var panelId  = btn.getAttribute('aria-controls');
+    var panel    = document.getElementById(panelId);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (panel) { panel.hidden = expanded; }
+  });
+});
+
+// ---- Helpers ----------------------------------------------------------------
+function escText(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Build shopping list using DOM methods to avoid XSS from untrusted data
+function buildShoppingList(selectedItems) {
+  var container = document.querySelector('.shopping-dynamic');
+  if (!container) return;
+
+  // Clear existing content safely
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  if (selectedItems.length === 0) {
+    var p = document.createElement('p');
+    p.className = 'sub';
+    p.textContent = 'Select meals to build your grocery list.';
+    container.appendChild(p);
+    return;
+  }
+
+  selectedItems.forEach(function(item) {
+    var group = document.createElement('div');
+    group.className = 'group';
+
+    var heading = document.createElement('h3');
+    heading.textContent = item.name;
+    group.appendChild(heading);
+
+    var ul = document.createElement('ul');
+    item.ingredients.forEach(function(ing) {
+      var li = document.createElement('li');
+      li.textContent = ing;
+      ul.appendChild(li);
+    });
+    group.appendChild(ul);
+    container.appendChild(group);
+  });
+}
+
+// ---- Shopping list update ---------------------------------------------------
+function updateShoppingList() {
+  var checked = document.querySelectorAll('.meal-check:checked');
+  var selectedItems = [];
+  checked.forEach(function(cb) {
+    var name = cb.dataset.name || '';
+    var ings = [];
+    try {
+      var raw = cb.dataset.ings || '[]';
+      ings = JSON.parse(raw);
+    } catch(e) { ings = []; }
+    selectedItems.push({ name: name, ingredients: ings });
+  });
+  buildShoppingList(selectedItems);
+}
+
+document.querySelectorAll('.meal-check').forEach(function(cb) {
+  cb.addEventListener('change', updateShoppingList);
+});
+
+// ---- Reset ------------------------------------------------------------------
+document.getElementById('resetBtn').addEventListener('click', function() {
+  if (!confirm('Clear all selections?')) return;
+  document.querySelectorAll('.meal-check').forEach(function(cb) { cb.checked = false; });
+  updateShoppingList();
+});
+
+// ---- Download ---------------------------------------------------------------
+document.getElementById('dlBtn').addEventListener('click', function() {
+  var blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meal-plan.html';
+  a.click();
+});
+</script>
+</div></body></html>
