@@ -1,0 +1,682 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Week of Sep 12, 2026 -- Weekly Meal Plan</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>  :root{--bg:#F1F0EC;--head:#6C7653;--acc:#C28511;--text:#1a1a1a;--card:#ffffff}  *{box-sizing:border-box}  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}  .wrap{max-width:980px;margin:0 auto;padding:12px 12px 56px}  .sticky{position:sticky;top:0;z-index:20;background:var(--head);box-shadow:0 2px 6px rgba(0,0,0,.12)}  .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:8px 12px}  .title{margin:0;font-size:16px;color:#fff;font-weight:800}  .meta{font-size:12px;color:#fff;opacity:.9}  .btns{display:flex;gap:8px}  button{cursor:pointer}  .btn{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;min-height:44px}  .btn:focus-visible,.acc:focus-visible{outline:3px solid #fff;outline-offset:2px}  .pill{display:inline-block;background:rgba(194,133,17,.15);color:var(--acc);padding:4px 8px;border-radius:999px;font-size:12px;font-weight:800}  section.card{background:var(--card);border-radius:14px;box-shadow:0 1px 0 rgba(0,0,0,.05);margin:12px 0;border-left:4px solid var(--acc)}  h2{margin:0} h3{margin:0}  .acc{background:none;border:none;display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px;min-height:44px;font:inherit;color:inherit;-webkit-appearance:none;appearance:none;text-align:left}  .acc .label{color:var(--head);font-weight:900;display:flex;align-items:center}  .chev{transition:transform .2s ease;color:var(--head);font-weight:900}  .acc[aria-expanded="true"] .chev{transform:rotate(90deg)}  .panel{padding:0 14px 14px}  ul{margin:8px 0 0 18px} li{margin:4px 0}  .sub{margin:6px 0 8px;color:#333}  .group{margin-top:8px} .group h3{margin:10px 0 4px;font-size:14px;color:var(--head)}  a{color:var(--acc);text-decoration:none}  @media (max-width:420px){.wrap{max-width:100%;padding:12px}}</style></head>
+<body><div class='wrap'>
+<header class="sticky"><div class="bar">
+  <div><div class="title">Rooted Wellness Weekly Meals Plan -- Rachel Stephens Wellness</div>
+  <div class="meta">Week of Sep 12, 2026 &bull; Focus: Anti-Inflammatory</div></div>
+  <div class="btns"><button id="resetBtn" class="btn">Reset</button>
+  <button id="dlBtn" class="btn">Download</button></div>
+</div></header>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-intro" aria-expanded="true" aria-controls="panel-intro">
+    <span class="label">Intro / Nutrition Focus</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-intro" class="panel">
+    <p class="sub">Week start (ISO): 2026-09-12</p>
+    <p class="sub"><strong>Focus:</strong> <span class="pill">Anti-Inflammatory</span></p>
+    <p>This week's meals are built around Anti-Inflammatory. Each plate is designed to be whole-food, home-cook-friendly, and easy to prepare in 40 minutes or less.</p>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-breakfasts" aria-expanded="false" aria-controls="panel-sec-breakfasts">
+    <span class="label">Breakfasts</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-breakfasts" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-1" aria-expanded="false" aria-controls="panel-1">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Golden Turmeric Scramble with Spinach"
+               data-ings='[&quot;6 eggs&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;3 cups baby spinach&quot;, &quot;1/2 tsp ground turmeric&quot;, &quot;1/4 tsp black pepper&quot;, &quot;1/4 cup crumbled feta&quot;, &quot;2 Tbsp chopped fresh parsley&quot;, &quot;1/2 avocado, sliced&quot;, &quot;Pinch of sea salt&quot;]'
+               aria-label="Select Golden Turmeric Scramble with Spinach" style="margin-right:6px">Golden Turmeric Scramble with Spinach
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-1" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>6 eggs</li><li>1 Tbsp extra-virgin olive oil</li><li>3 cups baby spinach</li><li>1/2 tsp ground turmeric</li><li>1/4 tsp black pepper</li><li>1/4 cup crumbled feta</li><li>2 Tbsp chopped fresh parsley</li><li>1/2 avocado, sliced</li><li>Pinch of sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the eggs with turmeric, black pepper, and salt until evenly golden.</li><li>Warm the olive oil in a nonstick skillet over medium and wilt the spinach for 1 minute.</li><li>Pour in the eggs and stir slowly with a spatula until soft curds form, about 3 minutes.</li><li>Fold in the feta and remove from heat while the eggs are still glossy.</li><li>Top with parsley and sliced avocado.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-2" aria-expanded="false" aria-controls="panel-2">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Blueberry Ginger Chia Pudding"
+               data-ings='[&quot;1/4 cup chia seeds&quot;, &quot;1 cup unsweetened almond milk&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;1 tsp freshly grated ginger&quot;, &quot;1 tsp vanilla extract&quot;, &quot;1 Tbsp maple syrup&quot;, &quot;1 cup fresh blueberries&quot;, &quot;2 Tbsp chopped walnuts&quot;]'
+               aria-label="Select Blueberry Ginger Chia Pudding" style="margin-right:6px">Blueberry Ginger Chia Pudding
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-2" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1/4 cup chia seeds</li><li>1 cup unsweetened almond milk</li><li>1/2 cup plain Greek yogurt</li><li>1 tsp freshly grated ginger</li><li>1 tsp vanilla extract</li><li>1 Tbsp maple syrup</li><li>1 cup fresh blueberries</li><li>2 Tbsp chopped walnuts</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the almond milk, yogurt, ginger, vanilla, and maple syrup together.</li><li>Stir in the chia seeds and let sit 5 minutes, then whisk again to break up clumps.</li><li>Refrigerate at least 4 hours or overnight until thick.</li><li>Divide between two jars and top with blueberries.</li><li>Finish with chopped walnuts just before eating.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-3" aria-expanded="false" aria-controls="panel-3">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Smoked Salmon and Dill Sweet Potato Toast"
+               data-ings='[&quot;1 large sweet potato, sliced lengthwise 1/4 inch thick&quot;, &quot;4 oz smoked wild salmon&quot;, &quot;1/3 cup whipped cottage cheese&quot;, &quot;1 Tbsp fresh dill, chopped&quot;, &quot;1 Tbsp capers&quot;, &quot;1/4 small red onion, thinly sliced&quot;, &quot;1 lemon, cut in wedges&quot;, &quot;1 tsp extra-virgin olive oil&quot;, &quot;Black pepper to taste&quot;]'
+               aria-label="Select Smoked Salmon and Dill Sweet Potato Toast" style="margin-right:6px">Smoked Salmon and Dill Sweet Potato Toast
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-3" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 large sweet potato, sliced lengthwise 1/4 inch thick</li><li>4 oz smoked wild salmon</li><li>1/3 cup whipped cottage cheese</li><li>1 Tbsp fresh dill, chopped</li><li>1 Tbsp capers</li><li>1/4 small red onion, thinly sliced</li><li>1 lemon, cut in wedges</li><li>1 tsp extra-virgin olive oil</li><li>Black pepper to taste</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Brush the sweet potato slices with olive oil and toast in a toaster or 400 F oven for 15 minutes, flipping once, until tender.</li><li>Spread each slice with whipped cottage cheese.</li><li>Layer on the smoked salmon and red onion.</li><li>Scatter capers and dill over the top.</li><li>Finish with a squeeze of lemon and black pepper.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-4" aria-expanded="false" aria-controls="panel-4">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Cherry Cacao Recovery Smoothie"
+               data-ings='[&quot;1 cup frozen tart cherries&quot;, &quot;1 cup unsweetened almond milk&quot;, &quot;1/2 frozen banana&quot;, &quot;1 Tbsp raw cacao powder&quot;, &quot;2 Tbsp hemp hearts&quot;, &quot;1 Tbsp almond butter&quot;, &quot;1/2 tsp ground cinnamon&quot;, &quot;1 handful baby kale&quot;]'
+               aria-label="Select Cherry Cacao Recovery Smoothie" style="margin-right:6px">Cherry Cacao Recovery Smoothie
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-4" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup frozen tart cherries</li><li>1 cup unsweetened almond milk</li><li>1/2 frozen banana</li><li>1 Tbsp raw cacao powder</li><li>2 Tbsp hemp hearts</li><li>1 Tbsp almond butter</li><li>1/2 tsp ground cinnamon</li><li>1 handful baby kale</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Add the almond milk and kale to the blender first.</li><li>Add the cherries, banana, cacao, hemp hearts, almond butter, and cinnamon.</li><li>Blend on high for 60 seconds until completely smooth.</li><li>Add a splash more milk if it is too thick.</li><li>Pour into a glass and drink right away.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-5" aria-expanded="false" aria-controls="panel-5">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Walnut Flax Oatmeal with Warm Spiced Pears"
+               data-ings='[&quot;1 cup rolled oats&quot;, &quot;2 cups water&quot;, &quot;2 Tbsp ground flaxseed&quot;, &quot;2 ripe pears, diced&quot;, &quot;1 tsp coconut oil&quot;, &quot;1/2 tsp ground cinnamon&quot;, &quot;1/4 tsp ground ginger&quot;, &quot;1/4 cup chopped walnuts&quot;, &quot;1 Tbsp maple syrup&quot;, &quot;Pinch of sea salt&quot;]'
+               aria-label="Select Walnut Flax Oatmeal with Warm Spiced Pears" style="margin-right:6px">Walnut Flax Oatmeal with Warm Spiced Pears
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-5" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup rolled oats</li><li>2 cups water</li><li>2 Tbsp ground flaxseed</li><li>2 ripe pears, diced</li><li>1 tsp coconut oil</li><li>1/2 tsp ground cinnamon</li><li>1/4 tsp ground ginger</li><li>1/4 cup chopped walnuts</li><li>1 Tbsp maple syrup</li><li>Pinch of sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Simmer the oats in salted water over medium-low for 8 minutes, stirring occasionally.</li><li>Meanwhile melt the coconut oil in a small skillet and cook the pears with cinnamon and ginger for 5 minutes until soft.</li><li>Stir the flaxseed into the finished oats.</li><li>Spoon the oats into bowls and top with the spiced pears.</li><li>Finish with walnuts and a drizzle of maple syrup.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-6" aria-expanded="false" aria-controls="panel-6">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Mediterranean Sardine and Tomato Egg Skillet"
+               data-ings='[&quot;4 eggs&quot;, &quot;1 can (4 oz) sardines in olive oil, drained&quot;, &quot;1 cup cherry tomatoes, halved&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;2 cloves garlic, sliced&quot;, &quot;1/4 tsp smoked paprika&quot;, &quot;1/4 cup kalamata olives, halved&quot;, &quot;2 Tbsp fresh basil, torn&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Mediterranean Sardine and Tomato Egg Skillet" style="margin-right:6px">Mediterranean Sardine and Tomato Egg Skillet
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-6" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 eggs</li><li>1 can (4 oz) sardines in olive oil, drained</li><li>1 cup cherry tomatoes, halved</li><li>1 Tbsp extra-virgin olive oil</li><li>2 cloves garlic, sliced</li><li>1/4 tsp smoked paprika</li><li>1/4 cup kalamata olives, halved</li><li>2 Tbsp fresh basil, torn</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Warm the olive oil in a skillet over medium and cook the garlic for 1 minute.</li><li>Add the tomatoes and paprika and cook 4 minutes until they blister and soften.</li><li>Nestle in the sardines and olives to warm through.</li><li>Crack the eggs over the top, cover, and cook 5 minutes until the whites are set.</li><li>Season and finish with torn basil.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-7" aria-expanded="false" aria-controls="panel-7">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Matcha Overnight Oats with Pistachios"
+               data-ings='[&quot;1 cup rolled oats&quot;, &quot;1 cup unsweetened coconut milk beverage&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;1 tsp matcha powder&quot;, &quot;1 Tbsp chia seeds&quot;, &quot;1 Tbsp honey&quot;, &quot;1/4 cup shelled pistachios, chopped&quot;, &quot;1/2 cup sliced strawberries&quot;]'
+               aria-label="Select Matcha Overnight Oats with Pistachios" style="margin-right:6px">Matcha Overnight Oats with Pistachios
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-7" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup rolled oats</li><li>1 cup unsweetened coconut milk beverage</li><li>1/2 cup plain Greek yogurt</li><li>1 tsp matcha powder</li><li>1 Tbsp chia seeds</li><li>1 Tbsp honey</li><li>1/4 cup shelled pistachios, chopped</li><li>1/2 cup sliced strawberries</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the matcha into the coconut milk until no lumps remain.</li><li>Stir in the yogurt, oats, chia, and honey.</li><li>Divide into two jars and refrigerate overnight.</li><li>In the morning, stir and loosen with a splash of milk if needed.</li><li>Top with strawberries and pistachios.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-lunches" aria-expanded="false" aria-controls="panel-sec-lunches">
+    <span class="label">Lunches</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-lunches" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-8" aria-expanded="false" aria-controls="panel-8">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turmeric Chicken and Quinoa Salad with Lemon Tahini"
+               data-ings='[&quot;1 lb boneless chicken thighs&quot;, &quot;1 tsp ground turmeric&quot;, &quot;1/2 tsp ground cumin&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;1 cup quinoa, rinsed&quot;, &quot;2 cups baby arugula&quot;, &quot;1 cup cucumber, diced&quot;, &quot;1/4 cup fresh mint, chopped&quot;, &quot;3 Tbsp tahini&quot;, &quot;1 lemon, juiced&quot;, &quot;2 Tbsp water&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Turmeric Chicken and Quinoa Salad with Lemon Tahini" style="margin-right:6px">Turmeric Chicken and Quinoa Salad with Lemon Tahini
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-8" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb boneless chicken thighs</li><li>1 tsp ground turmeric</li><li>1/2 tsp ground cumin</li><li>1 Tbsp extra-virgin olive oil</li><li>1 cup quinoa, rinsed</li><li>2 cups baby arugula</li><li>1 cup cucumber, diced</li><li>1/4 cup fresh mint, chopped</li><li>3 Tbsp tahini</li><li>1 lemon, juiced</li><li>2 Tbsp water</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Cook the quinoa in 2 cups salted water for 15 minutes, then fluff and cool.</li><li>Rub the chicken with turmeric, cumin, olive oil, salt, and pepper.</li><li>Sear the chicken in a hot skillet 5 to 6 minutes per side until cooked through, then slice.</li><li>Whisk the tahini, lemon juice, and water into a smooth dressing.</li><li>Toss the quinoa with arugula, cucumber, and mint, top with chicken, and drizzle with the dressing.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-9" aria-expanded="false" aria-controls="panel-9">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Wild Salmon Salad with Avocado and Pumpkin Seeds"
+               data-ings='[&quot;2 cans (5 oz each) wild salmon, drained&quot;, &quot;1 ripe avocado, mashed&quot;, &quot;2 Tbsp plain Greek yogurt&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;2 Tbsp fresh dill, chopped&quot;, &quot;2 celery stalks, finely diced&quot;, &quot;2 Tbsp toasted pumpkin seeds&quot;, &quot;4 cups mixed greens&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Wild Salmon Salad with Avocado and Pumpkin Seeds" style="margin-right:6px">Wild Salmon Salad with Avocado and Pumpkin Seeds
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-9" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cans (5 oz each) wild salmon, drained</li><li>1 ripe avocado, mashed</li><li>2 Tbsp plain Greek yogurt</li><li>1 Tbsp lemon juice</li><li>2 Tbsp fresh dill, chopped</li><li>2 celery stalks, finely diced</li><li>2 Tbsp toasted pumpkin seeds</li><li>4 cups mixed greens</li><li>1 Tbsp extra-virgin olive oil</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Flake the salmon into a bowl and remove any large bones.</li><li>Fold in the mashed avocado, yogurt, lemon juice, dill, and celery.</li><li>Season with salt and pepper.</li><li>Dress the greens with olive oil and a pinch of salt.</li><li>Pile the salmon salad over the greens and scatter with pumpkin seeds.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-10" aria-expanded="false" aria-controls="panel-10">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Ginger Carrot and Red Lentil Soup"
+               data-ings='[&quot;1 cup red lentils, rinsed&quot;, &quot;1 lb carrots, chopped&quot;, &quot;1 yellow onion, diced&quot;, &quot;2 Tbsp fresh ginger, grated&quot;, &quot;2 cloves garlic, minced&quot;, &quot;1 tsp ground turmeric&quot;, &quot;1 tsp ground coriander&quot;, &quot;1 Tbsp coconut oil&quot;, &quot;4 cups low-sodium vegetable broth&quot;, &quot;1/2 cup full-fat coconut milk&quot;, &quot;1 lime, juiced&quot;, &quot;Fresh cilantro for serving&quot;]'
+               aria-label="Select Ginger Carrot and Red Lentil Soup" style="margin-right:6px">Ginger Carrot and Red Lentil Soup
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-10" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup red lentils, rinsed</li><li>1 lb carrots, chopped</li><li>1 yellow onion, diced</li><li>2 Tbsp fresh ginger, grated</li><li>2 cloves garlic, minced</li><li>1 tsp ground turmeric</li><li>1 tsp ground coriander</li><li>1 Tbsp coconut oil</li><li>4 cups low-sodium vegetable broth</li><li>1/2 cup full-fat coconut milk</li><li>1 lime, juiced</li><li>Fresh cilantro for serving</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Melt the coconut oil in a pot and soften the onion for 5 minutes.</li><li>Add the ginger, garlic, turmeric, and coriander and stir for 1 minute until fragrant.</li><li>Add the carrots, lentils, and broth and simmer 20 minutes until the lentils collapse.</li><li>Blend until smooth, then stir in the coconut milk and lime juice.</li><li>Serve topped with cilantro.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-11" aria-expanded="false" aria-controls="panel-11">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Mackerel and Roasted Beet Grain Bowl"
+               data-ings='[&quot;2 cans (4 oz each) mackerel in olive oil, drained&quot;, &quot;1 cup cooked farro&quot;, &quot;2 medium beets, roasted and cubed&quot;, &quot;2 cups baby spinach&quot;, &quot;1/4 cup walnuts, toasted&quot;, &quot;2 Tbsp extra-virgin olive oil&quot;, &quot;1 Tbsp apple cider vinegar&quot;, &quot;1 tsp Dijon mustard&quot;, &quot;1 tsp honey&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Mackerel and Roasted Beet Grain Bowl" style="margin-right:6px">Mackerel and Roasted Beet Grain Bowl
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-11" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 cans (4 oz each) mackerel in olive oil, drained</li><li>1 cup cooked farro</li><li>2 medium beets, roasted and cubed</li><li>2 cups baby spinach</li><li>1/4 cup walnuts, toasted</li><li>2 Tbsp extra-virgin olive oil</li><li>1 Tbsp apple cider vinegar</li><li>1 tsp Dijon mustard</li><li>1 tsp honey</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the olive oil, vinegar, mustard, honey, salt, and pepper into a dressing.</li><li>Toss the farro with half the dressing.</li><li>Divide the spinach and farro between two bowls.</li><li>Top with beets, flaked mackerel, and walnuts.</li><li>Drizzle the remaining dressing over everything.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-12" aria-expanded="false" aria-controls="panel-12">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Thai Chicken Lettuce Wraps with Peanut Ginger Sauce"
+               data-ings='[&quot;1 lb ground chicken&quot;, &quot;1 Tbsp avocado oil&quot;, &quot;3 cloves garlic, minced&quot;, &quot;1 Tbsp fresh ginger, grated&quot;, &quot;2 Tbsp coconut aminos&quot;, &quot;1 red bell pepper, diced&quot;, &quot;1 cup shredded carrots&quot;, &quot;1 head butter lettuce, leaves separated&quot;, &quot;3 Tbsp natural peanut butter&quot;, &quot;1 Tbsp lime juice&quot;, &quot;2 Tbsp warm water&quot;, &quot;1/4 cup fresh cilantro&quot;]'
+               aria-label="Select Thai Chicken Lettuce Wraps with Peanut Ginger Sauce" style="margin-right:6px">Thai Chicken Lettuce Wraps with Peanut Ginger Sauce
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-12" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb ground chicken</li><li>1 Tbsp avocado oil</li><li>3 cloves garlic, minced</li><li>1 Tbsp fresh ginger, grated</li><li>2 Tbsp coconut aminos</li><li>1 red bell pepper, diced</li><li>1 cup shredded carrots</li><li>1 head butter lettuce, leaves separated</li><li>3 Tbsp natural peanut butter</li><li>1 Tbsp lime juice</li><li>2 Tbsp warm water</li><li>1/4 cup fresh cilantro</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Heat the avocado oil in a skillet and brown the chicken over medium-high for 6 minutes, breaking it up.</li><li>Add the garlic, ginger, bell pepper, and coconut aminos and cook 3 more minutes.</li><li>Whisk the peanut butter, lime juice, and warm water into a pourable sauce.</li><li>Spoon the chicken into lettuce leaves and top with shredded carrots.</li><li>Drizzle with peanut sauce and garnish with cilantro.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-13" aria-expanded="false" aria-controls="panel-13">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Roasted Broccoli and White Bean Salad with Olive Vinaigrette"
+               data-ings='[&quot;1 large head broccoli, cut in florets&quot;, &quot;1 can (15 oz) cannellini beans, drained and rinsed&quot;, &quot;3 Tbsp extra-virgin olive oil&quot;, &quot;1/4 cup kalamata olives, chopped&quot;, &quot;1 Tbsp red wine vinegar&quot;, &quot;1 clove garlic, minced&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;1/4 cup shaved Parmesan&quot;, &quot;1 lemon, zested&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Roasted Broccoli and White Bean Salad with Olive Vinaigrette" style="margin-right:6px">Roasted Broccoli and White Bean Salad with Olive Vinaigrette
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-13" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 large head broccoli, cut in florets</li><li>1 can (15 oz) cannellini beans, drained and rinsed</li><li>3 Tbsp extra-virgin olive oil</li><li>1/4 cup kalamata olives, chopped</li><li>1 Tbsp red wine vinegar</li><li>1 clove garlic, minced</li><li>1/4 tsp red pepper flakes</li><li>1/4 cup shaved Parmesan</li><li>1 lemon, zested</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss the broccoli with 1 Tbsp olive oil and salt and roast at 425 F for 18 minutes until charred at the edges.</li><li>Whisk the remaining olive oil with the olives, vinegar, garlic, and pepper flakes.</li><li>Combine the warm broccoli with the beans in a large bowl.</li><li>Toss with the olive vinaigrette and lemon zest.</li><li>Finish with shaved Parmesan and black pepper.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-14" aria-expanded="false" aria-controls="panel-14">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Shrimp and Mango Salad with Lime and Avocado"
+               data-ings='[&quot;1 lb wild shrimp, peeled and deveined&quot;, &quot;1 Tbsp avocado oil&quot;, &quot;1/2 tsp chili powder&quot;, &quot;1 ripe mango, diced&quot;, &quot;1 avocado, diced&quot;, &quot;1/2 red onion, thinly sliced&quot;, &quot;1 jalapeno, minced&quot;, &quot;4 cups chopped romaine&quot;, &quot;2 limes, juiced&quot;, &quot;2 Tbsp extra-virgin olive oil&quot;, &quot;1/4 cup fresh cilantro, chopped&quot;, &quot;Sea salt&quot;]'
+               aria-label="Select Shrimp and Mango Salad with Lime and Avocado" style="margin-right:6px">Shrimp and Mango Salad with Lime and Avocado
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-14" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb wild shrimp, peeled and deveined</li><li>1 Tbsp avocado oil</li><li>1/2 tsp chili powder</li><li>1 ripe mango, diced</li><li>1 avocado, diced</li><li>1/2 red onion, thinly sliced</li><li>1 jalapeno, minced</li><li>4 cups chopped romaine</li><li>2 limes, juiced</li><li>2 Tbsp extra-virgin olive oil</li><li>1/4 cup fresh cilantro, chopped</li><li>Sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss the shrimp with avocado oil, chili powder, and salt.</li><li>Sear in a hot skillet 2 minutes per side until pink and opaque.</li><li>Whisk the lime juice and olive oil with a pinch of salt.</li><li>Toss the romaine, mango, avocado, onion, and jalapeno with the dressing.</li><li>Top with the warm shrimp and cilantro.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-dinners" aria-expanded="false" aria-controls="panel-sec-dinners">
+    <span class="label">Dinners</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-dinners" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-15" aria-expanded="false" aria-controls="panel-15">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Miso-Ginger Glazed Salmon with Sesame Bok Choy"
+               data-ings='[&quot;4 wild salmon fillets (6 oz each)&quot;, &quot;2 Tbsp white miso paste&quot;, &quot;1 Tbsp fresh ginger, grated&quot;, &quot;1 Tbsp honey&quot;, &quot;1 Tbsp rice vinegar&quot;, &quot;1 Tbsp coconut aminos&quot;, &quot;4 baby bok choy, halved&quot;, &quot;1 Tbsp toasted sesame oil&quot;, &quot;1 tsp sesame seeds&quot;, &quot;2 scallions, sliced&quot;]'
+               aria-label="Select Miso-Ginger Glazed Salmon with Sesame Bok Choy" style="margin-right:6px">Miso-Ginger Glazed Salmon with Sesame Bok Choy
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-15" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 wild salmon fillets (6 oz each)</li><li>2 Tbsp white miso paste</li><li>1 Tbsp fresh ginger, grated</li><li>1 Tbsp honey</li><li>1 Tbsp rice vinegar</li><li>1 Tbsp coconut aminos</li><li>4 baby bok choy, halved</li><li>1 Tbsp toasted sesame oil</li><li>1 tsp sesame seeds</li><li>2 scallions, sliced</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the miso, ginger, honey, rice vinegar, and coconut aminos into a glaze.</li><li>Brush the salmon with half the glaze and roast at 400 F for 12 minutes.</li><li>Sear the bok choy cut side down in sesame oil over medium-high for 3 minutes, then flip and cook 2 more.</li><li>Brush the salmon with the remaining glaze during the final 2 minutes.</li><li>Serve over the bok choy with sesame seeds and scallions.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-16" aria-expanded="false" aria-controls="panel-16">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Turmeric Chicken Thighs with Roasted Cauliflower and Chickpeas"
+               data-ings='[&quot;8 bone-in chicken thighs, skin on&quot;, &quot;1 head cauliflower, cut in florets&quot;, &quot;1 can (15 oz) chickpeas, drained and rinsed&quot;, &quot;3 Tbsp extra-virgin olive oil&quot;, &quot;2 tsp ground turmeric&quot;, &quot;1 tsp ground cumin&quot;, &quot;1 tsp smoked paprika&quot;, &quot;1/2 tsp black pepper&quot;, &quot;1 lemon, halved&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;2 Tbsp fresh cilantro&quot;, &quot;Sea salt&quot;]'
+               aria-label="Select Turmeric Chicken Thighs with Roasted Cauliflower and Chickpeas" style="margin-right:6px">Turmeric Chicken Thighs with Roasted Cauliflower and Chickpeas
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-16" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 bone-in chicken thighs, skin on</li><li>1 head cauliflower, cut in florets</li><li>1 can (15 oz) chickpeas, drained and rinsed</li><li>3 Tbsp extra-virgin olive oil</li><li>2 tsp ground turmeric</li><li>1 tsp ground cumin</li><li>1 tsp smoked paprika</li><li>1/2 tsp black pepper</li><li>1 lemon, halved</li><li>1/2 cup plain Greek yogurt</li><li>2 Tbsp fresh cilantro</li><li>Sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Rub the chicken with 1 Tbsp olive oil, turmeric, cumin, paprika, pepper, and salt.</li><li>Toss the cauliflower and chickpeas with the remaining oil and a pinch of salt on a sheet pan.</li><li>Nestle the chicken skin side up among the vegetables and roast at 425 F for 35 minutes.</li><li>Squeeze the lemon over the pan as it comes out of the oven.</li><li>Serve with a spoonful of Greek yogurt and cilantro.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-17" aria-expanded="false" aria-controls="panel-17">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Grass-Fed Beef and Kale Stir-Fry with Ginger Garlic Sauce"
+               data-ings='[&quot;1 lb grass-fed flank steak, thinly sliced&quot;, &quot;1 bunch lacinato kale, stemmed and chopped&quot;, &quot;1 red bell pepper, sliced&quot;, &quot;2 Tbsp avocado oil&quot;, &quot;3 cloves garlic, minced&quot;, &quot;1 Tbsp fresh ginger, grated&quot;, &quot;3 Tbsp coconut aminos&quot;, &quot;1 Tbsp rice vinegar&quot;, &quot;1 tsp toasted sesame oil&quot;, &quot;1 tsp arrowroot starch&quot;, &quot;2 cups cooked brown rice&quot;]'
+               aria-label="Select Grass-Fed Beef and Kale Stir-Fry with Ginger Garlic Sauce" style="margin-right:6px">Grass-Fed Beef and Kale Stir-Fry with Ginger Garlic Sauce
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-17" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb grass-fed flank steak, thinly sliced</li><li>1 bunch lacinato kale, stemmed and chopped</li><li>1 red bell pepper, sliced</li><li>2 Tbsp avocado oil</li><li>3 cloves garlic, minced</li><li>1 Tbsp fresh ginger, grated</li><li>3 Tbsp coconut aminos</li><li>1 Tbsp rice vinegar</li><li>1 tsp toasted sesame oil</li><li>1 tsp arrowroot starch</li><li>2 cups cooked brown rice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Whisk the coconut aminos, vinegar, sesame oil, and arrowroot into a sauce.</li><li>Sear the steak in 1 Tbsp avocado oil over high heat for 2 minutes, then set aside.</li><li>Add the remaining oil, garlic, ginger, and bell pepper and stir-fry 2 minutes.</li><li>Add the kale and cook 3 minutes until wilted.</li><li>Return the beef, pour in the sauce, and toss 1 minute until glossy. Serve over rice.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-18" aria-expanded="false" aria-controls="panel-18">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sheet-Pan Cod with Tomatoes, Olives, and Herbs"
+               data-ings='[&quot;4 wild cod fillets (6 oz each)&quot;, &quot;2 cups cherry tomatoes&quot;, &quot;1/2 cup Castelvetrano olives, pitted&quot;, &quot;1 shallot, thinly sliced&quot;, &quot;3 Tbsp extra-virgin olive oil&quot;, &quot;3 cloves garlic, smashed&quot;, &quot;1 tsp dried oregano&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;1 lemon, sliced&quot;, &quot;1/4 cup fresh parsley, chopped&quot;, &quot;1 lb green beans, trimmed&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Sheet-Pan Cod with Tomatoes, Olives, and Herbs" style="margin-right:6px">Sheet-Pan Cod with Tomatoes, Olives, and Herbs
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-18" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 wild cod fillets (6 oz each)</li><li>2 cups cherry tomatoes</li><li>1/2 cup Castelvetrano olives, pitted</li><li>1 shallot, thinly sliced</li><li>3 Tbsp extra-virgin olive oil</li><li>3 cloves garlic, smashed</li><li>1 tsp dried oregano</li><li>1/4 tsp red pepper flakes</li><li>1 lemon, sliced</li><li>1/4 cup fresh parsley, chopped</li><li>1 lb green beans, trimmed</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss the tomatoes, olives, shallot, garlic, green beans, and 2 Tbsp olive oil on a sheet pan and roast at 425 F for 12 minutes.</li><li>Season the cod with oregano, pepper flakes, salt, and pepper.</li><li>Nestle the cod among the vegetables, drizzle with the remaining oil, and top with lemon slices.</li><li>Roast 12 more minutes until the fish flakes.</li><li>Scatter with parsley before serving.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-19" aria-expanded="false" aria-controls="panel-19">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Coconut Turmeric Chicken Curry with Sweet Potatoes"
+               data-ings='[&quot;1 1/2 lb boneless chicken thighs, cubed&quot;, &quot;1 large sweet potato, cubed&quot;, &quot;1 can (14 oz) full-fat coconut milk&quot;, &quot;1 yellow onion, diced&quot;, &quot;2 Tbsp fresh ginger, grated&quot;, &quot;3 cloves garlic, minced&quot;, &quot;1 Tbsp ground turmeric&quot;, &quot;2 tsp curry powder&quot;, &quot;1 Tbsp coconut oil&quot;, &quot;1 cup low-sodium chicken broth&quot;, &quot;3 cups baby spinach&quot;, &quot;1 lime, juiced&quot;, &quot;2 cups cooked basmati rice&quot;]'
+               aria-label="Select Coconut Turmeric Chicken Curry with Sweet Potatoes" style="margin-right:6px">Coconut Turmeric Chicken Curry with Sweet Potatoes
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-19" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/2 lb boneless chicken thighs, cubed</li><li>1 large sweet potato, cubed</li><li>1 can (14 oz) full-fat coconut milk</li><li>1 yellow onion, diced</li><li>2 Tbsp fresh ginger, grated</li><li>3 cloves garlic, minced</li><li>1 Tbsp ground turmeric</li><li>2 tsp curry powder</li><li>1 Tbsp coconut oil</li><li>1 cup low-sodium chicken broth</li><li>3 cups baby spinach</li><li>1 lime, juiced</li><li>2 cups cooked basmati rice</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Melt the coconut oil in a large pot and brown the chicken 5 minutes, then remove.</li><li>Soften the onion 4 minutes, then add the ginger, garlic, turmeric, and curry powder for 1 minute.</li><li>Add the sweet potato, coconut milk, and broth and simmer 15 minutes until tender.</li><li>Return the chicken and cook 5 minutes, then stir in the spinach until wilted.</li><li>Finish with lime juice and serve over rice.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-20" aria-expanded="false" aria-controls="panel-20">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Herb-Crusted Lamb Chops with Minted Pea Mash"
+               data-ings='[&quot;8 lamb loin chops&quot;, &quot;2 Tbsp extra-virgin olive oil&quot;, &quot;2 Tbsp fresh rosemary, chopped&quot;, &quot;3 cloves garlic, minced&quot;, &quot;1 lemon, zested&quot;, &quot;3 cups frozen peas&quot;, &quot;1/4 cup fresh mint leaves&quot;, &quot;2 Tbsp extra-virgin olive oil&quot;, &quot;1 Tbsp lemon juice&quot;, &quot;1 bunch asparagus, trimmed&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Herb-Crusted Lamb Chops with Minted Pea Mash" style="margin-right:6px">Herb-Crusted Lamb Chops with Minted Pea Mash
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-20" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>8 lamb loin chops</li><li>2 Tbsp extra-virgin olive oil</li><li>2 Tbsp fresh rosemary, chopped</li><li>3 cloves garlic, minced</li><li>1 lemon, zested</li><li>3 cups frozen peas</li><li>1/4 cup fresh mint leaves</li><li>2 Tbsp extra-virgin olive oil</li><li>1 Tbsp lemon juice</li><li>1 bunch asparagus, trimmed</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Rub the lamb with 2 Tbsp olive oil, rosemary, garlic, lemon zest, salt, and pepper and rest 10 minutes.</li><li>Boil the peas 3 minutes, drain, and mash with mint, 2 Tbsp olive oil, lemon juice, and salt.</li><li>Sear the lamb in a hot cast-iron pan 3 to 4 minutes per side for medium-rare.</li><li>Roast the asparagus at 425 F for 8 minutes with a drizzle of oil and salt.</li><li>Serve the chops over the pea mash with asparagus alongside.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-21" aria-expanded="false" aria-controls="panel-21">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Walnut and Lentil Stuffed Peppers with Herbed Yogurt"
+               data-ings='[&quot;4 large bell peppers, halved and seeded&quot;, &quot;1 cup cooked green lentils&quot;, &quot;1/2 cup walnuts, finely chopped&quot;, &quot;1 cup cooked quinoa&quot;, &quot;1 small onion, diced&quot;, &quot;2 cloves garlic, minced&quot;, &quot;1 can (14 oz) fire-roasted diced tomatoes&quot;, &quot;1 tsp smoked paprika&quot;, &quot;1 tsp ground cumin&quot;, &quot;2 Tbsp extra-virgin olive oil&quot;, &quot;1/2 cup plain Greek yogurt&quot;, &quot;2 Tbsp fresh dill and parsley, chopped&quot;, &quot;Sea salt and black pepper&quot;]'
+               aria-label="Select Walnut and Lentil Stuffed Peppers with Herbed Yogurt" style="margin-right:6px">Walnut and Lentil Stuffed Peppers with Herbed Yogurt
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-21" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>4 large bell peppers, halved and seeded</li><li>1 cup cooked green lentils</li><li>1/2 cup walnuts, finely chopped</li><li>1 cup cooked quinoa</li><li>1 small onion, diced</li><li>2 cloves garlic, minced</li><li>1 can (14 oz) fire-roasted diced tomatoes</li><li>1 tsp smoked paprika</li><li>1 tsp ground cumin</li><li>2 Tbsp extra-virgin olive oil</li><li>1/2 cup plain Greek yogurt</li><li>2 Tbsp fresh dill and parsley, chopped</li><li>Sea salt and black pepper</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Sauté the onion and garlic in olive oil for 4 minutes, then add paprika and cumin.</li><li>Stir in the lentils, walnuts, quinoa, and tomatoes and simmer 5 minutes.</li><li>Fill the pepper halves with the mixture and place in a baking dish with 1/4 cup water.</li><li>Cover with foil and bake at 400 F for 30 minutes, uncovering for the last 10.</li><li>Stir the herbs into the yogurt and spoon over the peppers.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-sec-snacks" aria-expanded="false" aria-controls="panel-sec-snacks">
+    <span class="label">Snacks</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-sec-snacks" class="panel" hidden>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-22" aria-expanded="false" aria-controls="panel-22">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Golden Milk Latte"
+               data-ings='[&quot;1 1/2 cups unsweetened almond milk&quot;, &quot;1 tsp ground turmeric&quot;, &quot;1/2 tsp ground cinnamon&quot;, &quot;1/4 tsp ground ginger&quot;, &quot;Pinch of black pepper&quot;, &quot;1 tsp coconut oil&quot;, &quot;1 tsp honey&quot;]'
+               aria-label="Select Golden Milk Latte" style="margin-right:6px">Golden Milk Latte
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-22" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 1/2 cups unsweetened almond milk</li><li>1 tsp ground turmeric</li><li>1/2 tsp ground cinnamon</li><li>1/4 tsp ground ginger</li><li>Pinch of black pepper</li><li>1 tsp coconut oil</li><li>1 tsp honey</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Warm the almond milk in a small saucepan over medium-low.</li><li>Whisk in the turmeric, cinnamon, ginger, black pepper, and coconut oil.</li><li>Simmer gently 5 minutes without boiling.</li><li>Stir in the honey and froth with a whisk or frother.</li><li>Pour into a mug and drink warm.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-23" aria-expanded="false" aria-controls="panel-23">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Walnut and Tart Cherry Trail Mix"
+               data-ings='[&quot;1 cup raw walnuts&quot;, &quot;1/2 cup unsweetened dried tart cherries&quot;, &quot;1/2 cup raw pumpkin seeds&quot;, &quot;1/4 cup cacao nibs&quot;, &quot;1/2 tsp ground cinnamon&quot;, &quot;Pinch of sea salt&quot;]'
+               aria-label="Select Walnut and Tart Cherry Trail Mix" style="margin-right:6px">Walnut and Tart Cherry Trail Mix
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-23" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup raw walnuts</li><li>1/2 cup unsweetened dried tart cherries</li><li>1/2 cup raw pumpkin seeds</li><li>1/4 cup cacao nibs</li><li>1/2 tsp ground cinnamon</li><li>Pinch of sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toast the walnuts and pumpkin seeds in a dry skillet over medium for 4 minutes, stirring often.</li><li>Cool completely on a plate.</li><li>Toss with the cherries, cacao nibs, cinnamon, and salt.</li><li>Portion into 1/3-cup servings in small jars.</li><li>Store at room temperature for up to a week.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-24" aria-expanded="false" aria-controls="panel-24">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Smashed Avocado and Hemp Seed Rice Cakes"
+               data-ings='[&quot;2 brown rice cakes&quot;, &quot;1/2 ripe avocado&quot;, &quot;1 Tbsp hemp hearts&quot;, &quot;1 tsp lemon juice&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;Flaky sea salt&quot;]'
+               aria-label="Select Smashed Avocado and Hemp Seed Rice Cakes" style="margin-right:6px">Smashed Avocado and Hemp Seed Rice Cakes
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-24" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>2 brown rice cakes</li><li>1/2 ripe avocado</li><li>1 Tbsp hemp hearts</li><li>1 tsp lemon juice</li><li>1/4 tsp red pepper flakes</li><li>Flaky sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Mash the avocado with lemon juice and a pinch of salt.</li><li>Spread evenly over the rice cakes.</li><li>Sprinkle with hemp hearts and red pepper flakes.</li><li>Finish with flaky salt and eat right away.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-25" aria-expanded="false" aria-controls="panel-25">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Ginger Turmeric Roasted Chickpeas"
+               data-ings='[&quot;1 can (15 oz) chickpeas, drained, rinsed, and patted dry&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;1 tsp ground turmeric&quot;, &quot;1/2 tsp ground ginger&quot;, &quot;1/2 tsp garlic powder&quot;, &quot;1/4 tsp black pepper&quot;, &quot;1/2 tsp sea salt&quot;]'
+               aria-label="Select Ginger Turmeric Roasted Chickpeas" style="margin-right:6px">Ginger Turmeric Roasted Chickpeas
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-25" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 can (15 oz) chickpeas, drained, rinsed, and patted dry</li><li>1 Tbsp extra-virgin olive oil</li><li>1 tsp ground turmeric</li><li>1/2 tsp ground ginger</li><li>1/2 tsp garlic powder</li><li>1/4 tsp black pepper</li><li>1/2 tsp sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Toss the dry chickpeas with olive oil and all the spices.</li><li>Spread on a parchment-lined sheet pan in a single layer.</li><li>Roast at 400 F for 25 minutes, shaking the pan halfway.</li><li>Cool 10 minutes so they crisp up.</li><li>Store in an open container for up to 3 days.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-26" aria-expanded="false" aria-controls="panel-26">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Green Tea Matcha Energy Bites"
+               data-ings='[&quot;1 cup pitted Medjool dates&quot;, &quot;1 cup raw cashews&quot;, &quot;1/2 cup rolled oats&quot;, &quot;2 tsp matcha powder&quot;, &quot;2 Tbsp ground flaxseed&quot;, &quot;1 tsp vanilla extract&quot;, &quot;Pinch of sea salt&quot;, &quot;2 Tbsp unsweetened shredded coconut&quot;]'
+               aria-label="Select Green Tea Matcha Energy Bites" style="margin-right:6px">Green Tea Matcha Energy Bites
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-26" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 cup pitted Medjool dates</li><li>1 cup raw cashews</li><li>1/2 cup rolled oats</li><li>2 tsp matcha powder</li><li>2 Tbsp ground flaxseed</li><li>1 tsp vanilla extract</li><li>Pinch of sea salt</li><li>2 Tbsp unsweetened shredded coconut</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Pulse the cashews and oats in a food processor until coarse.</li><li>Add the dates, matcha, flaxseed, vanilla, and salt and process until the mixture holds together.</li><li>Roll into 12 balls.</li><li>Roll each in shredded coconut.</li><li>Chill 30 minutes and store in the fridge for up to a week.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-27" aria-expanded="false" aria-controls="panel-27">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Sardines on Cucumber Rounds with Lemon Herb Oil"
+               data-ings='[&quot;1 can (4 oz) sardines in olive oil&quot;, &quot;1 English cucumber, sliced into thick rounds&quot;, &quot;1 Tbsp extra-virgin olive oil&quot;, &quot;1 tsp lemon zest&quot;, &quot;1 Tbsp fresh parsley, chopped&quot;, &quot;1/4 tsp red pepper flakes&quot;, &quot;Flaky sea salt&quot;]'
+               aria-label="Select Sardines on Cucumber Rounds with Lemon Herb Oil" style="margin-right:6px">Sardines on Cucumber Rounds with Lemon Herb Oil
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-27" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 can (4 oz) sardines in olive oil</li><li>1 English cucumber, sliced into thick rounds</li><li>1 Tbsp extra-virgin olive oil</li><li>1 tsp lemon zest</li><li>1 Tbsp fresh parsley, chopped</li><li>1/4 tsp red pepper flakes</li><li>Flaky sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Stir the olive oil, lemon zest, parsley, and pepper flakes together.</li><li>Break the sardines into bite-size pieces.</li><li>Top each cucumber round with a piece of sardine.</li><li>Spoon a little herb oil over each and finish with flaky salt.</li></ul>
+  </div>
+</article>
+<article class="card-item">
+  <h3>
+    <button type="button" class="acc" id="acc-28" aria-expanded="false" aria-controls="panel-28">
+      <span class="label">
+        <input type="checkbox" class="meal-check"
+               data-name="Dark Chocolate Dipped Strawberries with Crushed Pistachios"
+               data-ings='[&quot;1 lb fresh strawberries&quot;, &quot;4 oz dark chocolate (85 percent), chopped&quot;, &quot;1 tsp coconut oil&quot;, &quot;1/4 cup shelled pistachios, finely chopped&quot;, &quot;Pinch of flaky sea salt&quot;]'
+               aria-label="Select Dark Chocolate Dipped Strawberries with Crushed Pistachios" style="margin-right:6px">Dark Chocolate Dipped Strawberries with Crushed Pistachios
+      </span>
+      <span class="chev">&#9658;</span>
+    </button>
+  </h3>
+  <div id="panel-28" class="panel" hidden>
+    <div class="sub">Ingredients</div>
+    <ul><li>1 lb fresh strawberries</li><li>4 oz dark chocolate (85 percent), chopped</li><li>1 tsp coconut oil</li><li>1/4 cup shelled pistachios, finely chopped</li><li>Pinch of flaky sea salt</li></ul>
+    <div class="sub">Prep Notes / Recipe</div>
+    <ul><li>Melt the chocolate and coconut oil in a double boiler, stirring until smooth.</li><li>Dip each strawberry two-thirds of the way in and let the excess drip off.</li><li>Set on parchment and sprinkle with pistachios and flaky salt.</li><li>Chill 20 minutes until the chocolate sets.</li><li>Keep refrigerated and eat within 2 days.</li></ul>
+  </div>
+</article>
+  </div>
+</section>
+<section class="card"><h2>
+  <button type="button" class="acc" id="acc-shopping" aria-expanded="false" aria-controls="panel-shopping">
+    <span class="label">Weekly Shopping List</span><span class="chev">&#9658;</span>
+  </button></h2>
+  <div id="panel-shopping" class="panel" hidden>
+    <div class="group"><h3>Selected Meals -- Shopping List</h3>
+      <div class="shopping-dynamic"><p class="sub">Select meals to build your grocery list.</p></div>
+    </div>
+    <hr style="border:none;border-top:1px solid rgba(0,0,0,.08);margin:12px 0;">
+  </div>
+</section>
+<script>
+// ---- Accordion --------------------------------------------------------------
+document.querySelectorAll('.acc').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    var panelId  = btn.getAttribute('aria-controls');
+    var panel    = document.getElementById(panelId);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (panel) { panel.hidden = expanded; }
+  });
+});
+
+// ---- Helpers ----------------------------------------------------------------
+function escText(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Build shopping list using DOM methods to avoid XSS from untrusted data
+function buildShoppingList(selectedItems) {
+  var container = document.querySelector('.shopping-dynamic');
+  if (!container) return;
+
+  // Clear existing content safely
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  if (selectedItems.length === 0) {
+    var p = document.createElement('p');
+    p.className = 'sub';
+    p.textContent = 'Select meals to build your grocery list.';
+    container.appendChild(p);
+    return;
+  }
+
+  selectedItems.forEach(function(item) {
+    var group = document.createElement('div');
+    group.className = 'group';
+
+    var heading = document.createElement('h3');
+    heading.textContent = item.name;
+    group.appendChild(heading);
+
+    var ul = document.createElement('ul');
+    item.ingredients.forEach(function(ing) {
+      var li = document.createElement('li');
+      li.textContent = ing;
+      ul.appendChild(li);
+    });
+    group.appendChild(ul);
+    container.appendChild(group);
+  });
+}
+
+// ---- Shopping list update ---------------------------------------------------
+function updateShoppingList() {
+  var checked = document.querySelectorAll('.meal-check:checked');
+  var selectedItems = [];
+  checked.forEach(function(cb) {
+    var name = cb.dataset.name || '';
+    var ings = [];
+    try {
+      var raw = cb.dataset.ings || '[]';
+      ings = JSON.parse(raw);
+    } catch(e) { ings = []; }
+    selectedItems.push({ name: name, ingredients: ings });
+  });
+  buildShoppingList(selectedItems);
+}
+
+document.querySelectorAll('.meal-check').forEach(function(cb) {
+  cb.addEventListener('change', updateShoppingList);
+});
+
+// ---- Reset ------------------------------------------------------------------
+document.getElementById('resetBtn').addEventListener('click', function() {
+  if (!confirm('Clear all selections?')) return;
+  document.querySelectorAll('.meal-check').forEach(function(cb) { cb.checked = false; });
+  updateShoppingList();
+});
+
+// ---- Download ---------------------------------------------------------------
+document.getElementById('dlBtn').addEventListener('click', function() {
+  var blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meal-plan.html';
+  a.click();
+});
+</script>
+</div></body></html>
