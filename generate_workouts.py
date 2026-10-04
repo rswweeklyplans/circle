@@ -15,6 +15,9 @@ w/ gym/home toggle, Weight/Reps/RPE trackers, set checkboxes, notes,
 progression cue, pattern label, mini session, daily walk). New this block:
 "Rachel Challenge Set" callout on one signature lift per workout day.
 
+Week 9 is a deload that closes the block: same exercises and rep ranges,
+2 sets each, 10-20% lighter, 4+ reps in reserve, no challenge sets.
+
 Previous cycles (Glute Sculpt / Sculpt Split, 6 weeks) are preserved in git
 history of this file; their generated HTML stays untouched in the repo.
 """
@@ -24,6 +27,8 @@ import os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 WEEKS = 8
+DELOAD_WEEK = WEEKS + 1
+DELOAD_SETS = 2
 
 # ---------------------------------------------------------------------------
 # Progression tiers (8-week strength-hypertrophy build)
@@ -48,6 +53,8 @@ GOALS = {
         "On the final set of each exercise, leave just 0–1 reps in reserve on accessories and 1–2 on the big compound lifts."),
     8: ("Goal of Week 8: Finish Strong",
         "Final week. Take your last sets close to failure with good form, log your numbers, and bank your strength PRs for the next phase."),
+    9: ("Goal of Deload Week: Recover and Absorb",
+        "Same exercises, less work. Do 2 sets of everything at about 10–20% less than your Week 8 weights, and finish every set with 4 or more reps in reserve."),
 }
 
 INTROS = {
@@ -59,6 +66,7 @@ INTROS = {
     6: "Week 6 caps the steady build. Aim for your best working weights of the block on the big lifts, and hold your standards on every rep.",
     7: "Week 7 turns up the intensity. Push the final set of each exercise close to failure — 0–1 reps in reserve on accessories, 1–2 on compounds. Earn every rep.",
     8: "Final week. Eight weeks of work comes together here. Push your last sets close to failure, track your numbers, and finish the block proud — these PRs set up your next phase.",
+    9: "You just finished eight hard weeks. This week you pull back on purpose so your body can absorb the work. This is where the strength you built locks in. Every set should feel smooth and easy. If you leave the gym feeling like you could have done more, you did it right.",
 }
 
 CUE_SUFFIX = {
@@ -70,11 +78,12 @@ CUE_SUFFIX = {
     6: "Week 6 — push to your best loads of the block with clean form.",
     7: "Week 7 — final set close to failure: 0–1 reps in reserve on accessories, 1–2 on compounds.",
     8: "Week 8 — last week. Take your final sets close to failure and log everything.",
+    9: "Deload week: about 10–20% lighter than Week 8. Stop every set with 4+ reps in reserve.",
 }
 
 ACCESS_CODES = {
-    "strength_sculpt": ["BRACE", "ANCHOR", "LOAD", "SOLID", "GRIT", "VIGOR", "PRIME", "SUMMIT"],
-    "power_split": ["FORCE", "STEEL", "BLAZE", "MIGHT", "FIERCE", "TITAN", "LIMIT", "LEGEND"],
+    "strength_sculpt": ["BRACE", "ANCHOR", "LOAD", "SOLID", "GRIT", "VIGOR", "PRIME", "SUMMIT", "RESET"],
+    "power_split": ["FORCE", "STEEL", "BLAZE", "MIGHT", "FIERCE", "TITAN", "LIMIT", "LEGEND", "RESTORE"],
 }
 
 DAY_NOTE = ("Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, "
@@ -84,6 +93,36 @@ PHASE_NOTE = ("This phase: compounds 6–8 reps &bull; accessories 8–10 &bull;
               "When all sets hit the top of the rep range with good form, add 2.5–10 lb. "
               "<strong>Training at home?</strong> Bump the reps up (compounds 8–12, accessories 10–15) "
               "and lower for 3 slow seconds to make lighter weights feel heavy.")
+
+WALK_NOTE = ("Get in 2–4 Zone 2 walks this week (30–45 minutes at a pace where you can still hold a conversation), "
+             "plus one optional 10–15 minute interval session. Aim for 8,000–10,000 daily steps — walking supports "
+             "recovery, regulates hormones, and keeps your metabolism active between sessions.")
+
+# ---------------------------------------------------------------------------
+# Deload week overrides (week 9 only). Weeks 1-8 never read these.
+# ---------------------------------------------------------------------------
+DELOAD_PHASE_NOTE = ("Deload rules: same exercises and rep ranges &bull; 2 sets each &bull; about 10–20% lighter "
+                     "than your Week 8 weights &bull; 4+ reps in reserve on every set (RPE 5–6) &bull; no challenge sets. "
+                     "<strong>Training at home?</strong> Keep your usual dumbbells and stop each set "
+                     "4–5 reps earlier than you normally would.")
+
+DELOAD_WALK_NOTE = ("Keep your 2–4 Zone 2 walks this week (30–45 minutes at a pace where you can still hold a conversation) "
+                    "and skip the interval session. Aim for 8,000–10,000 daily steps. Easy walking speeds up recovery "
+                    "without adding fatigue.")
+
+# Base cues that call for heavy or to-failure work get swapped on deload week.
+DELOAD_CUES = {
+    "hip-thrust": "Drive through the heels, full lockout, 1-second squeeze at the top.",
+    "hack-squat": "Smooth and controlled. Deep descent, drive through the midfoot, no bouncing out of the bottom.",
+    "overhead-press": "Brace your core, keep ribs down, press smooth overhead.",
+    "pull-ups": "Full hang, chin over the bar, control the descent. Add extra assistance this week.",
+    "push-ups": "Do about half the reps you hit last week. Full range, smooth tempo, nowhere near failure.",
+    "farmer-carry": "Moderate dumbbells, tall posture, ribs down, brace and walk with control.",
+}
+
+DELOAD_BADGES = {
+    "push-ups": "half your usual reps",
+}
 
 CHALLENGE_HIP_THRUST = ("On your final set of hip thrusts: 10 full reps + 10 half reps + a "
                         "20-second hold at the top. Squeeze like you mean it.")
@@ -241,6 +280,10 @@ def esc(s):
 
 def build_exercise(prefix, week, day, ex, show_superset, challenge_text=""):
     slug, gym, home, sets, reps_badge, reps_eg, weight_eg, cue, pattern, superset = ex
+    if week == DELOAD_WEEK:
+        sets = min(sets, DELOAD_SETS)
+        reps_badge = DELOAD_BADGES.get(slug, reps_badge)
+        cue = DELOAD_CUES.get(slug, cue)
     key = f"{prefix}__week{week}__day{day}__{slug}"
     # gym/home names: data-gym-name / data-home-name on the <strong>
     strong = (f'<strong data-gym-name="{esc(gym)}" data-home-name="{esc(home)}">{gym}</strong>')
@@ -283,6 +326,8 @@ def build_workout_day(program, week, day):
     heading, exercises = program["days"][day]
     note = f'\n      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">{DAY_NOTE}</p>'
     challenge_slug, challenge_text = program.get("challenges", {}).get(day, ("", ""))
+    if week == DELOAD_WEEK:
+        challenge_slug, challenge_text = "", ""
     cards = "\n\n".join(
         build_exercise(prefix, week, day, ex, program["supersets"],
                        challenge_text if ex[0] == challenge_slug else "")
@@ -387,6 +432,11 @@ def build_page(program, week):
     code = ACCESS_CODES[prefix][week - 1]
     goal_title, goal_body = GOALS[week]
     intro = INTROS[week]
+    deload = week == DELOAD_WEEK
+    week_label = "Deload Week" if deload else f"Week {week}"
+    week_meta = f"Week {week}: Deload" if deload else f"Week {week} of {WEEKS}"
+    phase_note = DELOAD_PHASE_NOTE if deload else PHASE_NOTE
+    walk_note = DELOAD_WALK_NOTE if deload else WALK_NOTE
 
     pills = "\n".join(
         f'      <button class="week-pill day-pill{" active" if i == 0 else ""}" data-day-btn="{d}" onclick="showDay({d})">{label}</button>'
@@ -406,7 +456,7 @@ def build_page(program, week):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{program["name"]} — Week {week} | RSW Workouts</title>
+  <title>{program["name"]} — {week_label} | RSW Workouts</title>
   <style>
 {STYLE}  </style>
 </head>
@@ -429,10 +479,10 @@ def build_page(program, week):
   <div class="wrap">
     <header>
       <h1>{program["h1"]}</h1>
-      <div class="meta"><strong>Program:</strong> {program["meta"]} &bull; Week {week} of {WEEKS}</div>
+      <div class="meta"><strong>Program:</strong> {program["meta"]} &bull; {week_meta}</div>
       <div class="goal"><strong>{goal_title}:</strong> {goal_body}</div>
       <p class="intro">{intro}</p>
-      <p class="intro" style="font-size:.9rem;opacity:.95">{PHASE_NOTE}</p>
+      <p class="intro" style="font-size:.9rem;opacity:.95">{phase_note}</p>
     </header>
 
     <div class="day-selector">
@@ -454,7 +504,7 @@ def build_page(program, week):
 
     <section class="walk">
       <h2>Weekly Cardio &amp; Steps</h2>
-      <p>Get in 2–4 Zone 2 walks this week (30–45 minutes at a pace where you can still hold a conversation), plus one optional 10–15 minute interval session. Aim for 8,000–10,000 daily steps — walking supports recovery, regulates hormones, and keeps your metabolism active between sessions.</p>
+      <p>{walk_note}</p>
     </section>
 
     <section class="footer">
@@ -573,7 +623,7 @@ def main():
     for program in (STRENGTH_SCULPT, POWER_SPLIT):
         folder = os.path.join(ROOT, program["folder"])
         os.makedirs(folder, exist_ok=True)
-        for week in range(1, WEEKS + 1):
+        for week in range(1, DELOAD_WEEK + 1):
             html = build_page(program, week)
             path = os.path.join(folder, f"{program['filebase']}_week{week}.html")
             with open(path, "w") as f:

@@ -94,3 +94,11 @@ URL base: https://rswweeklyplans.github.io/circle/4xweek/
 | Week 6 | power_split_week6.html | TITAN | https://rswweeklyplans.github.io/circle/4xweek/power_split_week6.html |
 | Week 7 | power_split_week7.html | LIMIT | https://rswweeklyplans.github.io/circle/4xweek/power_split_week7.html |
 | Week 8 | power_split_week8.html | LEGEND | https://rswweeklyplans.github.io/circle/4xweek/power_split_week8.html |
+
+## Deload Week (closes the Strength Sculpt / Power Split block) — circle repo
+One week, run after Week 8. Same exercises, 2 sets each, 10–20% lighter, no challenge sets.
+
+| Program | File | Code | URL |
+|---------|------|------|-----|
+| Strength Sculpt (3x/week) | strength_sculpt_week9.html | RESET | https://rswweeklyplans.github.io/circle/strength_sculpt_week9.html |
+| Power Split (4x/week) | power_split_week9.html | RESTORE | https://rswweeklyplans.github.io/circle/4xweek/power_split_week9.html |
