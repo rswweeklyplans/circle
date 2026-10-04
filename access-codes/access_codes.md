@@ -102,3 +102,18 @@ One week, run after Week 8. Same exercises, 2 sets each, 10–20% lighter, no ch
 |---------|------|------|-----|
 | Strength Sculpt (3x/week) | strength_sculpt_week9.html | RESET | https://rswweeklyplans.github.io/circle/strength_sculpt_week9.html |
 | Power Split (4x/week) | power_split_week9.html | RESTORE | https://rswweeklyplans.github.io/circle/4xweek/power_split_week9.html |
+
+## Build & Restore (3x/week, 6 weeks plus deload): root folder (circle repo)
+Files: build_restore_week1.html through build_restore_week7.html
+URL base: https://rswweeklyplans.github.io/circle/
+No access codes for this block. Each page opens directly from its link, with no lock screen.
+
+| Week | File | Code | URL |
+|------|------|------|-----|
+| Week 1 | build_restore_week1.html | none | https://rswweeklyplans.github.io/circle/build_restore_week1.html |
+| Week 2 | build_restore_week2.html | none | https://rswweeklyplans.github.io/circle/build_restore_week2.html |
+| Week 3 | build_restore_week3.html | none | https://rswweeklyplans.github.io/circle/build_restore_week3.html |
+| Week 4 | build_restore_week4.html | none | https://rswweeklyplans.github.io/circle/build_restore_week4.html |
+| Week 5 | build_restore_week5.html | none | https://rswweeklyplans.github.io/circle/build_restore_week5.html |
+| Week 6 | build_restore_week6.html | none | https://rswweeklyplans.github.io/circle/build_restore_week6.html |
+| Week 7 (deload) | build_restore_week7.html | none | https://rswweeklyplans.github.io/circle/build_restore_week7.html |

@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build &amp; Restore: Week 4 | RSW Workouts</title>
+  <style>
+
+  :root{ --olive:#6C7653; --cream:#F1F0EC; --gold:#C28511; --ink:#1b1b1b; --mid:#6b7280; }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--ink); background:var(--cream)}
+  .wrap{max-width:960px; margin:0 auto; padding:24px 16px}
+  header{background:linear-gradient(180deg,var(--olive),#536043); color:white; padding:24px; border-radius:16px}
+  header h1{margin:0 0 6px 0; font-size:1.5rem; letter-spacing:0.2px}
+  .meta{opacity:.95; font-size:.95rem}
+  .goal{margin-top:12px; background:white; color:var(--ink); border-left:6px solid var(--gold); padding:12px 14px; border-radius:12px}
+  .intro{margin:16px 0 0 0; font-size:1rem}
+  h2{font-size:1.1rem; margin:18px 0 8px}
+  .workout,.mini,.walk,.footer{background:white; border-radius:16px; padding:16px; margin:16px 0; box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .exercise{border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; background:#fafafa}
+  .ex-head{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start}
+  .ex-title{font-size:1rem; display:flex; align-items:center; flex-wrap:wrap; gap:4px; flex:1; min-width:0}
+  .badge{background:var(--cream); color:#333; padding:2px 8px; border-radius:999px; font-size:.8rem; margin-left:4px; white-space:normal; word-break:break-word; display:inline-block; max-width:100%}
+  .equip{flex-shrink:0}
+  .equip label{font-size:.8rem; color:#374151; display:block; margin-bottom:4px}
+  .equip select{padding:8px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .trackers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:10px 0}
+  .trackers label{display:flex; flex-direction:column; font-size:.85rem; gap:6px}
+  .trackers input{padding:10px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .sets{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 10px}
+  .setbox{display:flex; align-items:center; gap:6px; font-size:.9rem; background:#fff; border:1px dashed #e5e7eb; border-radius:999px; padding:6px 10px}
+  .notes{display:flex; flex-direction:column; gap:6px; font-size:.85rem}
+  textarea{border:1px solid #d1d5db; border-radius:10px; padding:10px; background:white; width:100%}
+  .cue,.pattern{font-size:.85rem; color:#374151; margin-top:6px}
+  .challenge{background:#fdf6e9; border-left:4px solid var(--gold); border-radius:8px; padding:10px 12px; margin:10px 0 4px; font-size:.88rem; color:#4b3a12}
+  .challenge strong{color:var(--gold)}
+  .mini ul{margin:8px 0 0 18px}
+  .footer a{color:var(--olive); text-decoration:underline}
+  .liblinks a{margin-right:12px}
+  /* Week selector */
+  .week-selector{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 8px}
+  .week-pill{padding:9px 20px; border-radius:999px; border:none; cursor:pointer; font-size:.9rem; font-weight:500; background:var(--cream); color:var(--ink); transition:background .15s,color .15s; line-height:1}
+  .week-pill.active{background:var(--olive); color:#fff}
+  .week-pill:hover:not(.active){background:#dddcd7}
+  /* Superset */
+  .superset-pill{display:inline-block; background:var(--gold); color:#fff; font-size:.68rem; font-weight:700; padding:2px 7px; border-radius:999px; letter-spacing:.4px; white-space:nowrap; flex-shrink:0}
+  @media(max-width:640px){.trackers{grid-template-columns:1fr}}
+
+  /* Day selector */
+  .day-selector{display:flex; flex-wrap:nowrap; gap:8px; margin:0 0 16px}
+  .day-pill{flex:1; font-size:13px; padding:8px 12px; text-align:center}
+  /* Completion strip */
+  .completion-strip{background:white; border:1px solid #e5e7eb; border-radius:12px; padding:12px 16px; margin-bottom:12px; transition:background .2s}
+  .completion-strip.done{background:#f0faf0; border-left:4px solid #4caf50}
+  .completion-main{display:flex; align-items:center; flex-wrap:wrap; gap:16px}
+  .completion-label{display:flex; align-items:center; gap:10px; cursor:pointer; font-size:.9rem; font-weight:500; user-select:none}
+  .completion-cb{position:absolute; opacity:0; width:1px; height:1px; overflow:hidden}
+  .completion-box{width:24px; height:24px; border:2px solid #d1d5db; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; background:white; flex-shrink:0; transition:background .15s,border-color .15s; font-size:13px; font-weight:700; color:white}
+  .completion-cb:checked+.completion-box{background:var(--olive); border-color:var(--olive)}
+  .completion-cb:checked+.completion-box::after{content:'✓'}
+  .completion-cb:focus+.completion-box{outline:2px solid var(--olive); outline-offset:2px}
+  .completion-date-label{display:flex; align-items:center; gap:8px; font-size:.85rem; color:#374151}
+  .completion-date{padding:8px 10px; border-radius:10px; border:1px solid #d1d5db; background:white; font-size:.85rem}
+  .completion-hint{font-size:.78rem; color:#9ca3af; margin:8px 0 0; padding:0}
+  @media(max-width:640px){.completion-main{flex-direction:column; align-items:flex-start}}
+  @media(max-width:640px){.ex-head{flex-direction:column} .equip{margin-top:8px} .equip select{width:100%}}
+
+  /* Week strip */
+  .week-strip{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:4px; margin:16px 0}
+  .strip-cell{position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; min-width:0; padding:9px 0 8px; border-radius:12px; border:2px solid #d1d5db; background:white; color:var(--ink); font-family:inherit; line-height:1; cursor:pointer; transition:background .15s,color .15s,border-color .15s}
+  .strip-num{font-size:1.05rem; font-weight:700}
+  .strip-label{font-size:.68rem; font-weight:600; letter-spacing:.2px}
+  .strip-cell.lift{background:var(--olive); border-color:var(--olive); color:#fff}
+  .strip-cell.care{border-color:var(--gold)}
+  .strip-cell.active{background:var(--ink); border-color:var(--ink); color:#fff}
+  .strip-cell.done::after{content:'✓'; position:absolute; top:-9px; right:-4px; width:15px; height:15px; border-radius:50%; background:#4caf50; border:2px solid var(--cream); box-sizing:content-box; color:#fff; font-size:10px; font-weight:700; line-height:15px; text-align:center}
+
+  /* Body-care day */
+  .care-meta{margin:0 0 8px; font-size:.85rem; color:var(--mid)}
+  .care-list{list-style:none; margin:12px 0; padding:0; border:1px solid #e5e7eb; border-radius:12px; background:#fafafa}
+  .care-list li{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:10px 12px; border-top:1px solid #e5e7eb; font-size:.95rem}
+  .care-list li:first-child{border-top:none}
+  .care-amount{flex:0 0 auto; max-width:52%; text-align:right; font-size:.85rem; color:#374151}
+  .care-note{margin:8px 0 0; font-size:.92rem}
+  .care-day .completion-strip{margin:14px 0 0}
+  </style>
+</head>
+<body>
+
+<!-- Main content (visible on load) -->
+<div id="main-content">
+  <div class="wrap">
+    <header>
+      <h1>RSW: Build &amp; Restore</h1>
+      <div class="meta"><strong>Program:</strong> Build &amp; Restore: 6-Week Hypertrophy and Body Care (3x/week) &bull; Week 4 of 6</div>
+      <div class="goal"><strong>Goal of Week 4: Keep Building:</strong> Keep the progress going with small jumps in load or one more rep per set. Leave 1-2 reps in reserve.</div>
+      <p class="intro">Week 4 keeps the momentum going. Small jumps and clean reps. Notice how your hips and shoulders feel compared with Week 1.</p>
+      <p class="intro" style="font-size:.9rem;opacity:.95">This phase: big lifts 8-12 reps, accessories 10-12, isolation 12-15. When all sets reach the top of the rep range with good form, add 2.5-10 lb. <strong>Training at home?</strong> Lower every rep for 3 slow seconds and add reps (up to 15-20) so lighter dumbbells still take you close to your limit.</p>
+    </header>
+
+    <div class="week-strip">
+      <button class="strip-cell lift active" data-day-btn="1" onclick="showDay(1)"><span class="strip-num">1</span><span class="strip-label">Lower</span></button>
+      <button class="strip-cell care" data-day-btn="2" onclick="showDay(2)"><span class="strip-num">2</span><span class="strip-label">Hips</span></button>
+      <button class="strip-cell lift" data-day-btn="3" onclick="showDay(3)"><span class="strip-num">3</span><span class="strip-label">Upper</span></button>
+      <button class="strip-cell care" data-day-btn="4" onclick="showDay(4)"><span class="strip-num">4</span><span class="strip-label">Open</span></button>
+      <button class="strip-cell lift" data-day-btn="5" onclick="showDay(5)"><span class="strip-num">5</span><span class="strip-label">Full</span></button>
+      <button class="strip-cell care" data-day-btn="6" onclick="showDay(6)"><span class="strip-num">6</span><span class="strip-label">Walk</span></button>
+      <button class="strip-cell care" data-day-btn="7" onclick="showDay(7)"><span class="strip-num">7</span><span class="strip-label">Rest</span></button>
+    </div>
+
+    <section class="workout" data-day="1">
+      <h2>Day 1: Lower Body</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up for 5-7 minutes first: easy walk or bike, then one light set of your first two exercises. Rest about 90 seconds on the big lifts and 60 seconds on everything else.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day1__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="build_restore__week4__day1__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Hip Thrust" data-home-name="Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)">Barbell Hip Thrust</strong> <span class="badge">4 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set of hip thrusts: 10 full reps + 10 half reps + a 20-second hold at the top. Squeeze like you mean it.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 115 lb" data-key="build_restore__week4__day1__hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day1__hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-thrust__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-thrust__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Drive through the heels, full lockout, 1-second squeeze at the top of every rep. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Leg Press" data-home-name="Goblet Squat (heels raised on a plate or book)">Leg Press</strong> <span class="badge">4 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__leg-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 180 lb" data-key="build_restore__week4__day1__leg-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day1__leg-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__leg-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-press__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-press__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__leg-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Feet shoulder width, lower slow for 3 seconds, drive through the whole foot. Stop just short of locking the knees. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Romanian Deadlift" data-home-name="Dumbbell Romanian Deadlift">Romanian Deadlift</strong> <span class="badge">4 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__rdl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 95 lb" data-key="build_restore__week4__day1__rdl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day1__rdl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__rdl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__rdl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__rdl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__rdl__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__rdl__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__rdl__notes"></textarea></label>
+        <div class="cue">Progression cue: Push the hips back, soft knees, feel a deep hamstring stretch. Keep the back flat the whole way. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: hinge</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Seated Leg Curl" data-home-name="Slider Hamstring Curl (heels on towels or sliders, hips lifted)">Seated Leg Curl</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__leg-curl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 60 lb" data-key="build_restore__week4__day1__leg-curl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day1__leg-curl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__leg-curl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-curl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-curl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-curl__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__leg-curl__notes"></textarea></label>
+        <div class="cue">Progression cue: Curl all the way in, then take 3 seconds to return. Hips stay still. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: hinge</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Leg Extension" data-home-name="Banded Leg Extension (seated, band anchored behind the chair)">Leg Extension</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__leg-extension__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 60 lb" data-key="build_restore__week4__day1__leg-extension__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day1__leg-extension__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__leg-extension__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-extension__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-extension__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__leg-extension__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__leg-extension__notes"></textarea></label>
+        <div class="cue">Progression cue: Squeeze the quads for a full second at the top. Lower slowly, no swinging. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Hip Abduction Machine" data-home-name="Banded Seated Abduction (band above the knees)">Hip Abduction Machine</strong> <span class="badge">3 sets &bull; 15-20 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__hip-abduction__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 90 lb" data-key="build_restore__week4__day1__hip-abduction__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="build_restore__week4__day1__hip-abduction__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__hip-abduction__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-abduction__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-abduction__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__hip-abduction__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__hip-abduction__notes"></textarea></label>
+        <div class="cue">Progression cue: Lean slightly forward, press the knees out, pause, and control the return. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Crunch" data-home-name="Reverse Crunch (lying on mat)">Cable Crunch</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day1__cable-crunch__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 50 lb" data-key="build_restore__week4__day1__cable-crunch__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day1__cable-crunch__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day1__cable-crunch__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__cable-crunch__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__cable-crunch__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day1__cable-crunch__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day1__cable-crunch__notes"></textarea></label>
+        <div class="cue">Progression cue: Round the spine and bring ribs toward hips. Move from the abs, not the arms. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout care-day" data-day="2">
+      <h2>Day 2: Hips and Low Back Mobility</h2>
+      <p class="care-meta">Body care &bull; about 12 minutes</p>
+      <p>Yesterday you trained your lower body. Today you help it recover by moving it gently.</p>
+      <ul class="care-list">
+        <li><span>Cat-Cow</span><span class="care-amount">10 slow reps</span></li>
+        <li><span>90/90 Hip Switches</span><span class="care-amount">8 each side</span></li>
+        <li><span>World's Greatest Stretch</span><span class="care-amount">5 each side</span></li>
+        <li><span>Deep Squat Hold (hold a doorframe or counter for support)</span><span class="care-amount">2 x 45 seconds</span></li>
+        <li><span>Figure-Four Glute Stretch</span><span class="care-amount">60 seconds each side</span></li>
+        <li><span>Child's Pose with Side Reach</span><span class="care-amount">30 seconds each side</span></li>
+      </ul>
+      <p class="care-note"><strong>Walk:</strong> 20-30 minutes at an easy pace.</p>
+      <p class="care-note"><strong>Breathwork:</strong> 3 minutes of slow nose breathing. In for 4, out for 6.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day2__completed">
+            <span class="completion-box"></span>
+            <span class="care-done-text">I did this</span>
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+    </section>
+
+    <section class="workout" data-day="3">
+      <h2>Day 3: Upper Body</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up for 5-7 minutes first: easy walk or bike, then one light set of your first two exercises. Rest about 90 seconds on the big lifts and 60 seconds on everything else.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day3__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="build_restore__week4__day3__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Lat Pulldown" data-home-name="Dumbbell Pullover (lying on bench or floor)">Lat Pulldown</strong> <span class="badge">4 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__lat-pulldown__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 80 lb" data-key="build_restore__week4__day3__lat-pulldown__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day3__lat-pulldown__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__lat-pulldown__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lat-pulldown__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lat-pulldown__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lat-pulldown__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lat-pulldown__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__lat-pulldown__notes"></textarea></label>
+        <div class="cue">Progression cue: Full stretch at the top, pull to the collarbone, squeeze the lats. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Seated Dumbbell Shoulder Press" data-home-name="Standing Dumbbell Overhead Press">Seated Dumbbell Shoulder Press</strong> <span class="badge">4 sets &bull; 8-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__shoulder-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="build_restore__week4__day3__shoulder-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day3__shoulder-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__shoulder-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__shoulder-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__shoulder-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__shoulder-press__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__shoulder-press__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__shoulder-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Brace your core, keep ribs down, press overhead and lower with control. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Seated Cable Row" data-home-name="One-Arm Dumbbell Row">Seated Cable Row</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__seated-cable-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 70 lb" data-key="build_restore__week4__day3__seated-cable-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day3__seated-cable-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__seated-cable-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__seated-cable-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__seated-cable-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__seated-cable-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__seated-cable-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Tall chest, pull to the belly, squeeze the shoulder blades, control the return. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Incline Dumbbell Press" data-home-name="Dumbbell Floor Press">Incline Dumbbell Press</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__incline-db-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="build_restore__week4__day3__incline-db-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day3__incline-db-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__incline-db-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__incline-db-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__incline-db-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__incline-db-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__incline-db-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Elbows about 45 degrees from the body. Lower for 3 seconds, press strong. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Lateral Raise" data-home-name="Leaning Dumbbell Lateral Raise (hold a pole or doorframe)">Cable Lateral Raise</strong> <span class="badge">4 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__lateral-raise__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set: 10 full reps + 10 partial reps + a 10-second hold at the top. Shoulders on fire, form intact.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 10 lb" data-key="build_restore__week4__day3__lateral-raise__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day3__lateral-raise__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__lateral-raise__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lateral-raise__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lateral-raise__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lateral-raise__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__lateral-raise__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__lateral-raise__notes"></textarea></label>
+        <div class="cue">Progression cue: Elbows soft, lead with the elbow, shoulders down away from the ears. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Face Pull" data-home-name="Bent-Over Dumbbell Reverse Fly">Cable Face Pull</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__face-pull__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 30 lb" data-key="build_restore__week4__day3__face-pull__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day3__face-pull__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__face-pull__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__face-pull__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__face-pull__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__face-pull__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__face-pull__notes"></textarea></label>
+        <div class="cue">Progression cue: Pull toward the eyes, elbows high, squeeze the back of the shoulders. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell Biceps Curl" data-home-name="Dumbbell Biceps Curl">Dumbbell Biceps Curl</strong> <span class="badge">2 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__biceps-curl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 15 lb" data-key="build_restore__week4__day3__biceps-curl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day3__biceps-curl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__biceps-curl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__biceps-curl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__biceps-curl__set_2"><span>Set 2</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__biceps-curl__notes"></textarea></label>
+        <div class="cue">Progression cue: Elbows pinned to your sides. Lower slowly, no swinging. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Triceps Pressdown" data-home-name="Overhead Dumbbell Triceps Extension">Cable Triceps Pressdown</strong> <span class="badge">2 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day3__triceps-pressdown__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 30 lb" data-key="build_restore__week4__day3__triceps-pressdown__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day3__triceps-pressdown__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day3__triceps-pressdown__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__triceps-pressdown__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day3__triceps-pressdown__set_2"><span>Set 2</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day3__triceps-pressdown__notes"></textarea></label>
+        <div class="cue">Progression cue: Elbows stay still. Press to full lockout, then control the return. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+    </section>
+
+    <section class="workout care-day" data-day="4">
+      <h2>Day 4: Shoulders and Upper Back Opening</h2>
+      <p class="care-meta">Body care &bull; about 10 minutes</p>
+      <p>Your upper body did the work yesterday. Today is about opening the chest and letting the shoulders drop.</p>
+      <ul class="care-list">
+        <li><span>Thread the Needle</span><span class="care-amount">8 each side</span></li>
+        <li><span>Wall Angels</span><span class="care-amount">10 slow reps</span></li>
+        <li><span>Doorway Chest Stretch</span><span class="care-amount">45 seconds each side</span></li>
+        <li><span>Upper Back Extension over a foam roller or chair back</span><span class="care-amount">8 slow reps</span></li>
+        <li><span>Kneeling Lat Stretch (hands on a bench or couch)</span><span class="care-amount">45 seconds</span></li>
+        <li><span>Neck Release (ear toward shoulder)</span><span class="care-amount">30 seconds each side</span></li>
+      </ul>
+      <p class="care-note"><strong>Walk:</strong> 20-30 minutes. Let the arms swing loosely.</p>
+      <p class="care-note"><strong>Breathwork:</strong> 3 minutes of box breathing. In for 4, hold 4, out for 4, hold 4.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day4__completed">
+            <span class="completion-box"></span>
+            <span class="care-done-text">I did this</span>
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+    </section>
+
+    <section class="workout" data-day="5">
+      <h2>Day 5: Full Body</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up for 5-7 minutes first: easy walk or bike, then one light set of your first two exercises. Rest about 90 seconds on the big lifts and 60 seconds on everything else.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day5__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="build_restore__week4__day5__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Bulgarian Split Squat" data-home-name="Bulgarian Split Squat (rear foot on bench or couch)">Bulgarian Split Squat</strong> <span class="badge">3 sets &bull; 10 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__split-squat__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="build_restore__week4__day5__split-squat__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day5__split-squat__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__split-squat__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__split-squat__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__split-squat__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__split-squat__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__split-squat__notes"></textarea></label>
+        <div class="cue">Progression cue: Slight forward lean, lower straight down, drive through the front heel. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat, glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="45-Degree Back Extension" data-home-name="Dumbbell Good Morning (dumbbell hugged to chest)">45-Degree Back Extension</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__back-extension__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="build_restore__week4__day5__back-extension__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day5__back-extension__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__back-extension__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__back-extension__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__back-extension__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__back-extension__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__back-extension__notes"></textarea></label>
+        <div class="cue">Progression cue: Hinge at the hips, not the low back. Squeeze the glutes to come up and stop when the body is in a straight line. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: hinge</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Chest-Supported Row" data-home-name="Bent-Over Dumbbell Row (both arms)">Chest-Supported Row</strong> <span class="badge">3 sets &bull; 10-12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__chest-supported-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 35 lb" data-key="build_restore__week4__day5__chest-supported-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day5__chest-supported-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__chest-supported-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__chest-supported-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__chest-supported-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__chest-supported-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__chest-supported-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Chest stays on the pad. Pull with the back, not the arms. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Push-Ups" data-home-name="Push-Ups (hands on a bench or counter to make them easier)">Push-Ups</strong> <span class="badge">3 sets &bull; 8-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__push-ups__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="build_restore__week4__day5__push-ups__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day5__push-ups__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__push-ups__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__push-ups__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__push-ups__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__push-ups__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__push-ups__notes"></textarea></label>
+        <div class="cue">Progression cue: Full range on every rep. Stop 1-2 reps before your form breaks. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Single-Leg Hip Thrust" data-home-name="Single-Leg Hip Thrust (shoulders on bench or couch)">Single-Leg Hip Thrust</strong> <span class="badge">3 sets &bull; 10-12 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__single-leg-hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set, each leg: 8 full reps + 8 half reps + a 10-second hold at the top. Keep those hips level.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="build_restore__week4__day5__single-leg-hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day5__single-leg-hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__single-leg-hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__single-leg-hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__single-leg-hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__single-leg-hip-thrust__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__single-leg-hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Keep the hips level, full lockout, 1-second squeeze at the top. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell Lateral Raise" data-home-name="Dumbbell Lateral Raise">Dumbbell Lateral Raise</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__db-lateral-raise__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 8 lb" data-key="build_restore__week4__day5__db-lateral-raise__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="build_restore__week4__day5__db-lateral-raise__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__db-lateral-raise__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__db-lateral-raise__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__db-lateral-raise__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__db-lateral-raise__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__db-lateral-raise__notes"></textarea></label>
+        <div class="cue">Progression cue: Strict and slow. Raise to shoulder height and control the way down. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Pallof Press" data-home-name="Banded Pallof Press (band anchored at chest height)">Pallof Press</strong> <span class="badge">3 sets &bull; 10 reps each side &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="build_restore__week4__day5__pallof-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="build_restore__week4__day5__pallof-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="build_restore__week4__day5__pallof-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="build_restore__week4__day5__pallof-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__pallof-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__pallof-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="build_restore__week4__day5__pallof-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="build_restore__week4__day5__pallof-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Press out slowly, pause, and resist the twist on the way back. Week 4: add load or reps again. Small jumps, and stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout care-day" data-day="6">
+      <h2>Day 6: Long Walk and Full-Body Stretch</h2>
+      <p class="care-meta">Body care &bull; walk plus about 10 minutes</p>
+      <p>The walk is the main event today. Get outside if you can, and stretch when you get back.</p>
+      <ul class="care-list">
+        <li><span>Standing Forward Fold (soft knees)</span><span class="care-amount">60 seconds</span></li>
+        <li><span>Half-Kneeling Hip Flexor Stretch</span><span class="care-amount">60 seconds each side</span></li>
+        <li><span>Calf Stretch against a wall</span><span class="care-amount">45 seconds each side</span></li>
+        <li><span>Figure-Four or Pigeon Stretch</span><span class="care-amount">60 seconds each side</span></li>
+        <li><span>Lying Spinal Twist</span><span class="care-amount">60 seconds each side</span></li>
+        <li><span>Overhead Side Reach</span><span class="care-amount">30 seconds each side</span></li>
+      </ul>
+      <p class="care-note"><strong>Walk:</strong> 45-60 minutes at a pace where you can still hold a conversation.</p>
+      <p class="care-note"><strong>Breathwork:</strong> Breathe only through your nose for the last 5 minutes of the walk.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day6__completed">
+            <span class="completion-box"></span>
+            <span class="care-done-text">I did this</span>
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+    </section>
+
+    <section class="workout care-day" data-day="7">
+      <h2>Day 7: Nervous System Downshift</h2>
+      <p class="care-meta">Body care &bull; about 15 minutes</p>
+      <p>Nothing to achieve today. This day tells your body it is safe to rest, and rest is where the week's work turns into results.</p>
+      <ul class="care-list">
+        <li><span>Legs Up the Wall</span><span class="care-amount">5 minutes</span></li>
+        <li><span>Lying Spinal Twist</span><span class="care-amount">60 seconds each side</span></li>
+        <li><span>Supported Child's Pose (pillow under the chest)</span><span class="care-amount">2 minutes</span></li>
+        <li><span>Happy Baby</span><span class="care-amount">60 seconds</span></li>
+        <li><span>Gentle Foam Roll: glutes, quads, upper back (optional)</span><span class="care-amount">5 minutes</span></li>
+      </ul>
+      <p class="care-note"><strong>Walk:</strong> 15-20 minutes, gentle, with no pace goal. Leave the phone in your pocket.</p>
+      <p class="care-note"><strong>Breathwork:</strong> 5 minutes of long exhales. In for 4, out for 8.</p>
+      <p class="care-note"><strong>Check-in:</strong> Before the new week starts, notice how your body feels today compared with a week ago.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="build_restore__week4__day7__completed">
+            <span class="completion-box"></span>
+            <span class="care-done-text">I did this</span>
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+    </section>
+
+    <section class="walk">
+      <h2>Weekly Cardio &amp; Steps</h2>
+      <p>Walk every day in this block. On lifting days, 10-20 easy minutes is enough. On body-care days, follow that day's walk target. Aim for 7,000-10,000 steps a day. Walking supports recovery, steadies your mood and helps you sleep.</p>
+    </section>
+
+    <section class="footer">
+      <p style="color:#4b5563;font-size:.85rem">Tip: your entries are stored on your device (localStorage). Clearing site data will reset your logs.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  var CONFIG = {
+    weekLocked: false,
+    weekNumber: 4
+  };
+
+  function showApp() {
+    document.getElementById('main-content').style.display = '';
+    showDay(1);
+    restore();
+    document.querySelectorAll('.equip select').forEach(applyEquipName);
+    document.querySelectorAll('.completion-cb').forEach(applyCompletionStyle);
+    document.querySelectorAll('.completion-cb').forEach(applyStripCheck);
+  }
+
+  var currentDay = 1;
+
+  function showDay(dayNum) {
+    currentDay = dayNum;
+    document.querySelectorAll('[data-day-btn]').forEach(function(p) { p.classList.remove('active'); });
+    var pill = document.querySelector('[data-day-btn="' + dayNum + '"]');
+    if (pill) pill.classList.add('active');
+    document.querySelectorAll('.workout').forEach(function(s) {
+      s.style.display = (s.getAttribute('data-day') == dayNum) ? '' : 'none';
+    });
+  }
+
+  var restore = function() {
+    document.querySelectorAll('[data-key]').forEach(function(el) {
+      var key = el.getAttribute('data-key');
+      if (el.type === 'checkbox') {
+        el.checked = localStorage.getItem(key) === '1';
+      } else {
+        var v = localStorage.getItem(key);
+        if (v !== null) el.value = v;
+      }
+    });
+  };
+
+  var persist = function(e) {
+    var el = e.target;
+    if (!el || !el.hasAttribute('data-key')) return;
+    var key = el.getAttribute('data-key');
+    var val = (el.type === 'checkbox') ? (el.checked ? '1' : '0') : el.value;
+    localStorage.setItem(key, val);
+  };
+
+  function applyEquipName(select) {
+    var card = select.closest('.exercise');
+    if (!card) return;
+    var strong = card.querySelector('.ex-title strong');
+    if (!strong || !strong.hasAttribute('data-gym-name')) return;
+    strong.textContent = select.value === 'home'
+      ? strong.getAttribute('data-home-name')
+      : strong.getAttribute('data-gym-name');
+  }
+
+  function applyCompletionStyle(cb) {
+    var strip = cb.closest('.completion-strip');
+    if (!strip) return;
+    var text = strip.querySelector('.completion-text');
+    if (cb.checked) {
+      strip.classList.add('done');
+      if (text) text.textContent = 'Completed ✓';
+    } else {
+      strip.classList.remove('done');
+      if (text) text.textContent = 'Mark as Complete';
+    }
+  }
+
+  function applyStripCheck(cb) {
+    var section = cb.closest('.workout');
+    if (!section) return;
+    var cell = document.querySelector('.strip-cell[data-day-btn="' + section.getAttribute('data-day') + '"]');
+    if (cell) cell.classList.toggle('done', cb.checked);
+  }
+
+  window.addEventListener('change', function(e) {
+    persist(e);
+    if (e.target && e.target.closest && e.target.closest('.equip')) {
+      applyEquipName(e.target);
+    }
+    if (e.target && e.target.classList.contains('completion-cb')) {
+      applyCompletionStyle(e.target);
+      applyStripCheck(e.target);
+    }
+  }, true);
+
+  window.addEventListener('DOMContentLoaded', function() {
+    showApp();
+  });
+</script>
+</body>
+</html>
