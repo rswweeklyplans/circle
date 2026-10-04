@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power Split — Week 4 | RSW Workouts</title>
+  <style>
+
+  :root{ --olive:#6C7653; --cream:#F1F0EC; --gold:#C28511; --ink:#1b1b1b; --mid:#6b7280; }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--ink); background:var(--cream)}
+  .wrap{max-width:960px; margin:0 auto; padding:24px 16px}
+  header{background:linear-gradient(180deg,var(--olive),#536043); color:white; padding:24px; border-radius:16px}
+  header h1{margin:0 0 6px 0; font-size:1.5rem; letter-spacing:0.2px}
+  .meta{opacity:.95; font-size:.95rem}
+  .goal{margin-top:12px; background:white; color:var(--ink); border-left:6px solid var(--gold); padding:12px 14px; border-radius:12px}
+  .intro{margin:16px 0 0 0; font-size:1rem}
+  h2{font-size:1.1rem; margin:18px 0 8px}
+  .workout,.mini,.walk,.footer{background:white; border-radius:16px; padding:16px; margin:16px 0; box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .exercise{border:1px solid #e5e7eb; border-radius:12px; padding:12px; margin:12px 0; background:#fafafa}
+  .ex-head{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start}
+  .ex-title{font-size:1rem; display:flex; align-items:center; flex-wrap:wrap; gap:4px; flex:1; min-width:0}
+  .badge{background:var(--cream); color:#333; padding:2px 8px; border-radius:999px; font-size:.8rem; margin-left:4px; white-space:normal; word-break:break-word; display:inline-block; max-width:100%}
+  .equip{flex-shrink:0}
+  .equip label{font-size:.8rem; color:#374151; display:block; margin-bottom:4px}
+  .equip select{padding:8px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .trackers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:10px 0}
+  .trackers label{display:flex; flex-direction:column; font-size:.85rem; gap:6px}
+  .trackers input{padding:10px; border-radius:10px; border:1px solid #d1d5db; background:white}
+  .sets{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 10px}
+  .setbox{display:flex; align-items:center; gap:6px; font-size:.9rem; background:#fff; border:1px dashed #e5e7eb; border-radius:999px; padding:6px 10px}
+  .notes{display:flex; flex-direction:column; gap:6px; font-size:.85rem}
+  textarea{border:1px solid #d1d5db; border-radius:10px; padding:10px; background:white; width:100%}
+  .cue,.pattern{font-size:.85rem; color:#374151; margin-top:6px}
+  .challenge{background:#fdf6e9; border-left:4px solid var(--gold); border-radius:8px; padding:10px 12px; margin:10px 0 4px; font-size:.88rem; color:#4b3a12}
+  .challenge strong{color:var(--gold)}
+  .mini ul{margin:8px 0 0 18px}
+  .footer a{color:var(--olive); text-decoration:underline}
+  .liblinks a{margin-right:12px}
+  /* Week selector */
+  .week-selector{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 8px}
+  .week-pill{padding:9px 20px; border-radius:999px; border:none; cursor:pointer; font-size:.9rem; font-weight:500; background:var(--cream); color:var(--ink); transition:background .15s,color .15s; line-height:1}
+  .week-pill.active{background:var(--olive); color:#fff}
+  .week-pill:hover:not(.active){background:#dddcd7}
+  /* Superset */
+  .superset-pill{display:inline-block; background:var(--gold); color:#fff; font-size:.68rem; font-weight:700; padding:2px 7px; border-radius:999px; letter-spacing:.4px; white-space:nowrap; flex-shrink:0}
+  @media(max-width:640px){.trackers{grid-template-columns:1fr}}
+
+  /* Day selector */
+  .day-selector{display:flex; flex-wrap:nowrap; gap:8px; margin:0 0 16px}
+  .day-pill{flex:1; font-size:13px; padding:8px 12px; text-align:center}
+  /* Completion strip */
+  .completion-strip{background:white; border:1px solid #e5e7eb; border-radius:12px; padding:12px 16px; margin-bottom:12px; transition:background .2s}
+  .completion-strip.done{background:#f0faf0; border-left:4px solid #4caf50}
+  .completion-main{display:flex; align-items:center; flex-wrap:wrap; gap:16px}
+  .completion-label{display:flex; align-items:center; gap:10px; cursor:pointer; font-size:.9rem; font-weight:500; user-select:none}
+  .completion-cb{position:absolute; opacity:0; width:1px; height:1px; overflow:hidden}
+  .completion-box{width:24px; height:24px; border:2px solid #d1d5db; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; background:white; flex-shrink:0; transition:background .15s,border-color .15s; font-size:13px; font-weight:700; color:white}
+  .completion-cb:checked+.completion-box{background:var(--olive); border-color:var(--olive)}
+  .completion-cb:checked+.completion-box::after{content:'✓'}
+  .completion-cb:focus+.completion-box{outline:2px solid var(--olive); outline-offset:2px}
+  .completion-date-label{display:flex; align-items:center; gap:8px; font-size:.85rem; color:#374151}
+  .completion-date{padding:8px 10px; border-radius:10px; border:1px solid #d1d5db; background:white; font-size:.85rem}
+  .completion-hint{font-size:.78rem; color:#9ca3af; margin:8px 0 0; padding:0}
+  @media(max-width:640px){.completion-main{flex-direction:column; align-items:flex-start}}
+  @media(max-width:640px){.ex-head{flex-direction:column} .equip{margin-top:8px} .equip select{width:100%}}
+
+  /* Lock screen */
+  #lock-screen{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:1000;padding:24px}
+  .lock-box{background:white;border-radius:20px;padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .lock-box h2{color:var(--olive);margin:0 0 8px;font-size:1.4rem}
+  .lock-box>p{color:var(--mid);margin:0 0 24px;font-size:.95rem}
+  #access-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #d1d5db;font-size:1rem;text-align:center;letter-spacing:.1em;margin-bottom:12px;box-sizing:border-box}
+  #access-input:focus{outline:2px solid var(--olive);border-color:var(--olive)}
+  #unlock-btn{width:100%;padding:12px;border-radius:10px;border:none;background:var(--olive);color:white;font-size:1rem;font-weight:600;cursor:pointer}
+  #unlock-btn:hover{background:#536043}
+  #lock-error{color:#dc2626;font-size:.85rem;margin:10px 0 0;display:none}
+  </style>
+</head>
+<body>
+
+<!-- Lock screen (visible by default) -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <h2>Rachel Stephens Wellness</h2>
+    <p>Enter your access code to continue</p>
+    <input type="text" id="access-input" placeholder="Access code"
+           autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <button id="unlock-btn" onclick="tryUnlock()">Unlock</button>
+    <p id="lock-error">Incorrect code. Check your email or DM us @rachelstephenswellness on Instagram</p>
+  </div>
+</div>
+
+<!-- Main content (hidden until unlocked) -->
+<div id="main-content" style="display:none">
+  <div class="wrap">
+    <header>
+      <h1>RSW — Power Split</h1>
+      <div class="meta"><strong>Program:</strong> Power Split — 8-Week Upper/Lower Strength Split &bull; Week 4 of 8</div>
+      <div class="goal"><strong>Goal of Week 4: Keep Climbing:</strong> Progressive overload continues. Make small jumps in load while staying inside the rep ranges with clean form.</div>
+      <p class="intro">Week 4 keeps the momentum going. Keep nudging your working weights up inside the rep ranges. Strength is built in these quiet, consistent weeks.</p>
+      <p class="intro" style="font-size:.9rem;opacity:.95">This phase: compounds 6–8 reps &bull; accessories 8–10 &bull; isolation 12–15. When all sets hit the top of the rep range with good form, add 2.5–10 lb. <strong>Training at home?</strong> Bump the reps up (compounds 8–12, accessories 10–15) and lower for 3 slow seconds to make lighter weights feel heavy.</p>
+    </header>
+
+    <div class="day-selector">
+      <button class="week-pill day-pill active" data-day-btn="1" onclick="showDay(1)">Day 1 — Lower A</button>
+      <button class="week-pill day-pill" data-day-btn="2" onclick="showDay(2)">Day 2 — Upper A</button>
+      <button class="week-pill day-pill" data-day-btn="3" onclick="showDay(3)">Day 3 — Rest</button>
+      <button class="week-pill day-pill" data-day-btn="4" onclick="showDay(4)">Day 4 — Lower B</button>
+      <button class="week-pill day-pill" data-day-btn="5" onclick="showDay(5)">Day 5 — Upper B</button>
+      <button class="week-pill day-pill" data-day-btn="6" onclick="showDay(6)">Day 6 — Rest</button>
+      <button class="week-pill day-pill" data-day-btn="7" onclick="showDay(7)">Day 7 — Rest</button>
+    </div>
+
+    <section class="workout" data-day="1">
+      <h2>Day 1 — Lower A: Strength Glutes</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, and bird dogs x10/side. Rest 90–120 sec on the big lifts, 45–60 sec on accessories and core.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="power_split__week4__day1__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="power_split__week4__day1__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Hip Thrust" data-home-name="Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)">Barbell Hip Thrust</strong> <span class="badge">4 sets &bull; 6-8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set of hip thrusts: 10 full reps + 10 half reps + a 20-second hold at the top. Squeeze like you mean it.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 135 lb" data-key="power_split__week4__day1__hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day1__hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hip-thrust__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hip-thrust__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Your heaviest glute lift of the week. Drive through the heels, full lockout, squeeze hard at the top. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Hack Squat" data-home-name="Goblet Squat (heavy dumbbell, controlled tempo)">Hack Squat</strong> <span class="badge">4 sets &bull; 6-8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__hack-squat__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 115 lb" data-key="power_split__week4__day1__hack-squat__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day1__hack-squat__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__hack-squat__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hack-squat__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hack-squat__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hack-squat__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__hack-squat__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__hack-squat__notes"></textarea></label>
+        <div class="cue">Progression cue: Heavy but controlled. Deep descent, drive through the midfoot, no bouncing. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Romanian Deadlift" data-home-name="Dumbbell Romanian Deadlift">Romanian Deadlift</strong> <span class="badge">3 sets &bull; 8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__rdl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 115 lb" data-key="power_split__week4__day1__rdl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day1__rdl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__rdl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__rdl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__rdl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__rdl__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__rdl__notes"></textarea></label>
+        <div class="cue">Progression cue: Push the hips back, soft knees, deep hamstring stretch — keep the back flat. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: hinge</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Glute Kickback" data-home-name="Banded Glute Kickback">Cable Glute Kickback</strong> <span class="badge">3 sets &bull; 12 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__glute-kickbacks__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="power_split__week4__day1__glute-kickbacks__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day1__glute-kickbacks__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__glute-kickbacks__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__glute-kickbacks__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__glute-kickbacks__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__glute-kickbacks__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__glute-kickbacks__notes"></textarea></label>
+        <div class="cue">Progression cue: Slow, 2-second squeeze at peak contraction. Keep the hips square. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Adductor Machine" data-home-name="Banded Adduction (band around knees, squeeze inward)">Adductor Machine</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__adductor__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 80 lb" data-key="power_split__week4__day1__adductor__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 14" data-key="power_split__week4__day1__adductor__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__adductor__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__adductor__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__adductor__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__adductor__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__adductor__notes"></textarea></label>
+        <div class="cue">Progression cue: Slow and controlled. Full inner-thigh stretch on every rep. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Weighted Decline Crunch" data-home-name="Weighted Sit-Up (plate or dumbbell on chest)">Weighted Decline Crunch</strong> <span class="badge">3 sets &bull; 12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__decline-crunch__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 10 lb" data-key="power_split__week4__day1__decline-crunch__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day1__decline-crunch__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__decline-crunch__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__decline-crunch__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__decline-crunch__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__decline-crunch__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__decline-crunch__notes"></textarea></label>
+        <div class="cue">Progression cue: Hold the weight on your chest, control the descent, full crunch at the top. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Pallof Press" data-home-name="Banded Pallof Press (band anchored at chest height)">Pallof Press</strong> <span class="badge">3 sets &bull; 10 reps each side &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day1__pallof-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="power_split__week4__day1__pallof-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day1__pallof-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day1__pallof-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__pallof-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__pallof-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day1__pallof-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day1__pallof-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Anti-rotation. Press out slow, pause, resist the twist on the way back. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout" data-day="2">
+      <h2>Day 2 — Upper A: Shoulder Focus</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, and bird dogs x10/side. Rest 90–120 sec on the big lifts, 45–60 sec on accessories and core.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="power_split__week4__day2__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="power_split__week4__day2__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell Overhead Press" data-home-name="Standing Dumbbell Overhead Press">Dumbbell Overhead Press</strong> <span class="badge">4 sets &bull; 6-8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__overhead-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 30 lb" data-key="power_split__week4__day2__overhead-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day2__overhead-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__overhead-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__overhead-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__overhead-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__overhead-press__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__overhead-press__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__overhead-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Your heaviest press of the week. Brace your core, ribs down, press strong overhead. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Seated Cable Row" data-home-name="One-Arm Dumbbell Row">Seated Cable Row</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__seated-cable-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 80 lb" data-key="power_split__week4__day2__seated-cable-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day2__seated-cable-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__seated-cable-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__seated-cable-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__seated-cable-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__seated-cable-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__seated-cable-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Tall chest, pull to the belly, squeeze the shoulder blades, control the return. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Assisted Pull-Ups" data-home-name="Bent-Over Dumbbell Row (both arms)">Assisted Pull-Ups</strong> <span class="badge">3 sets &bull; 8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__assisted-pull-ups__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day2__assisted-pull-ups__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day2__assisted-pull-ups__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__assisted-pull-ups__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__assisted-pull-ups__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__assisted-pull-ups__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__assisted-pull-ups__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__assisted-pull-ups__notes"></textarea></label>
+        <div class="cue">Progression cue: Full hang to chin over the bar. Use the machine assist or a band to hit your reps. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Incline Dumbbell Press" data-home-name="Push-Ups (incline or floor)">Incline Dumbbell Press</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__incline-db-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 30 lb" data-key="power_split__week4__day2__incline-db-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day2__incline-db-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__incline-db-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__incline-db-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__incline-db-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__incline-db-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__incline-db-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Slight incline, elbows about 45 degrees, press strong and control the descent. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Lean-Away Cable Lateral Raise" data-home-name="Leaning Dumbbell Lateral Raise (hold a pole or doorframe)">Lean-Away Cable Lateral Raise</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__lean-away-lateral-raise__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set: 10 full reps + 10 partial reps + a 10-second hold at the top. Shoulders on fire, form intact.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 10 lb" data-key="power_split__week4__day2__lean-away-lateral-raise__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day2__lean-away-lateral-raise__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__lean-away-lateral-raise__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__lean-away-lateral-raise__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__lean-away-lateral-raise__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__lean-away-lateral-raise__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__lean-away-lateral-raise__notes"></textarea></label>
+        <div class="cue">Progression cue: The lean keeps tension on the side delt through the whole range. Strict and slow. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Face Pull" data-home-name="Banded Face Pull (band anchored at eye level)">Face Pull</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__face-pulls__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 30 lb" data-key="power_split__week4__day2__face-pulls__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 14" data-key="power_split__week4__day2__face-pulls__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__face-pulls__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__face-pulls__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__face-pulls__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__face-pulls__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__face-pulls__notes"></textarea></label>
+        <div class="cue">Progression cue: Pull to the forehead, elbows high, squeeze the rear delts. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Hanging Knee Raises" data-home-name="Reverse Crunch (lying on mat)">Hanging Knee Raises</strong> <span class="badge">3 sets &bull; 12 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day2__hanging-knee-raises__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day2__hanging-knee-raises__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day2__hanging-knee-raises__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day2__hanging-knee-raises__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__hanging-knee-raises__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__hanging-knee-raises__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day2__hanging-knee-raises__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day2__hanging-knee-raises__notes"></textarea></label>
+        <div class="cue">Progression cue: No swinging. Curl the hips up toward the ribs, lower with control. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout" data-day="3">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>30–45 min Zone 2 walk — a pace where you can still hold a conversation</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+    </section>
+
+    <section class="workout" data-day="4">
+      <h2>Day 4 — Lower B: Glute Hypertrophy</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, and bird dogs x10/side. Rest 90–120 sec on the big lifts, 45–60 sec on accessories and core.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="power_split__week4__day4__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="power_split__week4__day4__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Leg Press" data-home-name="Bulgarian Split Squat (rear foot elevated on bench or couch)">Leg Press</strong> <span class="badge">4 sets &bull; 8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__leg-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 200 lb" data-key="power_split__week4__day4__leg-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day4__leg-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__leg-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__leg-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__leg-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__leg-press__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__leg-press__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__leg-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Feet high and wide to bias the glutes. Drive through the heels, controlled depth. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat|glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Deficit Reverse Lunges" data-home-name="Deficit Reverse Lunges (front foot on a plate or low step)">Deficit Reverse Lunges</strong> <span class="badge">3 sets &bull; 8 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__deficit-reverse-lunge__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="power_split__week4__day4__deficit-reverse-lunge__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day4__deficit-reverse-lunge__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__deficit-reverse-lunge__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__deficit-reverse-lunge__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__deficit-reverse-lunge__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__deficit-reverse-lunge__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__deficit-reverse-lunge__notes"></textarea></label>
+        <div class="cue">Progression cue: Front foot elevated for extra range. Step back long, drive through the front heel. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: squat|glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Romanian Deadlift" data-home-name="Dumbbell Romanian Deadlift">Romanian Deadlift</strong> <span class="badge">3 sets &bull; 8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__rdl__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 105 lb" data-key="power_split__week4__day4__rdl__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day4__rdl__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__rdl__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__rdl__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__rdl__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__rdl__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__rdl__notes"></textarea></label>
+        <div class="cue">Progression cue: Slightly lighter than Lower A. Hips back, flat back, deep hamstring stretch. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: hinge</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Barbell Hip Thrust" data-home-name="Dumbbell Hip Thrust (dumbbell across hips, upper back on bench or couch)">Barbell Hip Thrust</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__hip-thrust__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set of hip thrusts: 10 full reps + 10 half reps + a 20-second hold at the top. Squeeze like you mean it.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 115 lb" data-key="power_split__week4__day4__hip-thrust__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day4__hip-thrust__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__hip-thrust__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__hip-thrust__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__hip-thrust__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__hip-thrust__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__hip-thrust__notes"></textarea></label>
+        <div class="cue">Progression cue: Slightly lighter than Day 1. Full lockout, 1-second squeeze at the top. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Glute Kickbacks" data-home-name="Banded Glute Kickbacks">Cable Glute Kickbacks</strong> <span class="badge">3 sets &bull; 15 reps each leg &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__glute-kickbacks__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="power_split__week4__day4__glute-kickbacks__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="power_split__week4__day4__glute-kickbacks__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__glute-kickbacks__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__glute-kickbacks__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__glute-kickbacks__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__glute-kickbacks__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__glute-kickbacks__notes"></textarea></label>
+        <div class="cue">Progression cue: Finish the glutes. Slow squeeze at the top of every rep. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Adductor Machine" data-home-name="Banded Abduction (band around knees, press outward)">Adductor Machine</strong> <span class="badge">3 sets &bull; 15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__adductor__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 70 lb" data-key="power_split__week4__day4__adductor__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 15" data-key="power_split__week4__day4__adductor__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__adductor__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__adductor__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__adductor__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__adductor__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__adductor__notes"></textarea></label>
+        <div class="cue">Progression cue: Slow and controlled. Full stretch and a hard squeeze on every rep. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: glute</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Woodchop" data-home-name="Russian Twist (dumbbell or bodyweight)">Cable Woodchop</strong> <span class="badge">3 sets &bull; 10 reps each side &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__woodchops__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 25 lb" data-key="power_split__week4__day4__woodchops__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day4__woodchops__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__woodchops__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__woodchops__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__woodchops__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__woodchops__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__woodchops__notes"></textarea></label>
+        <div class="cue">Progression cue: Rotate from the trunk, arms long, control both directions. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dead Bugs" data-home-name="Dead Bugs">Dead Bugs</strong> <span class="badge">3 sets &bull; 10 reps each side &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day4__dead-bugs__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day4__dead-bugs__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day4__dead-bugs__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day4__dead-bugs__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__dead-bugs__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__dead-bugs__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day4__dead-bugs__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day4__dead-bugs__notes"></textarea></label>
+        <div class="cue">Progression cue: Low back pressed into the floor. Slow opposite arm and leg, exhale as you extend. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout" data-day="5">
+      <h2>Day 5 — Upper B: Back + Shoulders</h2>
+      <p class="intro" style="margin-top:0;color:#374151;font-size:.9rem">Warm up 5–7 min first: easy incline walk or cardio, glute activation band walks, and bird dogs x10/side. Rest 90–120 sec on the big lifts, 45–60 sec on accessories and core.</p>
+      <div class="completion-strip">
+        <div class="completion-main">
+          <label class="completion-label">
+            <input type="checkbox" class="completion-cb" data-key="power_split__week4__day5__completed">
+            <span class="completion-box"></span>
+            <span class="completion-text">Mark as Complete</span>
+          </label>
+          <label class="completion-date-label">Date completed:
+            <input type="date" class="completion-date" data-key="power_split__week4__day5__completed_date">
+          </label>
+        </div>
+        <p class="completion-hint">Your progress is saved on this device</p>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Pull-Ups or Assisted Pull-Ups" data-home-name="Bent-Over Dumbbell Row (both arms)">Pull-Ups or Assisted Pull-Ups</strong> <span class="badge">4 sets &bull; 6-8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__pull-ups__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day5__pull-ups__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day5__pull-ups__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__pull-ups__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__pull-ups__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__pull-ups__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__pull-ups__set_3"><span>Set 3</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__pull-ups__set_4"><span>Set 4</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__pull-ups__notes"></textarea></label>
+        <div class="cue">Progression cue: Your heaviest pull of the week. Full hang, chin over the bar, control the descent. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Chest Supported Row" data-home-name="Renegade Row (push-up position, row each dumbbell)">Chest Supported Row</strong> <span class="badge">3 sets &bull; 8 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__chest-supported-row__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 40 lb" data-key="power_split__week4__day5__chest-supported-row__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 8" data-key="power_split__week4__day5__chest-supported-row__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__chest-supported-row__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__chest-supported-row__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__chest-supported-row__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__chest-supported-row__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__chest-supported-row__notes"></textarea></label>
+        <div class="cue">Progression cue: Chest stays glued to the pad. Pull with the back, not the arms. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Push-Ups" data-home-name="Incline Push-Up (hands elevated) or Floor Push-Up">Push-Ups</strong> <span class="badge">3 sets &bull; to technical failure &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__push-ups__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day5__push-ups__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day5__push-ups__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__push-ups__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__push-ups__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__push-ups__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__push-ups__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__push-ups__notes"></textarea></label>
+        <div class="cue">Progression cue: Stop when your form breaks — not when you collapse. Full range every rep. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Dumbbell Arnold Press" data-home-name="Dumbbell Arnold Press">Dumbbell Arnold Press</strong> <span class="badge">3 sets &bull; 8-10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__arnold-press__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 20 lb" data-key="power_split__week4__day5__arnold-press__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day5__arnold-press__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__arnold-press__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__arnold-press__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__arnold-press__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__arnold-press__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__arnold-press__notes"></textarea></label>
+        <div class="cue">Progression cue: Rotate the palms as you press. Full range, no arching the low back. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Cable Lateral Raise" data-home-name="Leaning Dumbbell Lateral Raise (hold a pole or doorframe)">Cable Lateral Raise</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__lateral-raise__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="challenge"><strong>Rachel Challenge Set 💪</strong> On your final set: 10 full reps + 10 partial reps + a 10-second hold at the top. Shoulders on fire, form intact.</div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 10 lb" data-key="power_split__week4__day5__lateral-raise__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 12" data-key="power_split__week4__day5__lateral-raise__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__lateral-raise__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__lateral-raise__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__lateral-raise__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__lateral-raise__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__lateral-raise__notes"></textarea></label>
+        <div class="cue">Progression cue: Elbows soft, lead with the elbow, shoulders down away from ears. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: push</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Rear Delt Fly" data-home-name="Banded Pull-Apart">Rear Delt Fly</strong> <span class="badge">3 sets &bull; 12-15 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__rear-delt-fly__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 10 lb" data-key="power_split__week4__day5__rear-delt-fly__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 14" data-key="power_split__week4__day5__rear-delt-fly__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__rear-delt-fly__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__rear-delt-fly__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__rear-delt-fly__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__rear-delt-fly__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__rear-delt-fly__notes"></textarea></label>
+        <div class="cue">Progression cue: Hinge forward, soft elbows, squeeze the rear delts — no swinging. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: pull</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Ab Wheel Rollout" data-home-name="Plank Shoulder Taps (slow, hips still)">Ab Wheel Rollout</strong> <span class="badge">3 sets &bull; 10 reps &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__ab-wheel__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., bodyweight" data-key="power_split__week4__day5__ab-wheel__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 10" data-key="power_split__week4__day5__ab-wheel__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__ab-wheel__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__ab-wheel__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__ab-wheel__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__ab-wheel__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__ab-wheel__notes"></textarea></label>
+        <div class="cue">Progression cue: Roll out only as far as you can keep the low back flat. Brace hard. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+
+      <div class="exercise">
+        <div class="ex-head">
+          <div class="ex-title"><strong data-gym-name="Farmer Carry" data-home-name="Suitcase Carry (one heavy dumbbell, switch sides)">Farmer Carry</strong> <span class="badge">3 sets &bull; 40 yards &bull; Tempo: 3-0-1</span></div>
+          <div class="equip">
+            <label>Equipment</label>
+            <select data-key="power_split__week4__day5__farmer-carry__equip">
+              <option value="home">At home: Dumbbell/Bands</option>
+              <option value="gym">At gym: Barbell/Machines</option>
+            </select>
+          </div>
+        </div>
+        <div class="trackers">
+          <label>Weight <input type="text" inputmode="decimal" placeholder="e.g., 40 lb" data-key="power_split__week4__day5__farmer-carry__weight"></label>
+          <label>Reps <input type="number" min="1" step="1" placeholder="e.g., 40" data-key="power_split__week4__day5__farmer-carry__reps"></label>
+          <label>RPE <input type="number" min="1" max="10" step="1" placeholder="1–10" data-key="power_split__week4__day5__farmer-carry__rpe"></label>
+        </div>
+        <div class="sets"><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__farmer-carry__set_1"><span>Set 1</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__farmer-carry__set_2"><span>Set 2</span></label><label class="setbox"><input type="checkbox" data-key="power_split__week4__day5__farmer-carry__set_3"><span>Set 3</span></label></div>
+        <label class="notes">Notes <textarea rows="2" placeholder="Form cues, PRs, adjustments…" data-key="power_split__week4__day5__farmer-carry__notes"></textarea></label>
+        <div class="cue">Progression cue: Heavy dumbbells, tall posture, ribs down, brace and walk with control. Week 4 — keep the overload coming. Small jumps, stay inside the rep range.</div>
+        <div class="pattern">Pattern: core</div>
+      </div>
+    </section>
+
+    <section class="workout" data-day="6">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>30–45 min Zone 2 walk — a pace where you can still hold a conversation</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+    </section>
+
+    <section class="workout" data-day="7">
+      <h2>Rest &amp; Recover 🌿</h2>
+      <p>Today is just as important as your training days. Your muscles grow during recovery — not during the workout. Honor this day.</p>
+      <p><strong>Suggested activities:</strong></p>
+      <ul style="margin:8px 0 0 18px">
+        <li>30–45 min Zone 2 walk — a pace where you can still hold a conversation</li>
+        <li>Active stretch: hip flexors, hamstrings, chest opener (60 sec each)</li>
+        <li>Foam roll: glutes, quads, upper back (5–10 min)</li>
+        <li>Breathwork or light yoga (10–15 min)</li>
+        <li>Hydrate well and prioritize sleep tonight</li>
+      </ul>
+    </section>
+
+    <section class="mini">
+      <h2>Mini Session — Mobility &amp; Recovery</h2>
+      <p>10–15 min &bull; Any day, any time</p>
+      <ul>
+        <li>90/90 Hip Stretch — 60 sec each side</li>
+        <li>World's Greatest Stretch — 5 reps each side</li>
+        <li>Band Pull-Aparts — 2 x 15</li>
+        <li>Thoracic Rotation — 5 reps each side</li>
+      </ul>
+    </section>
+
+    <section class="walk">
+      <h2>Weekly Cardio &amp; Steps</h2>
+      <p>Get in 2–4 Zone 2 walks this week (30–45 minutes at a pace where you can still hold a conversation), plus one optional 10–15 minute interval session. Aim for 8,000–10,000 daily steps — walking supports recovery, regulates hormones, and keeps your metabolism active between sessions.</p>
+    </section>
+
+    <section class="footer">
+      <p style="color:#4b5563;font-size:.85rem">Tip: your entries are stored on your device (localStorage). Clearing site data will reset your logs.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  var CONFIG = {
+    accessCode: 'MIGHT',
+    weekLocked: true,
+    weekNumber: 4
+  };
+
+  function tryUnlock() {
+    var val = document.getElementById('access-input').value.trim().toUpperCase();
+    if (val === CONFIG.accessCode) {
+      localStorage.setItem('rsw_power_split_week' + CONFIG.weekNumber + '_unlocked', 'true');
+      showApp();
+    } else {
+      document.getElementById('lock-error').style.display = '';
+    }
+  }
+
+  function showApp() {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = '';
+    showDay(1);
+    restore();
+    document.querySelectorAll('.equip select').forEach(applyEquipName);
+    document.querySelectorAll('.completion-cb').forEach(applyCompletionStyle);
+  }
+
+  var currentDay = 1;
+
+  function showDay(dayNum) {
+    currentDay = dayNum;
+    document.querySelectorAll('[data-day-btn]').forEach(function(p) { p.classList.remove('active'); });
+    var pill = document.querySelector('[data-day-btn="' + dayNum + '"]');
+    if (pill) pill.classList.add('active');
+    document.querySelectorAll('.workout').forEach(function(s) {
+      s.style.display = (s.getAttribute('data-day') == dayNum) ? '' : 'none';
+    });
+  }
+
+  var restore = function() {
+    document.querySelectorAll('[data-key]').forEach(function(el) {
+      var key = el.getAttribute('data-key');
+      if (el.type === 'checkbox') {
+        el.checked = localStorage.getItem(key) === '1';
+      } else {
+        var v = localStorage.getItem(key);
+        if (v !== null) el.value = v;
+      }
+    });
+  };
+
+  var persist = function(e) {
+    var el = e.target;
+    if (!el || !el.hasAttribute('data-key')) return;
+    var key = el.getAttribute('data-key');
+    var val = (el.type === 'checkbox') ? (el.checked ? '1' : '0') : el.value;
+    localStorage.setItem(key, val);
+  };
+
+  function applyEquipName(select) {
+    var card = select.closest('.exercise');
+    if (!card) return;
+    var strong = card.querySelector('.ex-title strong');
+    if (!strong || !strong.hasAttribute('data-gym-name')) return;
+    strong.textContent = select.value === 'home'
+      ? strong.getAttribute('data-home-name')
+      : strong.getAttribute('data-gym-name');
+  }
+
+  function applyCompletionStyle(cb) {
+    var strip = cb.closest('.completion-strip');
+    if (!strip) return;
+    var text = strip.querySelector('.completion-text');
+    if (cb.checked) {
+      strip.classList.add('done');
+      if (text) text.textContent = 'Completed ✓';
+    } else {
+      strip.classList.remove('done');
+      if (text) text.textContent = 'Mark as Complete';
+    }
+  }
+
+  window.addEventListener('change', function(e) {
+    persist(e);
+    if (e.target && e.target.closest && e.target.closest('.equip')) {
+      applyEquipName(e.target);
+    }
+    if (e.target && e.target.classList.contains('completion-cb')) {
+      applyCompletionStyle(e.target);
+    }
+  }, true);
+
+  window.addEventListener('DOMContentLoaded', function() {
+    if (CONFIG.weekLocked &&
+        localStorage.getItem('rsw_power_split_week' + CONFIG.weekNumber + '_unlocked') !== 'true') {
+      var inp = document.getElementById('access-input');
+      if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
+      return;
+    }
+    showApp();
+  });
+</script>
+</body>
+</html>
